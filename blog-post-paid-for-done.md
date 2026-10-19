@@ -10,7 +10,7 @@ askChips:
   - "When does Span take a share of the value a task creates?"
 ---
 
-Chamath Palihapitiya summed up where the AI business stands in four lines. "Most everyone is selling CPM. Cost per thousand tokens + markup." Next, he wrote, "Everyone will sell CPA. Accomplish the task, participate in the ROI." On the way there he expects "a lot of value destruction," and he points to the Web1 and mobile transitions as examples.
+Chamath Palihapitiya [summed up](https://x.com/chamath/status/2106406819606483273) where the AI business stands in four lines. "Most everyone is selling CPM. Cost per thousand tokens + markup." Next, he wrote, "Everyone will sell CPA. Accomplish the task, participate in the ROI." On the way there he expects "a lot of value destruction," and he points to the Web1 and mobile transitions as examples.
 
 ## From impressions to results
 

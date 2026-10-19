@@ -13,8 +13,193 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px so
 [role=tab]:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 iframe{display:block;width:100%;border:0;min-height:80vh}
 </style></head><body>
-<header><div class="bar"><b>Paid for Done</b><div role="tablist" aria-label="Documents"><button role="tab" id="t-blog" aria-controls="p-blog" data-k="blog">Blog post</button><button role="tab" id="t-memo" aria-controls="p-memo" data-k="memo">Strategy memo</button><button role="tab" id="t-review" aria-controls="p-review" data-k="review">Branch review</button><button role="tab" id="t-book" aria-controls="p-book" data-k="book">Picture book</button></div></div></header>
-<main><section role="tabpanel" id="p-blog" aria-labelledby="t-blog" hidden><iframe title="Blog post" srcdoc="&lt;title&gt;Paid for Done&lt;/title&gt;
+<header><div class="bar"><b>Paid for Done</b><div role="tablist" aria-label="Documents"><button role="tab" id="t-tweet" aria-controls="p-tweet" data-k="tweet">The tweet</button><button role="tab" id="t-blog" aria-controls="p-blog" data-k="blog">Blog post</button><button role="tab" id="t-memo" aria-controls="p-memo" data-k="memo">Strategy memo</button><button role="tab" id="t-review" aria-controls="p-review" data-k="review">Branch review</button><button role="tab" id="t-book" aria-controls="p-book" data-k="book">Picture book</button></div></div></header>
+<main><section role="tabpanel" id="p-tweet" aria-labelledby="t-tweet" hidden><iframe title="The tweet" srcdoc="&lt;title&gt;Paid for Done&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap&quot;&gt;
+&lt;style&gt;
+/* Layout: one reading column (~68ch) with full-width exhibits (flow diagram, tables, calculator) framed by hairlines — Span&#x27;s engineered register. */
+:root {
+  --paper: #fafaf7;
+  --cream: #f2f2ec;
+  --ink: #2d3436;
+  --ink-2: #555f63;
+  --rule: #dcdcd2;
+  --brand: #1A6D63;
+  --brand-soft: #D5F2ED;
+  --copper: #9a4f1c;
+  --copper-soft: #f6e6d8;
+  --warn: #a8321f;
+  --warn-soft: #f8e1dc;
+  --display: &quot;Newsreader&quot;, Georgia, &quot;Times New Roman&quot;, serif;
+  --body: &quot;Hanken Grotesk&quot;, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+  --mono: &quot;JetBrains Mono&quot;, ui-monospace, &quot;SF Mono&quot;, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=&quot;light&quot;]) {
+    --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+    --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+    --warn: #f0917f; --warn-soft: #3d201b; color-scheme: dark;
+  }
+}
+:root[data-theme=&quot;dark&quot;] {
+  --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+  --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+  --warn: #f0917f; --warn-soft: #3d201b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16.5px; line-height: 1.6; padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 980px; margin: 0 auto; }
+.col { max-width: 68ch; }
+header { padding-block: 64px 32px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(38px, 6vw, 60px); line-height: 1.05; margin: 12px 0 18px; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+h3 { font-family: var(--body); font-weight: 600; font-size: 17px; margin: 22px 0 6px; }
+.lede { font-family: var(--display); font-size: 21px; line-height: 1.45; color: var(--ink-2); }
+.lede em { color: var(--ink); }
+section { padding-block: 56px 8px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+p { margin: 0 0 14px; }
+a { color: var(--brand); text-underline-offset: 2px; }
+code, .mono { font-family: var(--mono); font-size: .86em; }
+code { background: var(--cream); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+.meta { font-family: var(--mono); font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; }
+ul, ol { padding-left: 1.2em; margin: 0 0 14px; }
+li { margin-bottom: 6px; }
+li::marker { color: var(--ink-2); }
+.tweet { border-left: 2px solid var(--brand); padding: 4px 0 4px 18px; margin: 22px 0; font-family: var(--display); font-size: 18px; line-height: 1.5; color: var(--ink-2); }
+.tweet p { margin-bottom: 10px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 24px 0; }
+.pair &gt; div { padding: 20px 22px; min-width: 0; }
+.pair &gt; div + div { border-left: 1px solid var(--rule); }
+.pair .tag { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.pair .big { font-family: var(--display); font-size: 26px; font-weight: 600; margin: 4px 0 8px; }
+.pair .now .big { color: var(--copper); }
+.pair .next .big { color: var(--brand); }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr; } .pair &gt; div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+.flow-frame { border: 1px solid var(--rule); background: var(--cream); padding: 20px; margin: 24px 0; overflow-x: auto; }
+.flow-frame .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+.flow { display: flex; align-items: stretch; gap: 0; min-width: 760px; }
+.step { flex: 1; border: 1px solid var(--rule); background: var(--paper); padding: 12px; font-size: 13.5px; line-height: 1.4; }
+.step b { display: block; font-weight: 600; margin-bottom: 4px; }
+.step .mono { color: var(--ink-2); font-size: 11px; display: block; margin-top: 6px; overflow-wrap: anywhere; }
+.step.bad { border-color: var(--warn); background: var(--warn-soft); }
+.arrow { display: flex; align-items: center; padding: 0 6px; color: var(--ink-2); font-family: var(--mono); }
+.findings { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.findings li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); margin: 0; }
+.findings .sev { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding-top: 3px; }
+.sev.hi { color: var(--warn); } .sev.md { color: var(--copper); } .sev.lo { color: var(--ink-2); }
+.findings p { margin: 0; }
+.findings .src { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); margin-top: 4px; overflow-wrap: anywhere; }
+@media (max-width: 560px) { .findings li { grid-template-columns: 1fr; gap: 4px; } }
+.rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 1px solid var(--rule); margin: 24px 0; }
+.rules &gt; div { padding: 20px 22px; border-bottom: 1px solid var(--rule); min-width: 0; }
+.rules &gt; div:nth-child(odd) { border-right: 1px solid var(--rule); }
+.rules &gt; div:nth-last-child(-n+2) { border-bottom: 0; }
+.rules .who { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+.rules h3 { margin-top: 6px; font-family: var(--display); font-size: 21px; font-weight: 600; }
+.rules p { font-size: 15px; color: var(--ink-2); margin-bottom: 8px; }
+@media (max-width: 680px) { .rules { grid-template-columns: 1fr; } .rules &gt; div:nth-child(odd) { border-right: 0; } .rules &gt; div:nth-last-child(2) { border-bottom: 1px solid var(--rule); } }
+.formula { font-family: var(--mono); font-size: 15px; background: var(--brand-soft); color: var(--ink); padding: 16px 18px; margin: 18px 0; overflow-x: auto; white-space: nowrap; border-left: 2px solid var(--brand); }
+.tbl { overflow-x: auto; margin: 22px 0; border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 720px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); }
+tr:last-child td { border-bottom: 0; }
+td code { font-size: 12px; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 7px; border-radius: 99px; white-space: nowrap; }
+.pill.built { background: var(--brand-soft); color: var(--brand); }
+.pill.part { background: var(--copper-soft); color: var(--copper); }
+.pill.none { background: var(--warn-soft); color: var(--warn); }
+.calc { border: 1px solid var(--rule); margin: 24px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+.calc .inputs { padding: 20px 22px; border-right: 1px solid var(--rule); background: var(--cream); display: grid; gap: 14px; align-content: start; }
+.calc label { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+.calc label output { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+.calc input[type=range] { width: 100%; accent-color: var(--brand); margin: 4px 0 0; }
+.calc .hint { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+.calc .results { padding: 20px 22px; min-width: 0; }
+.calc table { min-width: 0; font-size: 14px; }
+.calc .tbl { margin: 0 0 14px; }
+.calc .verdict { font-size: 14.5px; color: var(--ink-2); }
+.calc .verdict b { color: var(--ink); }
+.better { color: var(--brand); font-weight: 600; }
+.worse { color: var(--warn); font-weight: 600; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.presets button { font: 500 12.5px var(--body); border: 1px solid var(--rule); background: var(--paper); color: var(--ink); padding: 7px 11px; min-height: 36px; cursor: pointer; border-radius: 3px; }
+.presets button:hover { border-color: var(--brand); color: var(--brand); }
+.presets button:focus-visible, .calc input:focus-visible, a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+@media (max-width: 760px) { .calc { grid-template-columns: 1fr; } .calc .inputs { border-right: 0; border-bottom: 1px solid var(--rule); } }
+.phases { list-style: none; padding: 0; margin: 22px 0; border-left: 1px solid var(--rule); }
+.phases li { position: relative; padding: 0 0 22px 24px; margin: 0; }
+.phases li::before { content: &quot;&quot;; position: absolute; left: -5px; top: 8px; width: 9px; height: 9px; background: var(--paper); border: 1.5px solid var(--brand); border-radius: 50%; }
+.phases .ph { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); }
+.phases h3 { margin: 2px 0 6px; font-family: var(--display); font-size: 20px; }
+.phases p { color: var(--ink-2); font-size: 15px; margin-bottom: 6px; }
+.phases .exit { font-size: 13.5px; }
+.phases .exit b { color: var(--ink); font-weight: 600; }
+.callout { background: var(--copper-soft); border-left: 2px solid var(--copper); padding: 14px 18px; margin: 20px 0; font-size: 15px; }
+.callout b { color: var(--copper); }
+footer { padding-block: 40px 0; font-size: 13px; color: var(--ink-2); font-family: var(--mono); }
+
+.lbl { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; margin-right: 6px; vertical-align: 1px; }
+.lbl.f { background: var(--brand-soft); color: var(--brand); }
+.lbl.p { background: var(--copper-soft); color: var(--copper); }
+.lbl.q { background: var(--warn-soft); color: var(--warn); }
+.guide { border: 1px solid var(--rule); background: var(--cream); padding: 16px 20px; margin-top: 24px; font-size: 15px; }
+.guide p { margin-bottom: 8px; }
+.toc { columns: 2; column-gap: 32px; font-size: 14.5px; padding-left: 1.2em; margin: 8px 0 0; }
+.toc li { break-inside: avoid; margin-bottom: 4px; }
+@media (max-width: 640px) { .toc { columns: 1; } }
+.source { border-left: 2px solid var(--rule); padding: 4px 0 4px 18px; margin: 14px 0 22px; font-size: 15px; color: var(--ink); }
+.source p { margin-bottom: 10px; }
+.source h4 { font-family: var(--body); font-size: 15.5px; margin: 16px 0 6px; }
+.spec { border: 1px solid var(--rule); margin: 18px 0; }
+.spec h4 { margin: 0; padding: 10px 14px; background: var(--cream); border-bottom: 1px solid var(--rule); font-size: 15px; }
+.spec .in { padding: 12px 14px 4px; font-size: 15px; }
+h4 { font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+&lt;/style&gt;
+
+&lt;div class=&quot;wrap&quot;&gt;
+&lt;section id=&quot;tweet&quot;&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;div class=&quot;eyebrow&quot;&gt;The source&lt;/div&gt;
+    &lt;h2&gt;Chamath&amp;#39;s post&lt;/h2&gt;
+    &lt;div class=&quot;tweet&quot;&gt;
+      &lt;p&gt;&quot;Current State of the Union of AI/SI: Most everyone is selling CPM. Cost per thousand tokens + markup.&lt;/p&gt;
+      &lt;p&gt;Future State of the Union of AI/SI: Everyone will sell CPA. Accomplish the task, participate in the ROI.&lt;/p&gt;
+      &lt;p&gt;In the transition from CPM to CPA, we will debunk much of the current gamesmanship around revenues, gross margins and run-rates. This will necessarily involve a lot of value destruction. See Web1 and Mobile transitions for examples.&lt;/p&gt;
+      &lt;p&gt;Good luck to all the players!&quot;&lt;/p&gt;
+      &lt;p class=&quot;cite&quot; style=&quot;font-family: var(--body); font-size: 14px; color: var(--ink-3, var(--ink-2)); margin: 0;&quot;&gt;Chamath Palihapitiya (@chamath), on X, 3 October 2026. &lt;a href=&quot;https://x.com/chamath/status/2106406819606483273&quot;&gt;View the post&lt;/a&gt;. The CPM and CPA definitions in this memo come from this post.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;Chamath Palihapitiya is a venture investor (Social Capital), a co-host of the All-In podcast and an early Facebook executive who ran its growth team. The post is about how AI is priced: what model labs, AI apps and agents charge for. It borrows two terms from online advertising as shorthand; it is not about advertising itself. It makes four short claims. Here is what each line means:&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tbl&quot;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;The line&lt;/th&gt;&lt;th&gt;What it means&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;Current State of the Union of AI/SI&quot;&lt;/td&gt;&lt;td&gt;Where the AI business stands today. &quot;SI&quot; most likely means superintelligence; he is talking about everyone who sells AI, from model labs to the apps built on them.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;Most everyone is selling CPM. Cost per thousand tokens + markup.&quot;&lt;/td&gt;&lt;td&gt;Today almost every AI company is paid for usage. Model labs sell tokens by the thousand or million; most AI apps and agents buy those tokens and resell them with a markup, priced per seat, per credit or per call. Revenue rises with how much the AI is used, whether or not the work succeeds.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;Everyone will sell CPA. Accomplish the task…&quot;&lt;/td&gt;&lt;td&gt;The price will attach to the finished job instead of the effort: a fixed fee per completed task, owed only if the task is done.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;…participate in the ROI.&quot;&lt;/td&gt;&lt;td&gt;The step past that: the seller takes a share of what the work was worth to the buyer (money recovered, sales made, hours saved), like a commission or a performance fee.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;…debunk much of the current gamesmanship around revenues…&quot;&lt;/td&gt;&lt;td&gt;Revenue is flattered because many companies count the full token bill they pass through to model providers as their own revenue.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;…gross margins…&quot;&lt;/td&gt;&lt;td&gt;Margins look healthy because cost simply passes to the buyer with a markup, and failed or repeated work is billed too. Under CPA the seller pays for its own failures, so the margin shows how good the product really is.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;…and run-rates.&quot;&lt;/td&gt;&lt;td&gt;A run-rate is one month&amp;#39;s revenue multiplied by twelve. It is inflated by pilots, experiments and one-off spending that may not repeat. Paying per finished task shows what customers keep paying for.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;This will necessarily involve a lot of value destruction.&quot;&lt;/td&gt;&lt;td&gt;Company valuations built on those flattering numbers will fall when the numbers are restated on results. Some companies will shrink and some will not survive.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;See Web1 and Mobile transitions for examples.&quot;&lt;/td&gt;&lt;td&gt;It has happened before. He does not name the examples; the likely ones are the dot-com bust (2000 to 2002), when companies valued on traffic and page views collapsed once the market priced on revenue and profit, and the move to phones, when companies that led on desktop and did not adapt lost their place to those built for mobile.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&quot;Good luck to all the players!&quot;&lt;/td&gt;&lt;td&gt;A dry sign-off: nobody now selling AI is safe from the shift, including the biggest names.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;&lt;b&gt;Why it matters to Span.&lt;/b&gt; A broker is exactly where this &quot;gamesmanship&quot; can hide. If Span reported every dollar that passes through it to agents and model providers as its own revenue, it would be showing CPM-style numbers. The memo&amp;#39;s answer is to be paid for accepted work and to report revenue net of what goes to agents and providers (see &quot;How Span reports revenue&quot; in &lt;a href=&quot;#s5&quot;&gt;section 5&lt;/a&gt;).&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></section><section role="tabpanel" id="p-blog" aria-labelledby="t-blog" hidden><iframe title="Blog post" srcdoc="&lt;title&gt;Paid for Done&lt;/title&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap&quot;&gt;
@@ -183,11 +368,11 @@ h4 { font-size: 16px; }
   &lt;/div&gt;
   &lt;div class=&quot;col&quot;&gt;
     &lt;div class=&quot;callout&quot;&gt;
-      &lt;p&gt;&lt;b&gt;Check before publishing.&lt;/b&gt; The second paragraph under &quot;Where Span stands&quot; says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans (&quot;will&quot;), not as shipped features. Add the link to Chamath&amp;#39;s post on X before it goes live.&lt;/p&gt;
+      &lt;p&gt;&lt;b&gt;Check before publishing.&lt;/b&gt; The second paragraph under &quot;Where Span stands&quot; says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans (&quot;will&quot;), not as shipped features. The link to Chamath&amp;#39;s post is in the first sentence.&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;article class=&quot;col&quot; aria-label=&quot;Blog post draft&quot;&gt;
-    &lt;p&gt;Chamath Palihapitiya summed up where the AI business stands in four lines. &quot;Most everyone is selling CPM. Cost per thousand tokens + markup.&quot; Next, he wrote, &quot;Everyone will sell CPA. Accomplish the task, participate in the ROI.&quot; On the way there he expects &quot;a lot of value destruction,&quot; and he points to the Web1 and mobile transitions as examples.&lt;/p&gt;
+    &lt;p&gt;Chamath Palihapitiya &lt;a href=&quot;https://x.com/chamath/status/2106406819606483273&quot;&gt;summed up&lt;/a&gt; where the AI business stands in four lines. &quot;Most everyone is selling CPM. Cost per thousand tokens + markup.&quot; Next, he wrote, &quot;Everyone will sell CPA. Accomplish the task, participate in the ROI.&quot; On the way there he expects &quot;a lot of value destruction,&quot; and he points to the Web1 and mobile transitions as examples.&lt;/p&gt;
     &lt;h3&gt;From impressions to results&lt;/h3&gt;
     &lt;p&gt;He is talking about how AI is sold, and he borrows the terms from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google&#x27;s search ads moved to charging per click in 2002, and every year after, the measurement got closer to the sale.&lt;/p&gt;
     &lt;p&gt;AI is still in its banner-ad era. Model labs sell tokens, and most AI products resell those tokens with a markup, packaged as seats or credits. The buyer pays for effort. If an agent spends four dollars of compute and gets the work wrong, the buyer still pays four dollars, and pays again for the retry. Revenue grows with usage whether or not anything got done.&lt;/p&gt;
@@ -401,7 +586,7 @@ h4 { font-size: 16px; }
       &lt;p&gt;Future State of the Union of AI/SI: Everyone will sell CPA. Accomplish the task, participate in the ROI.&lt;/p&gt;
       &lt;p&gt;In the transition from CPM to CPA, we will debunk much of the current gamesmanship around revenues, gross margins and run-rates. This will necessarily involve a lot of value destruction. See Web1 and Mobile transitions for examples.&lt;/p&gt;
       &lt;p&gt;Good luck to all the players!&quot;&lt;/p&gt;
-      &lt;p class=&quot;cite&quot; style=&quot;font-family: var(--body); font-size: 14px; color: var(--ink-3, var(--ink-2)); margin: 0;&quot;&gt;Chamath Palihapitiya, on X. The CPM and CPA definitions in this memo come from this post.&lt;/p&gt;
+      &lt;p class=&quot;cite&quot; style=&quot;font-family: var(--body); font-size: 14px; color: var(--ink-3, var(--ink-2)); margin: 0;&quot;&gt;Chamath Palihapitiya (@chamath), on X, 3 October 2026. &lt;a href=&quot;https://x.com/chamath/status/2106406819606483273&quot;&gt;View the post&lt;/a&gt;. The CPM and CPA definitions in this memo come from this post.&lt;/p&gt;
     &lt;/div&gt;
     &lt;p&gt;Chamath Palihapitiya is a venture investor (Social Capital), a co-host of the All-In podcast and an early Facebook executive who ran its growth team. The post is about how AI is priced: what model labs, AI apps and agents charge for. It borrows two terms from online advertising as shorthand; it is not about advertising itself. It makes four short claims. Here is what each line means:&lt;/p&gt;
   &lt;/div&gt;
@@ -966,11 +1151,11 @@ h4 { font-size: 16px; }
   &lt;/div&gt;
   &lt;div class=&quot;col&quot;&gt;
     &lt;div class=&quot;callout&quot;&gt;
-      &lt;p&gt;&lt;b&gt;Check before publishing.&lt;/b&gt; The second paragraph under &quot;Where Span stands&quot; says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans (&quot;will&quot;), not as shipped features. Add the link to Chamath&amp;#39;s post on X before it goes live.&lt;/p&gt;
+      &lt;p&gt;&lt;b&gt;Check before publishing.&lt;/b&gt; The second paragraph under &quot;Where Span stands&quot; says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans (&quot;will&quot;), not as shipped features. The link to Chamath&amp;#39;s post is in the first sentence.&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;article class=&quot;col&quot; aria-label=&quot;Blog post draft&quot;&gt;
-    &lt;p&gt;Chamath Palihapitiya summed up where the AI business stands in four lines. &quot;Most everyone is selling CPM. Cost per thousand tokens + markup.&quot; Next, he wrote, &quot;Everyone will sell CPA. Accomplish the task, participate in the ROI.&quot; On the way there he expects &quot;a lot of value destruction,&quot; and he points to the Web1 and mobile transitions as examples.&lt;/p&gt;
+    &lt;p&gt;Chamath Palihapitiya &lt;a href=&quot;https://x.com/chamath/status/2106406819606483273&quot;&gt;summed up&lt;/a&gt; where the AI business stands in four lines. &quot;Most everyone is selling CPM. Cost per thousand tokens + markup.&quot; Next, he wrote, &quot;Everyone will sell CPA. Accomplish the task, participate in the ROI.&quot; On the way there he expects &quot;a lot of value destruction,&quot; and he points to the Web1 and mobile transitions as examples.&lt;/p&gt;
     &lt;h3&gt;From impressions to results&lt;/h3&gt;
     &lt;p&gt;He is talking about how AI is sold, and he borrows the terms from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google&#x27;s search ads moved to charging per click in 2002, and every year after, the measurement got closer to the sale.&lt;/p&gt;
     &lt;p&gt;AI is still in its banner-ad era. Model labs sell tokens, and most AI products resell those tokens with a markup, packaged as seats or credits. The buyer pays for effort. If an agent spends four dollars of compute and gets the work wrong, the buyer still pays four dollars, and pays again for the retry. Revenue grows with usage whether or not anything got done.&lt;/p&gt;
@@ -1005,7 +1190,7 @@ h4 { font-size: 16px; }
       &lt;p&gt;Future State of the Union of AI/SI: Everyone will sell CPA. Accomplish the task, participate in the ROI.&lt;/p&gt;
       &lt;p&gt;In the transition from CPM to CPA, we will debunk much of the current gamesmanship around revenues, gross margins and run-rates. This will necessarily involve a lot of value destruction. See Web1 and Mobile transitions for examples.&lt;/p&gt;
       &lt;p&gt;Good luck to all the players!&lt;/p&gt;
-      &lt;p&gt;&lt;i&gt;Chamath Palihapitiya, on X.&lt;/i&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;i&gt;Chamath Palihapitiya (@chamath), on X, 3 October 2026: &lt;a href=&quot;https://x.com/chamath/status/2106406819606483273&quot;&gt;https://x.com/chamath/status/2106406819606483273&lt;/a&gt;&lt;/i&gt;&lt;/p&gt;
     &lt;/div&gt;
     &lt;h3&gt;A.2 Your notes&lt;/h3&gt;
     &lt;div class=&quot;source&quot;&gt;
