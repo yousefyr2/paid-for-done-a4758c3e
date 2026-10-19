@@ -14,7 +14,7 @@ Chamath Palihapitiya summed up where the AI business stands in four lines. "Most
 
 ## From impressions to results
 
-The terms come from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google's search ads moved to charging per click in 2002, and every year after, the measurement got closer to the sale.
+He is talking about how AI is sold, and he borrows the terms from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google's search ads moved to charging per click in 2002, and every year after, the measurement got closer to the sale.
 
 AI is still in its banner-ad era. Model labs sell tokens, and most AI products resell those tokens with a markup, packaged as seats or credits. The buyer pays for effort. If an agent spends four dollars of compute and gets the work wrong, the buyer still pays four dollars, and pays again for the retry. Revenue grows with usage whether or not anything got done.
 
