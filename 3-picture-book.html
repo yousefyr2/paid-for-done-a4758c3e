@@ -1,0 +1,302 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Paid for Done, Simply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Lexend:wght@400;500&display=swap">
+<style>
+/* Layout: a picture book. One big drawing per page, a short headline above it, one or two sentences below. Pages stack down a single column. */
+:root {
+  --paper: #f5f9f7;
+  --card: #ffffff;
+  --ink: #1f2a2c;
+  --ink-2: #4f5d60;
+  --line: #d6e2de;
+  --span: #1A6D63;
+  --span-soft: #d5f2ed;
+  --coin: #e0a526;
+  --coin-edge: #a8740c;
+  --bad: #c43d2b;
+  --bad-soft: #fbe3de;
+  --robot: #9fb7c9;
+  --robot-dark: #5b7487;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #111917; --card: #18221f; --ink: #e8efec; --ink-2: #a9b8b4; --line: #2b3a36;
+    --span: #6ECFC2; --span-soft: #183a35; --coin: #f0c04e; --coin-edge: #b8860b;
+    --bad: #f08a78; --bad-soft: #3d221d; --robot: #6f8aa0; --robot-dark: #a8c0d3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #111917; --card: #18221f; --ink: #e8efec; --ink-2: #a9b8b4; --line: #2b3a36;
+  --span: #6ECFC2; --span-soft: #183a35; --coin: #f0c04e; --coin-edge: #b8860b;
+  --bad: #f08a78; --bad-soft: #3d221d; --robot: #6f8aa0; --robot-dark: #a8c0d3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.55; padding-inline: 16px; padding-block: 0 72px; }
+.book { max-width: 760px; margin: 0 auto; display: grid; gap: 28px; }
+header { padding-block: 52px 8px; text-align: left; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 8vw, 68px); line-height: 1; margin: 0 0 14px; letter-spacing: -0.02em; text-wrap: balance; }
+.sub { font-size: 20px; color: var(--ink-2); max-width: 34ch; margin: 0; }
+.page { background: var(--card); border: 2px solid var(--line); border-radius: 22px; padding: 26px 24px 22px; display: grid; gap: 14px; }
+.tag { font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--span); }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 5.2vw, 40px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.page p { margin: 0; font-size: 19px; max-width: 46ch; }
+.art { width: 100%; height: auto; display: block; }
+.art text { font-family: var(--display); font-weight: 800; }
+.c-robot { fill: var(--robot); }
+.c-robot-dark { fill: var(--robot-dark); }
+.c-coin { fill: var(--coin); stroke: var(--coin-edge); stroke-width: 3; }
+.c-coin-text { fill: var(--coin-edge); }
+.c-good { fill: var(--span); }
+.c-good-soft { fill: var(--span-soft); }
+.c-bad { fill: var(--bad); }
+.c-bad-soft { fill: var(--bad-soft); }
+.c-ink { fill: var(--ink); }
+.c-ink2 { fill: var(--ink-2); }
+.c-card { fill: var(--card); }
+.c-line { fill: var(--line); }
+.s-ink { stroke: var(--ink-2); stroke-width: 4; fill: none; stroke-linecap: round; }
+.s-good { stroke: var(--span); stroke-width: 9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.s-bad { stroke: var(--bad); stroke-width: 9; fill: none; stroke-linecap: round; }
+.s-dash { stroke: var(--ink-2); stroke-width: 4; fill: none; stroke-dasharray: 2 10; stroke-linecap: round; }
+.ghost { opacity: .22; }
+.choices { display: grid; gap: 12px; }
+.choice { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: center; border: 2px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+.choice .n { width: 56px; height: 56px; border-radius: 50%; background: var(--span-soft); color: var(--span); font-family: var(--display); font-weight: 800; font-size: 28px; display: grid; place-items: center; }
+.choice b { font-family: var(--display); font-size: 21px; display: block; line-height: 1.2; }
+.choice span { color: var(--ink-2); font-size: 16px; }
+footer { color: var(--ink-2); font-size: 15px; padding-block: 8px 0; }
+footer a { color: var(--span); }
+a:focus-visible { outline: 3px solid var(--span); outline-offset: 2px; }
+</style>
+
+<div class="book">
+<header>
+  <h1>Paid for Done</h1>
+  <p class="sub">How Span pays its AI helpers, what's wrong with it, and what we fixed.</p>
+</header>
+
+<!-- 1 -->
+<section class="page" aria-labelledby="p1">
+  <div class="tag">Today</div>
+  <h2 id="p1">Every try gets paid. Even the bad ones.</h2>
+  <svg class="art" viewBox="0 0 700 250" role="img" aria-label="A robot helper tries three times: two wrong, one right. A coin drops for every try.">
+    <g transform="translate(40,70)">
+      <rect class="c-robot" x="0" y="20" width="110" height="96" rx="22"/><rect class="c-robot-dark" x="47" y="0" width="16" height="26" rx="6"/><circle class="c-card" cx="34" cy="62" r="13"/><circle class="c-card" cx="76" cy="62" r="13"/><circle class="c-ink" cx="34" cy="62" r="6"/><circle class="c-ink" cx="76" cy="62" r="6"/><rect class="c-robot-dark" x="34" y="92" width="42" height="8" rx="4"/>
+      <text x="55" y="160" text-anchor="middle" class="c-ink2" font-size="20">helper</text>
+    </g>
+    <g transform="translate(220,40)">
+      <rect class="c-bad-soft" x="0" y="0" width="120" height="110" rx="18"/><path class="s-bad" d="M38 33 L82 77 M82 33 L38 77"/>
+      <circle class="c-coin" cx="60" cy="168" r="30"/><text x="60" y="179" text-anchor="middle" class="c-coin-text" font-size="30">$</text>
+    </g>
+    <g transform="translate(370,40)">
+      <rect class="c-bad-soft" x="0" y="0" width="120" height="110" rx="18"/><path class="s-bad" d="M38 33 L82 77 M82 33 L38 77"/>
+      <circle class="c-coin" cx="60" cy="168" r="30"/><text x="60" y="179" text-anchor="middle" class="c-coin-text" font-size="30">$</text>
+    </g>
+    <g transform="translate(520,40)">
+      <rect class="c-good-soft" x="0" y="0" width="120" height="110" rx="18"/><path class="s-good" d="M32 57 L52 78 L90 34"/>
+      <circle class="c-coin" cx="60" cy="168" r="30"/><text x="60" y="179" text-anchor="middle" class="c-coin-text" font-size="30">$</text>
+    </g>
+  </svg>
+  <p>Three tries, three coins. The person paid for two mistakes.</p>
+</section>
+
+<!-- 2 -->
+<section class="page" aria-labelledby="p2">
+  <div class="tag">The better way</div>
+  <h2 id="p2">Pay only for the try that worked.</h2>
+  <svg class="art" viewBox="0 0 700 250" role="img" aria-label="The same three tries. Only the right one gets a coin.">
+    <g transform="translate(40,70)">
+      <rect class="c-robot" x="0" y="20" width="110" height="96" rx="22"/><rect class="c-robot-dark" x="47" y="0" width="16" height="26" rx="6"/><circle class="c-card" cx="34" cy="62" r="13"/><circle class="c-card" cx="76" cy="62" r="13"/><circle class="c-ink" cx="34" cy="62" r="6"/><circle class="c-ink" cx="76" cy="62" r="6"/><rect class="c-robot-dark" x="34" y="92" width="42" height="8" rx="4"/>
+      <text x="55" y="160" text-anchor="middle" class="c-ink2" font-size="20">helper</text>
+    </g>
+    <g transform="translate(220,40)">
+      <rect class="c-bad-soft" x="0" y="0" width="120" height="110" rx="18"/><path class="s-bad" d="M38 33 L82 77 M82 33 L38 77"/>
+      <g class="ghost"><circle class="c-coin" cx="60" cy="168" r="30"/></g><path class="s-ink" d="M36 144 L84 192"/>
+    </g>
+    <g transform="translate(370,40)">
+      <rect class="c-bad-soft" x="0" y="0" width="120" height="110" rx="18"/><path class="s-bad" d="M38 33 L82 77 M82 33 L38 77"/>
+      <g class="ghost"><circle class="c-coin" cx="60" cy="168" r="30"/></g><path class="s-ink" d="M36 144 L84 192"/>
+    </g>
+    <g transform="translate(520,40)">
+      <rect class="c-good-soft" x="0" y="0" width="120" height="110" rx="18"/><path class="s-good" d="M32 57 L52 78 L90 34"/>
+      <circle class="c-coin" cx="60" cy="168" r="30"/><text x="60" y="179" text-anchor="middle" class="c-coin-text" font-size="30">$</text>
+    </g>
+  </svg>
+  <p>Good helpers earn more. Sloppy helpers have to get better or leave.</p>
+</section>
+
+<!-- 3 -->
+<section class="page" aria-labelledby="p3">
+  <div class="tag">Why Span</div>
+  <h2 id="p3">Span is the matchmaker.</h2>
+  <svg class="art" viewBox="0 0 700 230" role="img" aria-label="A person asks Span; Span picks one of three helpers and keeps a small slice of the coin.">
+    <g transform="translate(40,50)">
+      <circle class="c-ink2" cx="50" cy="34" r="30"/><rect class="c-ink2" x="10" y="72" width="80" height="70" rx="30"/>
+      <text x="50" y="172" text-anchor="middle" class="c-ink2" font-size="20">you</text>
+    </g>
+    <path class="s-dash" d="M150 120 L230 120"/>
+    <g transform="translate(240,45)">
+      <circle class="c-good" cx="75" cy="75" r="72"/><circle class="c-card" cx="75" cy="75" r="40"/><circle class="c-good" cx="75" cy="75" r="22"/>
+      <text x="75" y="182" text-anchor="middle" class="c-ink" font-size="22">Span</text>
+    </g>
+    <path class="s-dash" d="M400 90 L480 50"/><path class="s-dash" d="M400 120 L480 120"/><path class="s-dash" d="M400 150 L480 190"/>
+    <g transform="translate(490,22)"><rect class="c-robot" x="0" y="0" width="56" height="48" rx="12"/><circle class="c-ink" cx="18" cy="22" r="5"/><circle class="c-ink" cx="38" cy="22" r="5"/></g>
+    <g transform="translate(490,96)"><rect class="c-good-soft" x="-8" y="-8" width="72" height="64" rx="16"/><rect class="c-robot" x="0" y="0" width="56" height="48" rx="12"/><circle class="c-ink" cx="18" cy="22" r="5"/><circle class="c-ink" cx="38" cy="22" r="5"/></g>
+    <g transform="translate(490,170)"><rect class="c-robot" x="0" y="0" width="56" height="48" rx="12"/><circle class="c-ink" cx="18" cy="22" r="5"/><circle class="c-ink" cx="38" cy="22" r="5"/></g>
+    <g transform="translate(600,90)">
+      <circle class="c-coin" cx="36" cy="30" r="30"/><path class="c-good" d="M36 30 L36 0 A30 30 0 0 1 62 15 Z"/>
+      <text x="36" y="86" text-anchor="middle" class="c-ink2" font-size="16">Span's slice</text>
+    </g>
+  </svg>
+  <p>You say what you need. Span picks the helper. Span should take the same small slice from every helper, so it never has a reason to play favorites. If it picks badly, it should pay for the mess.</p>
+</section>
+
+<!-- 3b -->
+<section class="page" aria-labelledby="p3b">
+  <div class="tag">The big rule</div>
+  <h2 id="p3b">Span works for you. Nobody can pay to cut the line.</h2>
+  <svg class="art" viewBox="0 0 700 230" role="img" aria-label="A helper holding a bag of money is blocked by a wall; the helper that fits you best walks straight to you.">
+    <g transform="translate(40,60)">
+      <circle class="c-ink2" cx="50" cy="34" r="30"/><rect class="c-ink2" x="10" y="72" width="80" height="70" rx="30"/>
+      <text x="50" y="172" text-anchor="middle" class="c-ink2" font-size="20">you</text>
+    </g>
+    <path class="s-good" d="M170 110 L330 110"/><path class="s-good" d="M310 92 L330 110 L310 128" />
+    <rect class="c-bad" x="380" y="20" width="16" height="190" rx="8"/>
+    <g transform="translate(430,30)">
+      <rect class="c-robot" x="0" y="0" width="70" height="60" rx="14"/><circle class="c-ink" cx="22" cy="28" r="6"/><circle class="c-ink" cx="48" cy="28" r="6"/>
+      <circle class="c-coin" cx="110" cy="34" r="26"/><text x="110" y="45" text-anchor="middle" class="c-coin-text" font-size="28">$</text>
+      <text x="80" y="92" text-anchor="middle" class="c-bad" font-size="17">paid to be first</text>
+    </g>
+    <g transform="translate(200,130)">
+      <rect class="c-good-soft" x="-8" y="-8" width="86" height="76" rx="18"/><rect class="c-robot" x="0" y="0" width="70" height="60" rx="14"/><circle class="c-ink" cx="22" cy="28" r="6"/><circle class="c-ink" cx="48" cy="28" r="6"/>
+      <text x="35" y="92" text-anchor="middle" class="c-good" font-size="17">best for you</text>
+    </g>
+  </svg>
+  <p>On the internet today, companies pay to be shown first. Span doesn't sell that spot, and it shouldn't favor itself either. The helper that's best for you wins.</p>
+</section>
+
+<!-- 3c -->
+<section class="page" aria-labelledby="p3c">
+  <div class="tag">Getting to know you</div>
+  <h2 id="p3c">Every thumbs-up and thumbs-down teaches Span your taste.</h2>
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Thumbs up and thumbs down feed into Span, which picks a different best helper for two different people.">
+    <g transform="translate(40,40)">
+      <rect class="c-good-soft" x="0" y="0" width="90" height="60" rx="14"/><path class="s-good" d="M24 32 L40 46 L68 16"/>
+      <rect class="c-bad-soft" x="0" y="80" width="90" height="60" rx="14"/><path class="s-bad" d="M28 96 L62 128 M62 96 L28 128"/>
+    </g>
+    <path class="s-dash" d="M150 110 L230 110"/>
+    <g transform="translate(240,40)">
+      <circle class="c-good" cx="70" cy="70" r="66"/><circle class="c-card" cx="70" cy="70" r="36"/><circle class="c-good" cx="70" cy="70" r="20"/>
+      <text x="70" y="168" text-anchor="middle" class="c-ink" font-size="20">learns</text>
+    </g>
+    <path class="s-dash" d="M390 80 L470 50"/><path class="s-dash" d="M390 140 L470 170"/>
+    <g transform="translate(480,18)"><circle class="c-ink2" cx="22" cy="22" r="18"/><rect class="c-robot" x="60" y="0" width="56" height="46" rx="12"/><circle class="c-ink" cx="78" cy="22" r="5"/><circle class="c-ink" cx="98" cy="22" r="5"/><text x="150" y="30" class="c-ink2" font-size="16">for Sam</text></g>
+    <g transform="translate(480,146)"><circle class="c-ink2" cx="22" cy="22" r="18"/><rect class="c-good-soft" x="60" y="0" width="56" height="46" rx="12"/><circle class="c-ink" cx="78" cy="22" r="5"/><circle class="c-ink" cx="98" cy="22" r="5"/><text x="150" y="30" class="c-ink2" font-size="16">for Ana</text></g>
+  </svg>
+  <p>Span builds habits like you would. Two people can get two different "best" helpers. Today it only listens to thumbs-up, and that signal is switched off by default. It should be on, and learn from thumbs-down too.</p>
+</section>
+
+<!-- 4 -->
+<section class="page" aria-labelledby="p4">
+  <div class="tag">Fix 1 of 2 · price bug</div>
+  <h2 id="p4">The big-helper discount looked in the wrong jar.</h2>
+  <svg class="art" viewBox="0 0 700 240" role="img" aria-label="Two jars. The piggy bank empties every payday; the discount was checking it. Now it checks this month's jar.">
+    <g transform="translate(70,30)">
+      <rect class="c-bad-soft" x="0" y="20" width="200" height="150" rx="40"/><rect class="c-line" x="70" y="6" width="60" height="22" rx="8"/>
+      <circle class="c-coin" cx="100" cy="140" r="20"/>
+      <text x="100" y="205" text-anchor="middle" class="c-ink2" font-size="20">unpaid piggy bank</text>
+      <text x="100" y="80" text-anchor="middle" class="c-bad" font-size="18">empties</text><text x="100" y="102" text-anchor="middle" class="c-bad" font-size="18">every payday</text>
+    </g>
+    <text x="350" y="125" text-anchor="middle" class="c-ink" font-size="40">→</text>
+    <g transform="translate(430,30)">
+      <rect class="c-good-soft" x="0" y="20" width="200" height="150" rx="40"/><rect class="c-line" x="70" y="6" width="60" height="22" rx="8"/>
+      <circle class="c-coin" cx="55" cy="140" r="20"/><circle class="c-coin" cx="100" cy="140" r="20"/><circle class="c-coin" cx="145" cy="140" r="20"/><circle class="c-coin" cx="78" cy="104" r="20"/><circle class="c-coin" cx="122" cy="104" r="20"/><circle class="c-coin" cx="100" cy="68" r="20"/>
+      <text x="100" y="205" text-anchor="middle" class="c-good" font-size="20">this month's work</text>
+    </g>
+  </svg>
+  <p>Busy helpers who got paid often never got their discount. Now it counts this month's work.</p>
+</section>
+
+<!-- 5 -->
+<section class="page" aria-labelledby="p5">
+  <div class="tag">Fix 2 of 2 · price bug</div>
+  <h2 id="p5">The new-helper discount never turned on.</h2>
+  <svg class="art" viewBox="0 0 700 210" role="img" aria-label="A sign promising new helpers a smaller fee, with its switch stuck off because a setting said zero months. Now it's on for twelve months.">
+    <g transform="translate(60,30)">
+      <rect class="c-card" x="0" y="0" width="330" height="140" rx="18" stroke="var(--line)" stroke-width="3"/>
+      <text x="165" y="58" text-anchor="middle" class="c-ink" font-size="30">New helpers:</text>
+      <text x="165" y="104" text-anchor="middle" class="c-good" font-size="36">smaller fee</text>
+    </g>
+    <g transform="translate(440,48)">
+      <rect class="c-bad-soft" x="0" y="0" width="96" height="48" rx="24"/><circle class="c-bad" cx="24" cy="24" r="18"/>
+      <text x="48" y="80" text-anchor="middle" class="c-bad" font-size="17">was: 0 months</text>
+    </g>
+    <text x="566" y="80" text-anchor="middle" class="c-ink" font-size="30">→</text>
+    <g transform="translate(596,48)">
+      <rect class="c-good-soft" x="0" y="0" width="96" height="48" rx="24"/><circle class="c-good" cx="72" cy="24" r="18"/>
+      <text x="48" y="80" text-anchor="middle" class="c-good" font-size="17">now: 12 months</text>
+    </g>
+  </svg>
+  <p>We promised new helpers a smaller fee for their first year. They never got it. This one costs Span money, so it's your call.</p>
+</section>
+
+<!-- 6 -->
+<section class="page" aria-labelledby="p6">
+  <div class="tag">The big one</div>
+  <h2 id="p6">Every try gets a grade. We used to throw it away.</h2>
+  <svg class="art" viewBox="0 0 700 230" role="img" aria-label="A grade card used to go into the trash. Now it goes into a notebook.">
+    <g transform="translate(70,30)">
+      <rect class="c-card" x="0" y="0" width="120" height="150" rx="14" stroke="var(--line)" stroke-width="3"/>
+      <text x="60" y="58" text-anchor="middle" class="c-ink2" font-size="18">grade</text>
+      <path class="s-good" d="M30 92 L52 114 L92 70"/>
+    </g>
+    <g transform="translate(260,40)">
+      <path class="c-ink2" d="M10 30 L110 30 L98 150 L22 150 Z" opacity=".35"/><rect class="c-ink2" x="0" y="18" width="120" height="16" rx="6" opacity=".55"/>
+      <path class="s-bad" d="M10 0 L110 170 M110 0 L10 170"/>
+      <text x="60" y="190" text-anchor="middle" class="c-bad" font-size="18">before</text>
+    </g>
+    <g transform="translate(470,30)">
+      <rect class="c-good-soft" x="0" y="0" width="170" height="160" rx="14"/><rect class="c-good" x="0" y="0" width="22" height="160" rx="8"/>
+      <rect class="c-good" x="40" y="34" width="110" height="10" rx="5" opacity=".6"/><rect class="c-good" x="40" y="62" width="90" height="10" rx="5" opacity=".6"/><rect class="c-good" x="40" y="90" width="110" height="10" rx="5" opacity=".6"/><rect class="c-good" x="40" y="118" width="70" height="10" rx="5" opacity=".6"/>
+      <text x="85" y="200" text-anchor="middle" class="c-good" font-size="18">now</text>
+    </g>
+  </svg>
+  <p>Span checks every try, then forgot the answer. Now it writes the grade down. You can't pay for good work if you don't remember which work was good.</p>
+</section>
+
+<!-- 7 -->
+<section class="page" aria-labelledby="p7">
+  <div class="tag">Practice first</div>
+  <h2 id="p7">A pretend report. No money moves.</h2>
+  <svg class="art" viewBox="0 0 700 240" role="img" aria-label="Two stacks of coins side by side: what each helper got paid, and the shorter stack they would get if only good work counted.">
+    <line x1="80" y1="200" x2="620" y2="200" stroke="var(--line)" stroke-width="4"/>
+    <g transform="translate(170,0)">
+      <circle class="c-coin" cx="60" cy="182" r="26"/><circle class="c-coin" cx="60" cy="152" r="26"/><circle class="c-coin" cx="60" cy="122" r="26"/><circle class="c-coin" cx="60" cy="92" r="26"/><circle class="c-coin" cx="60" cy="62" r="26"/>
+      <text x="60" y="232" text-anchor="middle" class="c-ink2" font-size="20">got paid</text>
+    </g>
+    <g transform="translate(410,0)">
+      <circle class="c-coin" cx="60" cy="182" r="26"/><circle class="c-coin" cx="60" cy="152" r="26"/>
+      <g class="ghost"><circle class="c-coin" cx="60" cy="122" r="26"/><circle class="c-coin" cx="60" cy="92" r="26"/><circle class="c-coin" cx="60" cy="62" r="26"/></g>
+      <text x="60" y="232" text-anchor="middle" class="c-good" font-size="20">would get</text>
+    </g>
+  </svg>
+  <p>For a few weeks, Span just compares the two piles. Then we decide if it's fair to switch for real.</p>
+</section>
+
+<!-- 8 -->
+<section class="page" aria-labelledby="p8">
+  <div class="tag">Your turn</div>
+  <h2 id="p8">Three questions for you.</h2>
+  <div class="choices">
+    <div class="choice"><div class="n">1</div><div><b>Send it in?</b><span>Share the work so it can be checked and added to Span.</span></div></div>
+    <div class="choice"><div class="n">2</div><div><b>Turn on the new-helper discount?</b><span>Keep the promise we made. Span earns a bit less from new helpers.</span></div></div>
+    <div class="choice"><div class="n">3</div><div><b>Pay back helpers we overcharged?</b><span>Check how much first. It may be nothing yet.</span></div></div>
+  </div>
+</section>
+
+<footer>The grown-up versions: <a href="2-branch-review.html">the review page</a> and <a href="1-strategy-memo-and-blog-post.html">the strategy memo</a>.</footer>
+</div>

@@ -1,0 +1,1082 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Paid for Done</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with full-width exhibits (flow diagram, tables, calculator) framed by hairlines — Span's engineered register. */
+:root {
+  --paper: #fafaf7;
+  --cream: #f2f2ec;
+  --ink: #2d3436;
+  --ink-2: #555f63;
+  --rule: #dcdcd2;
+  --brand: #1A6D63;
+  --brand-soft: #D5F2ED;
+  --copper: #9a4f1c;
+  --copper-soft: #f6e6d8;
+  --warn: #a8321f;
+  --warn-soft: #f8e1dc;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+    --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+    --warn: #f0917f; --warn-soft: #3d201b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+  --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+  --warn: #f0917f; --warn-soft: #3d201b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16.5px; line-height: 1.6; padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 980px; margin: 0 auto; }
+.col { max-width: 68ch; }
+header { padding-block: 64px 32px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(38px, 6vw, 60px); line-height: 1.05; margin: 12px 0 18px; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+h3 { font-family: var(--body); font-weight: 600; font-size: 17px; margin: 22px 0 6px; }
+.lede { font-family: var(--display); font-size: 21px; line-height: 1.45; color: var(--ink-2); }
+.lede em { color: var(--ink); }
+section { padding-block: 56px 8px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+p { margin: 0 0 14px; }
+a { color: var(--brand); text-underline-offset: 2px; }
+code, .mono { font-family: var(--mono); font-size: .86em; }
+code { background: var(--cream); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+.meta { font-family: var(--mono); font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; }
+ul, ol { padding-left: 1.2em; margin: 0 0 14px; }
+li { margin-bottom: 6px; }
+li::marker { color: var(--ink-2); }
+.tweet { border-left: 2px solid var(--brand); padding: 4px 0 4px 18px; margin: 22px 0; font-family: var(--display); font-size: 18px; line-height: 1.5; color: var(--ink-2); }
+.tweet p { margin-bottom: 10px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 24px 0; }
+.pair > div { padding: 20px 22px; min-width: 0; }
+.pair > div + div { border-left: 1px solid var(--rule); }
+.pair .tag { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.pair .big { font-family: var(--display); font-size: 26px; font-weight: 600; margin: 4px 0 8px; }
+.pair .now .big { color: var(--copper); }
+.pair .next .big { color: var(--brand); }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr; } .pair > div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+.flow-frame { border: 1px solid var(--rule); background: var(--cream); padding: 20px; margin: 24px 0; overflow-x: auto; }
+.flow-frame .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+.flow { display: flex; align-items: stretch; gap: 0; min-width: 760px; }
+.step { flex: 1; border: 1px solid var(--rule); background: var(--paper); padding: 12px; font-size: 13.5px; line-height: 1.4; }
+.step b { display: block; font-weight: 600; margin-bottom: 4px; }
+.step .mono { color: var(--ink-2); font-size: 11px; display: block; margin-top: 6px; overflow-wrap: anywhere; }
+.step.bad { border-color: var(--warn); background: var(--warn-soft); }
+.arrow { display: flex; align-items: center; padding: 0 6px; color: var(--ink-2); font-family: var(--mono); }
+.findings { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.findings li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); margin: 0; }
+.findings .sev { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding-top: 3px; }
+.sev.hi { color: var(--warn); } .sev.md { color: var(--copper); } .sev.lo { color: var(--ink-2); }
+.findings p { margin: 0; }
+.findings .src { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); margin-top: 4px; overflow-wrap: anywhere; }
+@media (max-width: 560px) { .findings li { grid-template-columns: 1fr; gap: 4px; } }
+.rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 1px solid var(--rule); margin: 24px 0; }
+.rules > div { padding: 20px 22px; border-bottom: 1px solid var(--rule); min-width: 0; }
+.rules > div:nth-child(odd) { border-right: 1px solid var(--rule); }
+.rules > div:nth-last-child(-n+2) { border-bottom: 0; }
+.rules .who { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+.rules h3 { margin-top: 6px; font-family: var(--display); font-size: 21px; font-weight: 600; }
+.rules p { font-size: 15px; color: var(--ink-2); margin-bottom: 8px; }
+@media (max-width: 680px) { .rules { grid-template-columns: 1fr; } .rules > div:nth-child(odd) { border-right: 0; } .rules > div:nth-last-child(2) { border-bottom: 1px solid var(--rule); } }
+.formula { font-family: var(--mono); font-size: 15px; background: var(--brand-soft); color: var(--ink); padding: 16px 18px; margin: 18px 0; overflow-x: auto; white-space: nowrap; border-left: 2px solid var(--brand); }
+.tbl { overflow-x: auto; margin: 22px 0; border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 720px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); }
+tr:last-child td { border-bottom: 0; }
+td code { font-size: 12px; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 7px; border-radius: 99px; white-space: nowrap; }
+.pill.built { background: var(--brand-soft); color: var(--brand); }
+.pill.part { background: var(--copper-soft); color: var(--copper); }
+.pill.none { background: var(--warn-soft); color: var(--warn); }
+.calc { border: 1px solid var(--rule); margin: 24px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+.calc .inputs { padding: 20px 22px; border-right: 1px solid var(--rule); background: var(--cream); display: grid; gap: 14px; align-content: start; }
+.calc label { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+.calc label output { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+.calc input[type=range] { width: 100%; accent-color: var(--brand); margin: 4px 0 0; }
+.calc .hint { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+.calc .results { padding: 20px 22px; min-width: 0; }
+.calc table { min-width: 0; font-size: 14px; }
+.calc .tbl { margin: 0 0 14px; }
+.calc .verdict { font-size: 14.5px; color: var(--ink-2); }
+.calc .verdict b { color: var(--ink); }
+.better { color: var(--brand); font-weight: 600; }
+.worse { color: var(--warn); font-weight: 600; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.presets button { font: 500 12.5px var(--body); border: 1px solid var(--rule); background: var(--paper); color: var(--ink); padding: 7px 11px; min-height: 36px; cursor: pointer; border-radius: 3px; }
+.presets button:hover { border-color: var(--brand); color: var(--brand); }
+.presets button:focus-visible, .calc input:focus-visible, a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+@media (max-width: 760px) { .calc { grid-template-columns: 1fr; } .calc .inputs { border-right: 0; border-bottom: 1px solid var(--rule); } }
+.phases { list-style: none; padding: 0; margin: 22px 0; border-left: 1px solid var(--rule); }
+.phases li { position: relative; padding: 0 0 22px 24px; margin: 0; }
+.phases li::before { content: ""; position: absolute; left: -5px; top: 8px; width: 9px; height: 9px; background: var(--paper); border: 1.5px solid var(--brand); border-radius: 50%; }
+.phases .ph { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); }
+.phases h3 { margin: 2px 0 6px; font-family: var(--display); font-size: 20px; }
+.phases p { color: var(--ink-2); font-size: 15px; margin-bottom: 6px; }
+.phases .exit { font-size: 13.5px; }
+.phases .exit b { color: var(--ink); font-weight: 600; }
+.callout { background: var(--copper-soft); border-left: 2px solid var(--copper); padding: 14px 18px; margin: 20px 0; font-size: 15px; }
+.callout b { color: var(--copper); }
+footer { padding-block: 40px 0; font-size: 13px; color: var(--ink-2); font-family: var(--mono); }
+
+.lbl { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; margin-right: 6px; vertical-align: 1px; }
+.lbl.f { background: var(--brand-soft); color: var(--brand); }
+.lbl.p { background: var(--copper-soft); color: var(--copper); }
+.lbl.q { background: var(--warn-soft); color: var(--warn); }
+.guide { border: 1px solid var(--rule); background: var(--cream); padding: 16px 20px; margin-top: 24px; font-size: 15px; }
+.guide p { margin-bottom: 8px; }
+.toc { columns: 2; column-gap: 32px; font-size: 14.5px; padding-left: 1.2em; margin: 8px 0 0; }
+.toc li { break-inside: avoid; margin-bottom: 4px; }
+@media (max-width: 640px) { .toc { columns: 1; } }
+.source { border-left: 2px solid var(--rule); padding: 4px 0 4px 18px; margin: 14px 0 22px; font-size: 15px; color: var(--ink); }
+.source p { margin-bottom: 10px; }
+.source h4 { font-family: var(--body); font-size: 15.5px; margin: 16px 0 6px; }
+.spec { border: 1px solid var(--rule); margin: 18px 0; }
+.spec h4 { margin: 0; padding: 10px 14px; background: var(--cream); border-bottom: 1px solid var(--rule); font-size: 15px; }
+.spec .in { padding: 12px 14px 4px; font-size: 15px; }
+h4 { font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Span · pricing, payouts, routing and taste · strategy memo</div>
+  <h1>Paid for Done</h1>
+  <p class="lede col">Two shifts are coming at once. AI will be paid <em>for finished work</em> instead of by the token, and AI agents will increasingly <em>decide who gets the work</em> instead of people clicking the first result they see. Span sits where both meet: it finds agents, chooses one, hires it and pays it. This memo explains both shifts in full, records exactly what Span's code does today, and specifies the version I'd build. Everything rests on one rule: Span must work for the person, not for whoever pays it most.</p>
+  <div class="meta"><span>Written 4 October 2026 · expanded 11 October 2026 · updated 17 October 2026</span><span>Every code fact checked on master 47f1687d69 (11 October), re-checked on 725d9beccc (17 October)</span><span>Prepared for Yousef</span></div>
+  <div class="guide">
+    <p><b>How to use this memo.</b> It is the source for two things: a blog post and a product integration document. Every claim carries a label:</p>
+    <p><span class="lbl f">Fact</span>verified in Span's code or docs, with the file in the Sources appendix. <span class="lbl p">Proposal</span>what I recommend building. <span class="lbl q">Open</span>a question that needs your decision or real data.</p>
+    <p><b>For the blog post:</b> a full draft in your voice is in <a href="#s11">section 11</a>. Its sources are sections 1 to 3 and the Risks, plus the source notes in Appendix A. They hold the argument, the examples and the language. Avoid the Fact sections about Span's internals unless you want to disclose them.</p>
+    <p><b>For the product document:</b> sections 4 to 9 and Appendix C. They hold the current state, the target design, data and rules, the work order and the decisions.</p>
+    <ol class="toc">
+      <li><a href="#s1">Shift one: how work is paid</a></li>
+      <li><a href="#s2">Shift two: agents decide who gets the work</a></li>
+      <li><a href="#s3">What this means for Span: four rules</a></li>
+      <li><a href="#s4">Where Span is today</a></li>
+      <li><a href="#s5">The best version</a></li>
+      <li><a href="#s6">Product specification</a></li>
+      <li><a href="#s7">Margins calculator</a></li>
+      <li><a href="#s8">How it fits what's built</a></li>
+      <li><a href="#s9">The branch, order of work, decisions</a></li>
+      <li><a href="#s10">Risks</a></li>
+      <li><a href="#s11">Blog post draft: Paid for Done</a></li>
+      <li><a href="#apxA">Appendix A: source notes, verbatim</a></li>
+      <li><a href="#apxB">Appendix B: glossary</a></li>
+      <li><a href="#apxC">Appendix C: sources for every fact</a></li>
+    </ol>
+  </div>
+</header>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="col">
+    <div class="eyebrow">1 · Shift one · how work is paid</div>
+    <h2>From paying for effort to paying for results</h2>
+    <div class="tweet">
+      <p>"Current State of the Union of AI/SI: Most everyone is selling CPM. Cost per thousand tokens + markup.</p>
+      <p>Future State of the Union of AI/SI: Everyone will sell CPA. Accomplish the task, participate in the ROI.</p>
+      <p>In the transition from CPM to CPA, we will debunk much of the current gamesmanship around revenues, gross margins and run-rates. This will necessarily involve a lot of value destruction. See Web1 and Mobile transitions for examples.</p>
+      <p>Good luck to all the players!"</p>
+      <p class="cite" style="font-family: var(--body); font-size: 14px; color: var(--ink-3, var(--ink-2)); margin: 0;">Chamath Palihapitiya, on X. The CPM and CPA definitions in this memo come from this post.</p>
+    </div>
+    <p>Chamath Palihapitiya is a venture investor (Social Capital), a co-host of the All-In podcast and an early Facebook executive who ran its growth team, so he has watched online advertising change how it charges from the inside. The post is four short claims. Here is what each line means:</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>The line</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>"Current State of the Union of AI/SI"</td><td>Where the AI business stands today. "SI" most likely means superintelligence; he is talking about everyone who sells AI, from model labs to the apps built on them.</td></tr>
+        <tr><td>"Most everyone is selling CPM. Cost per thousand tokens + markup."</td><td>Today almost every AI company is paid for usage. Model labs sell tokens by the thousand or million; most AI apps and agents buy those tokens and resell them with a markup, priced per seat, per credit or per call. Revenue rises with how much the AI is used, whether or not the work succeeds.</td></tr>
+        <tr><td>"Everyone will sell CPA. Accomplish the task…"</td><td>The price will attach to the finished job instead of the effort: a fixed fee per completed task, owed only if the task is done.</td></tr>
+        <tr><td>"…participate in the ROI."</td><td>The step past that: the seller takes a share of what the work was worth to the buyer (money recovered, sales made, hours saved), like a commission or a performance fee.</td></tr>
+        <tr><td>"…debunk much of the current gamesmanship around revenues…"</td><td>Revenue is flattered because many companies count the full token bill they pass through to model providers as their own revenue.</td></tr>
+        <tr><td>"…gross margins…"</td><td>Margins look healthy because cost simply passes to the buyer with a markup, and failed or repeated work is billed too. Under CPA the seller pays for its own failures, so the margin shows how good the product really is.</td></tr>
+        <tr><td>"…and run-rates."</td><td>A run-rate is one month&#39;s revenue multiplied by twelve. It is inflated by pilots, experiments and one-off spending that may not repeat. Paying per finished task shows what customers keep paying for.</td></tr>
+        <tr><td>"This will necessarily involve a lot of value destruction."</td><td>Company valuations built on those flattering numbers will fall when the numbers are restated on results. Some companies will shrink and some will not survive.</td></tr>
+        <tr><td>"See Web1 and Mobile transitions for examples."</td><td>It has happened before. In the dot-com bust (2000 to 2002), companies valued on traffic and page views collapsed once the market priced on revenue and profit, and web advertising moved from paying per view toward paying per click and per sale. In the move to phones, companies that led on desktop and did not adapt lost their place to those built for mobile.</td></tr>
+        <tr><td>"Good luck to all the players!"</td><td>A dry sign-off: nobody now selling AI is safe from the shift, including the biggest names.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p><b>Why it matters to Span.</b> A broker is exactly where this "gamesmanship" can hide. If Span reported every dollar that passes through it to agents and model providers as its own revenue, it would be showing CPM-style numbers. The memo&#39;s answer is to be paid for accepted work and to report revenue net of what goes to agents and providers (see "How Span reports revenue" in <a href="#s5">section 5</a>).</p>
+    <p>The two terms come from online advertising. <b>CPM</b> (cost per mille, meaning per thousand) is paying for every thousand times an ad is shown, whether anyone buys. <b>CPA</b> (cost per acquisition) is paying only when someone actually signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for results, and the companies that could measure results (Google, Facebook) took the market.</p>
+    <p>In AI, "CPM" is selling tokens: the chunks of text a model reads and writes, priced per thousand or per million with a markup on top. The buyer pays for the agent's effort. If it burns $4 of tokens and fails, the buyer still pays $4. "CPA" means the buyer pays when the task is done. "Participate in the ROI" (return on investment) goes one step further: take a share of the value the task created.</p>
+    <div class="callout">
+      <p><b>What the two terms mean at Span.</b></p>
+      <p><b>CPM at Span (how it works today)</b> <span class="lbl f">Fact</span> Span pays for effort. Each attempt an agent makes is charged at the agent&#39;s reported cost, and the developer is credited that amount minus Span&#39;s fee (10%, 15% or 20%) before the quality check has run. An attempt the Judge rejects is charged and credited exactly like one it approves, and every revision is another fully charged attempt. The "markup" in the tweet is Span&#39;s fee on the agent&#39;s side, plus margins on some tools (Brave Search is listed at cost plus 50%).</p>
+      <p><b>CPA at Span (the proposal)</b> <span class="lbl p">Proposal</span> Span pays for accepted work. The "acquisition" is an accepted task: the Judge approves it and the person doesn&#39;t send it back within the window (say 72 hours; saying nothing counts as yes). The person pays one price, quoted before the work starts, and only for accepted work. The agent&#39;s earnings are held until then and released on acceptance. Failed attempts and rework cost the agent, not the person. Span&#39;s fee stays the same published share for every agent, so Span gains nothing by steering work to one agent over another.</p>
+      <p><b>"Participate in the ROI" at Span</b> <span class="lbl p">Proposal, later</span> Charging a share of the money a task made or saved. Only for tasks whose result can be counted, such as a refund recovered or a meeting booked, and only once fixed-price tasks work.</p>
+    </div>
+    <p>The "value destruction" line is the sharp part. Much reported AI revenue is token resale that passes straight through to model providers. Gross margins look healthy only because nobody asks whether the work succeeded. Once buyers pay only for results, agents that don't reliably finish will see revenue fall away, and some headline "run-rates" (this month's revenue multiplied by twelve) will turn out to have been compute resale. The tweet compares it to the Web1 and mobile transitions, when many companies that looked big did not survive a change in how money flowed.</p>
+  </div>
+  <div class="pair">
+    <div class="now">
+      <div class="tag">Today · per token</div>
+      <div class="big">Buyer carries the risk</div>
+      <p>Failed and retried work is billed. A seller earns more when its agent takes more steps. Revenue looks big because it includes the model provider's share.</p>
+    </div>
+    <div class="next">
+      <div class="tag">Next · per finished task</div>
+      <div class="big">Seller carries the risk</div>
+      <p>Only accepted work is billed. A seller earns more when its agent succeeds cheaply. Revenue is smaller but real, and the margin reflects how well the seller does the job.</p>
+    </div>
+  </div>
+  <div class="col">
+    <p><b>Where the tweet goes too far.</b> "Everyone will sell CPA" assumes every task has a result that can be measured. Many don't: "help me think through my pricing" has no clear finish line. And advertising's CPA era also brought fake sign-ups and companies claiming credit for sales that would have happened anyway. The durable version is a mix: fixed price where results can be checked, metered pricing where they can't, and a share of the value only where the value can be counted.</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="col">
+    <div class="eyebrow">2 · Shift two · who decides</div>
+    <h2>Agents will decide who gets the work</h2>
+    <p>The second shift is about demand: who chooses what gets bought and who gets hired. Today that choice is made by people with limited time, steered by search rankings and ads. Personal agents change who does the choosing, and that changes what companies have to be good at. Much of this argument assumes personal agents will be on the consumer's side; section 2.7 is about what happens if they aren't.</p>
+
+    <h3>2.1 Companies out-think their customers today</h3>
+    <p>Companies are in some sense the original superintelligence. A company pools the thinking of many people and spreads that cost over millions of customers, which lets it push its own interests against those of some customers. Relative to a company's capacity to optimize, a customer is often inattentive, under-informed, rushed or irrational. The economist Herbert Simon called this <b>bounded rationality</b>, and firms often benefit from it.</p>
+    <p>Think about booking a flight. The airline has whole teams studying behavior, testing prices and learning when you're most likely to buy extras. You are one person who doesn't have time to compare every airline, read every insurance policy or understand every fee. The classic example is the travel-insurance upsell at the end of a booking, usually priced well above what a regular policy would cost. Now give that person an agent that does the research, knows the tricks and reads the fine print. The customer becomes much harder to exploit, and people will deal with companies somewhat more rationally.</p>
+
+    <h3>2.2 Some business models stop working</h3>
+    <ul>
+      <li><b>Price discrimination works less well.</b> Two people buy the same product. One spends 20 minutes finding a discount code and pays $80; the other doesn't bother and pays $100. Coupons work because only some people hunt for them. If every agent hunts fastidiously for every coupon, the coupon stops separating customers.</li>
+      <li><b>Hidden cross-subsidies change.</b> Today, people who forget to cancel subscriptions (streaming, gyms, software) subsidize people who remember. Agents cancel what isn't used.</li>
+      <li><b>Upsells lose their edge.</b> An add-on that sells only because the buyer is rushed stops selling when the buyer's agent isn't rushed.</li>
+    </ul>
+    <p>Across the whole economy it isn't clear who ends up better or worse off. Economists call this the <b>incidence</b>: some prices that were low because other people overpaid may rise.</p>
+
+    <h3>2.3 Better products beat better marketing more often</h3>
+    <p>Corporate strategists have long argued over what matters more, distribution or product quality. You may have built something better, but does anyone know about it? Won't people just keep buying the ACME Corp mousetrap? Personal agents act as a <b>structural subsidy for product quality</b>. Imagine a market where every buyer spent at least ten hours researching every purchase; that is roughly what agents make possible. On the margin, making the product better becomes a more effective strategy than buying more distribution.</p>
+    <p>An example. Company A makes average headphones but spends millions on ads, influencers and appearing first on Amazon. Company B makes better headphones (better sound, longer battery, lower price) and barely advertises. Today A often wins because more people know about it. With an agent that compares independent reviews and specifications for each buyer's needs, the agent may recommend B even if the buyer has never heard of it. Instead of another $10 million on ads, a company may get more from spending it on the product.</p>
+
+    <h3>2.4 Reliable information about quality becomes very valuable</h3>
+    <p>Most people don't read 500 reviews before buying. An agent can: it can compare thousands of reviews, look at return rates, track performance and spot recurring complaints. A small company's product might fail 2% of the time while a famous competitor's fails 15% of the time; most people would never find that out, and an agent could. The smarter agents get, the more valuable trustworthy quality data becomes, and the more room there is for businesses that collect, verify and organize it.</p>
+
+    <h3>2.5 Paid placement loses some of its value</h3>
+    <p>Many internet companies make money by routing demand, and that routing often depends on short attention spans: "I'll click on the first thing I see." This creates waste, as companies try to please capricious ranking algorithms and pay placement fees. It isn't all wasted, because a seller's willingness to pay for placement is itself a signal that is worth something to buyers, but it's a weak signal.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Today</th><th>With personal agents</th></tr></thead>
+      <tbody>
+        <tr><td>The person searches for headphones.</td><td>The person asks their agent for headphones.</td></tr>
+        <tr><td>Google or Amazon ranks the results, partly by who paid.</td><td>The agent researches and compares products against the person's needs.</td></tr>
+        <tr><td>The person clicks a prominent result.</td><td>The agent recommends the best fit.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>If agents become the main way people discover and buy, paying to appear first becomes less valuable. Companies instead have to convince agents their product deserves recommending. Routing becomes more personal, reflecting each person's taste, alongside whatever ranked placement still carries real information. For services in particular, routing should be neutralized: take the person's preferences and choose on that basis alone. The open question is whether agent platforms will start charging companies for recommendations. That leads to section 2.7.</p>
+
+    <h3>2.6 Superstars or spread?</h3>
+    <p>A big open question is whether agents increase <b>superstar effects</b>, where rational agents all settle on the same product, or increase <b>dispersion</b>, where purchases spread out because everyone has slightly different tastes and preferences. Agents are good at drawing those out, which could finally undo the artificial clustering that rankings and ads have pushed everyone into.</p>
+  </div>
+  <div class="pair">
+    <div class="now">
+      <div class="tag">Possibility A · superstars</div>
+      <div class="big">Everyone buys the winner</div>
+      <p>If one laptop is better on paper than every rival, millions of agents recommend it and the leading company grows even more dominant.</p>
+    </div>
+    <div class="next">
+      <div class="tag">Possibility B · spread</div>
+      <div class="big">Everyone buys their fit</div>
+      <p>Your agent knows you care about battery life; mine knows I care about the screen; someone else's knows they need the lightest laptop. Each gets a different best answer, and smaller specialized companies can win.</p>
+    </div>
+  </div>
+  <div class="col">
+    <p>Nobody knows yet which effect will be stronger.</p>
+
+    <h3>2.7 Everything depends on whose side the agent is on</h3>
+    <p>What if your agent doesn't recommend the best product, but the one whose maker pays the agent's operator the highest commission? Then the old problem is back: instead of sponsored search results we get sponsored recommendations, and the person still can't tell whether the advice is good. The whole argument depends on personal agents genuinely representing their users. An agent that works for you optimizes for what you want, not for what earns its operator the most.</p>
+
+    <h3>2.8 The economy's feedback gets more accurate</h3>
+    <p>Think of the market as a huge machine that decides how much value each product and company deserves. Today the machine is imperfect: excellent products fail because nobody finds them, and mediocre products succeed because of excellent distribution. Better-informed buyers make it more accurate. In machine-learning terms, this improves the economy's <b>backpropagation</b>: companies get clearer feedback about what people actually value, and better products receive larger rewards.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="col">
+    <div class="eyebrow">3 · What this means for Span</div>
+    <h2>Span is the agent that hires agents, so it has to be on the person's side</h2>
+    <p>The argument above is mostly about shopping. Span's opportunity is related but broader. Picture someone who simply tells their AI, "Build me a website for my business." Instead of searching for website builders, comparing freelancers and vetting agencies, their AI finds and picks the best specialized agent for the job. The same goes for tax returns, video editing, contract review, research and other digital work. <b>The competition moves from being discovered by people to being selected by agents.</b> Span's core claim is exactly this: people say what they want, and Span works out who should do it, even when the person doesn't know who that is. That role has three jobs:</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Job</th><th>What it means</th><th>Where Span is</th></tr></thead>
+      <tbody>
+        <tr><td><b>Discovery</b></td><td>Find every agent and tool that can do the task.</td><td><span class="lbl f">Fact</span>Built: federated discovery across registries and providers.</td></tr>
+        <tr><td><b>Selection</b></td><td>Pick the best one for <i>this</i> person on quality, price, reliability and fit with their needs.</td><td><span class="lbl f">Fact</span>Partly built: SpanRank. Its per-person taste signal learns only from approvals and has zero weight under the default settings (section 4).</td></tr>
+        <tr><td><b>Execution</b></td><td>Hire it, pay it, check the work, deliver the result.</td><td><span class="lbl f">Fact</span>Built, but pays for effort: every settled attempt is paid, good or bad. Shift one fixes this.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>Span's opportunity is to be the infrastructure that lets demand find, and do business with, the best available AI services. This only works because of a decision you already made: <span class="lbl f">Fact</span> people never bring their own vendor keys. Span holds the accounts, pays providers, and is the merchant of record, reselling the work. That places Span alongside platforms that take a published cut of work they front (OpenRouter is one example), not alongside zero-margin pass-throughs.</p>
+    <p>One distinction matters more than anything else in this memo: <b>routing doesn't automatically reward quality. It rewards whatever the routing system is built to optimize.</b> Optimize for commissions and Span recreates sponsored search. Optimize for verified outcomes and the person's own interests and quality becomes a real competitive advantage. In an economy where agents increasingly decide what to buy and whom to hire, the systems that discover, judge and route demand may become as important as the products and services themselves. Four rules follow.</p>
+  </div>
+  <div class="rules">
+    <div>
+      <div class="who">Rule 1 · neutral routing</div>
+      <h3>Nobody can buy a better rank, including Span</h3>
+      <p><span class="lbl f">Fact</span>The whitepaper already says "the platform has no commercial levers to tilt a rank outcome in exchange for provider revenue," and nothing in the ranking code reads money paid to Span.</p>
+      <p><span class="lbl p">Proposal</span>Extend it to Span's own money: the ranking never sees Span's fee or margin. One published fee per kind of task, the same for every agent. No paid placement and no sponsored slots, ever, enforced by a test.</p>
+    </div>
+    <div>
+      <div class="who">Rule 2 · learn the person's taste</div>
+      <h3>Selection gets more personal with every verdict</h3>
+      <p><span class="lbl p">Proposal</span>When a person's agent deals with other agents on their behalf, it should build up the same taste and habits the person would: preferred styles, trusted agents, things they always reject. Every keep or send-back is a lesson. In reinforcement-learning terms, each verdict is a reward signal that tunes the selector to this person.</p>
+      <p><span class="lbl f">Fact</span>Today the signal learns only from approvals, files every task as "general", and counts for nothing under default weights.</p>
+    </div>
+    <div>
+      <div class="who">Rule 3 · keep the market open</div>
+      <h3>Push toward spread, not superstars</h3>
+      <p><span class="lbl p">Proposal</span>Give new specialists real chances, and track how concentrated work is per kind of task. If one agent takes almost everything for reasons other than fit, that's a warning sign.</p>
+      <p><span class="lbl f">Fact</span>A "discovery bonus" (one request in ten goes to a promising newer agent) exists in the code and is cited by the whitepaper, but nothing calls it. It is switched off.</p>
+    </div>
+    <div>
+      <div class="who">Rule 4 · make quality visible</div>
+      <h3>Verified outcomes are the quality data</h3>
+      <p><span class="lbl p">Proposal</span>Acceptance rates per agent and per kind of task are exactly the trustworthy quality information agents need. Show each agent its own scorecard, including common reasons people send its work back, so improving the product is clearly the winning move.</p>
+      <p>This only works if acceptance is measured honestly, which is why shift one (pay on acceptance) and shift two (route on quality) must read the same verdicts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="col">
+    <div class="eyebrow">4 · Where Span is today</div>
+    <h2>Span is free, pays agents for every settled attempt, and ranks without price or taste</h2>
+    <p><span class="lbl f">Fact</span> Span sells no plans. Subscription plans and the pricing page were removed in early October ("Span is free"). The money that moves today is for paid agents and tools that Span buys on the person's behalf. Here is how money moves for one agent attempt. The plumbing is careful: reservations, a ledger written once per attempt, idempotent Stripe payouts, and a drift check that halts payouts if the books disagree. But the one input that says whether the work was any good is decided and then thrown away.</p>
+  </div>
+  <div class="flow-frame">
+    <div class="cap">One agent attempt, master 725d9beccc (17 October)</div>
+    <div class="flow">
+      <div class="step"><b>Estimate</b>Lowest, average and highest past cost for this agent (or its type); confidence from sample size.<span class="mono">cost-estimator.service.ts</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Reserve</b>Held against the project budget under a row lock; over the cap asks the person. Off by default.<span class="mono">billing.service.ts enforceBudgetCap</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Run + settle</b>Charged what the agent <i>reports</i>; the developer is credited right then.<span class="mono">billing.cost_entries</span></div>
+      <div class="arrow">→</div>
+      <div class="step bad"><b>Quality verdict</b>Approve, revise, reject or escalate is decided, written to a debug log, and dropped.<span class="mono">execution-result.handler.ts → tasks.addCost</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Earn</b>Developer gets cost × (1 − fee).<span class="mono">attempt-earnings.ts · earnings-listener.ts</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Pay out</b>Stripe Connect transfer, triggered by hand.<span class="mono">payout.service.ts</span></div>
+    </div>
+  </div>
+
+  <div class="col"><h3>4.1 Pricing and charging</h3></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Piece</th><th>What the code does</th></tr></thead>
+      <tbody>
+        <tr><td>Plans</td><td><span class="lbl f">Fact</span>None. "Span sells no plans"; Stripe subscription events are acknowledged and ignored. The pricing page redirects to the home page.</td></tr>
+        <tr><td>Estimate</td><td><span class="lbl f">Fact</span>Built from the lowest, average and highest past <code>cost_usd</code> for the agent, or its agent type. Confidence is high with 10 or more samples, medium with 3 or more, else low or unavailable. With backups on, the worst case allows for 3 revisions across 2 agents. There is no fixed rate card: the static <code>cost_per_call</code> is "not the settlement basis."</td></tr>
+        <tr><td>Budget hold</td><td><span class="lbl f">Fact</span>Reserves the estimate on <code>core.project_budgets</code> with <code>SELECT … FOR UPDATE</code>, settles to actual, releases on cancel. Over the cap it raises a <code>BUDGET_EXCEEDED</code> decision. Live only when <code>BUDGET_CAP_ENFORCEMENT_ENABLED</code> is on; it defaults to off.</td></tr>
+        <tr><td>Settlement</td><td><span class="lbl f">Fact</span>The person is charged what the agent reports it spent. Cost attribution for the orchestrator is behind <code>BILLING_COST_ATTRIBUTION_ENABLED</code>, default off.</td></tr>
+        <tr><td>Span's own model calls</td><td><span class="lbl f">Fact</span>The planner, Judge and Verifier are Span's cost: recorded on <code>core.tasks.span_inference_cost</code>, "recorded and shown, never charged against the person's budget." Rows appear only when the engine reports usage.</td></tr>
+        <tr><td>Paid tools</td><td><span class="lbl f">Fact</span>Prepaid credit ledger with reasons limited to top-up, tool call, refund and adjustment. A price is held for 300 seconds before a call and charged "per successful call"; an error releases the hold. Brave Search is listed at 7,500 microdollars a call (5,000 wholesale "plus a 50% margin") but has no endpoint, so Span pays Brave and cannot bill for it.</td></tr>
+        <tr><td>Other caps</td><td><span class="lbl f">Fact</span>Per-role caps on Span's own model calls refund a reservation when a call fails, except a timeout after sending, which counts as an unknown charge. Request-group caps return <code>over_group_cap</code>.</td></tr>
+        <tr><td>Quotes</td><td><span class="lbl f">Fact</span>The wallet's quote is "a binding price, bound before dispatch," signed with an HMAC over the user, execution, payee, rail, cap, expiry and more, and "a CUMULATIVE spending cap for one logical call." The wallet (x402 and MPP rails) is off by default and set to testnet.</td></tr>
+        <tr><td>Gateway fees</td><td><span class="lbl f">Fact</span><code>gateway_fee_micro</code> records a gateway's own fee (an aggregator's cut), separately from the provider's charge. It is not Span's fee. <code>externally_billed</code> marks money billed by a vendor to the person's own account, which never passes through Span.</td></tr>
+        <tr><td>Fee copy</td><td><span class="lbl q">Open</span>The legal page says "Span adds no fee of its own to what you pay." That conflicts with Brave's 50% margin and with the merchant-of-record plan to charge a stated fee. One of them must change before any fee ships.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col"><h3>4.2 Paying agents and developers</h3></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Piece</th><th>What the code does</th></tr></thead>
+      <tbody>
+        <tr><td>Fee rates</td><td><span class="lbl f">Fact</span>Agent revenue share defaults to 80%; developer platform fee defaults to 20%. Tiers in <code>billing.fee_tiers</code>: year one 10% (priority 10), high volume over $1,000 at 15% (priority 20), default 20% (priority 100). First match wins.</td></tr>
+        <tr><td>Year-one bug</td><td><span class="lbl f">Fact</span>The seed stores year one's <code>min_months</code> as 0, so "younger than 0 months" never matches: every first-year developer pays 20%, not 10%.</td></tr>
+        <tr><td>Volume bug</td><td><span class="lbl f">Fact</span>The high-volume tier compares the developer's unpaid balance, which every payout resets, not their monthly volume.</td></tr>
+        <tr><td>Whitepaper</td><td><span class="lbl f">Fact</span>Describes 10% for the first twelve months, 15% in any month with over $1,000 in volume, 20% after. The code does neither of the first two correctly.</td></tr>
+        <tr><td>Earning</td><td><span class="lbl f">Fact</span>A settled agent-fee row becomes one ledger row per attempt, then a developer earning (net = gross × (1 − fee)), raising the pending balance. Span-owned rows and open rows (unknown, estimated, reserved) earn nothing.</td></tr>
+        <tr><td>Payout</td><td><span class="lbl f">Fact</span>Writes a payout intent first, then a Stripe Connect transfer using the intent as the idempotency key. Halts if the earnings audit and stored balance disagree. Default minimum $25, default schedule monthly, but the schedule is "stored as preference only": payouts are triggered by hand. "Developer payouts in staging issue no real money."</td></tr>
+        <tr><td>Verdict and pay</td><td><span class="lbl f">Fact</span>The earnings rule checks only that a row is a settled agent fee above zero with an attempt id. <code>cost_entries.quality_outcome</code> (migration 428) is never written by anything, because the fee row lands before the quality check runs. A rejected attempt earns exactly like an approved one. Still true on 17 October.</td></tr>
+        <tr><td>Person accepts an unchecked answer</td><td><span class="lbl f">Fact</span> New on 13 October (#2315). When the Judge is unsure and no second check can be made, Span holds the answer and asks the person in the app: use it anyway, try again (cost shown) or cancel. Only for research, writing, data analysis, design and other; never code, computer access or customer messages. If the person uses it, the task completes with a "not double-checked" line, Span learns nothing from it, the agent&#39;s measured record is unchanged, and a separate <code>unverified_accepted</code> count goes up. No kept verdict is written to <code>core.work_verdicts</code>, and the agent earns for the attempt as it would for any other. <span class="lbl q">Open</span> Under pay-on-acceptance, this answer was accepted by the person, so it should pay; the branch&#39;s shadow report does not see it yet (see section 9).</td></tr>
+        <tr><td>Rework</td><td><span class="lbl f">Fact</span>Every revision is a fully billed attempt. TODOS.md records that, with a provider account out of credit, "every task ran three paid agent revisions and then failed with 'rejected by judge after 3 revisions'."</td></tr>
+        <tr><td>Refunds</td><td><span class="lbl f">Fact</span>Only top-up refunds exist. No disputes, escrow or release on acceptance.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col"><h3>4.3 Ranking and taste</h3></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Weight on</th><th class="num">Default ("mvp")</th><th class="num">"phase2"</th><th class="num">"coldstart"</th></tr></thead>
+      <tbody>
+        <tr><td>Relevance to the task</td><td class="num">0.25</td><td class="num">0.18</td><td class="num">0.22</td></tr>
+        <tr><td>Trust (reputation, verification, tenure, compliance)</td><td class="num">0.25</td><td class="num">0.18</td><td class="num">0.22</td></tr>
+        <tr><td>Performance (success rate, latency, consistency)</td><td class="num">0.25</td><td class="num">0.13</td><td class="num">0.22</td></tr>
+        <tr><td>Cost</td><td class="num">0.00</td><td class="num">0.10</td><td class="num">0.00</td></tr>
+        <tr><td>Health</td><td class="num">0.05</td><td class="num">0.09</td><td class="num">0.04</td></tr>
+        <tr><td>Simulation (predicted quality)</td><td class="num">0.05</td><td class="num">0.05</td><td class="num">0.10</td></tr>
+        <tr><td>Skill confidence</td><td class="num">0.15</td><td class="num">0.09</td><td class="num">0.15</td></tr>
+        <tr><td>User satisfaction (ratings)</td><td class="num">0.00</td><td class="num">0.08</td><td class="num">0.05</td></tr>
+        <tr><td><b>User preference (taste)</b></td><td class="num"><b>0.00</b></td><td class="num"><b>0.10</b></td><td class="num">0.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="findings">
+    <li><span class="sev md">Weights</span><div><p><span class="lbl f">Fact</span>The default setting is "mvp" (in code and in the example environment). It gives price and taste zero weight. The setting can be changed per organization at runtime, so I couldn't see the live value on staging. <span class="lbl q">Open</span>Which setting does staging run?</p><div class="src">src/core/types/agent.ts MVP_WEIGHTS / PHASE2_WEIGHTS / COLDSTART_WEIGHTS · env SPANRANK_PHASE default 'mvp' · feature-flags.ts</div></div></li>
+    <li><span class="sev md">Cost term</span><div><p><span class="lbl f">Fact</span>Cost = estimated cost ÷ remaining budget, capped at 1, from the agent's static per-call price. An unknown price earns no credit and is never scored as free. It measures price per call, not the cost of a finished task.</p><div class="src">spanrank-scorer.ts calculateCost</div></div></li>
+    <li><span class="sev md">Taste signal</span><div><p><span class="lbl f">Fact</span>Each approval raises a per-person, per-agent score that fades with a 30-day half-life, scaled by approvals ÷ 10 so one approval can't dominate. With no history it returns 0, so it never penalizes a newcomer. It learns only from approvals (task completion and decision approval), never from a send-back or its reason, and every task is filed as "general" (a task-type classifier exists elsewhere but isn't connected here).</p><div class="src">user-preference-hook.ts · discovery.repository.ts</div></div></li>
+    <li><span class="sev md">Newcomers</span><div><p><span class="lbl f">Fact</span>The discovery bonus (10%, reproducible per person and task, promoting the best-scored agent with under 50 uses) has no caller since a ranking-policy change. It is switched off, though the whitepaper still cites it.</p><div class="src">spanrank-scorer.ts applyDiscoveryBonus · whitepaper</div></div></li>
+    <li><span class="sev lo">Trust</span><div><p><span class="lbl f">Fact</span>New agents in the sandbox need a 0.6 passing score and start between 0.5 and 0.7 trust. The engine assumes 0.5 trust and 0.5 health with no history. Progressive trust moves a person-and-task-type pair up a level after 5, 10 and 20 successes, and changes how often the person is asked to approve. It doesn't touch pricing or fees.</p><div class="src">developer.types.ts SANDBOX_LIMITS · db_agent_selector.rs · migration 220</div></div></li>
+    <li><span class="sev lo">Neutrality</span><div><p><span class="lbl f">Fact</span>No paid placement exists anywhere in the ranking code, and the whitepaper calls neutral ranking a falsifiable bet: anyone can inspect the scorer, its inputs and the payouts.</p><div class="src">whitepaper Bet 1</div></div></li>
+  </ul>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="col">
+    <div class="eyebrow">5 · The best version</div>
+    <h2>Span buys finished work for the person, at a published price</h2>
+    <p><span class="lbl p">Proposal</span> Put the two shifts and the four rules together. The person describes a task. Span ranks agents on what matters to <i>this</i> person: fit with their taste, verified quality, and the price of a finished task. The person sees one price before work starts. The agent is paid only when the work is accepted. Span earns one published fee on finished work and pays for its own quality checks, so it does best by finishing work people keep.</p>
+  </div>
+  <div class="rules">
+    <div>
+      <div class="who">The person</div>
+      <h3>One price, quoted up front, owed only on acceptance</h3>
+      <p>Before work starts, the person sees "This costs $2.10." The money is reserved, as today. If the work is accepted, it settles. If Span can't deliver within its retry limit, the reservation is released and nothing is charged.</p>
+      <p>Revisions, retries and quality checks never appear on the bill.</p>
+    </div>
+    <div>
+      <div class="who">The agent</div>
+      <h3>Commits to a price per kind of task, paid on acceptance</h3>
+      <p>An agent says "I'll do a research brief for $2.10." If accepted, it earns $2.10 minus Span's published fee. If rejected, it earns nothing and its compute is its own loss. Revisions are on the agent.</p>
+      <p>An efficient agent keeps its savings, so agents compete on getting better and cheaper, not on taking more steps or buying placement.</p>
+    </div>
+    <div>
+      <div class="who">Span</div>
+      <h3>Earns a published fee, pays for checking and failure</h3>
+      <p>Span's take is a stated percentage of finished work, the same for every agent doing that kind of task. Span already pays for the Judge and Verifier; under this design it also eats them on failed attempts.</p>
+      <p>Span makes more by finishing more work that people keep and come back for, never by steering.</p>
+    </div>
+    <div>
+      <div class="who">Acceptance</div>
+      <h3>Judge first, person second, silence counts as yes</h3>
+      <p>The Judge gives the first verdict. The person can send work back within a window, say 72 hours. If they say nothing, the work is accepted and earnings release.</p>
+      <p>Every verdict also teaches the taste signal. An agent can contest a send-back once; it goes to a review queue. People who reject almost everything are rate-limited, so nobody gets free work by always saying no.</p>
+    </div>
+  </div>
+  <div class="col">
+    <h3>How Span ranks agents for a person</h3>
+    <p>A cheap agent that fails half the time costs more than a pricier one that almost always succeeds, because each failure costs a retry, a check and the person's time. And the best agent for one person isn't the best for another.</p>
+  </div>
+  <div class="formula">rank for this person = taste fit × acceptance rate (this kind of task) ÷ cost of a finished task &nbsp;·&nbsp; Span's fee is never an input</div>
+  <div class="formula">cost of a finished task = agent's price + (Judge and Verifier cost ÷ acceptance rate)</div>
+  <div class="col">
+    <p>This replaces the static per-call cost term. Acceptance rate is measured from the same verdicts that release money, so ranking and payout never disagree about whether an agent is good. New agents start with a cautious estimate (the sandbox's 0.5 to 0.7 band), get real chances through a working newcomer boost, and earn traffic as their record grows.</p>
+
+    <h3>One published fee; quality rewarded through ranking</h3>
+    <p>An earlier version of this memo proposed two things I now think are wrong. One was letting Span earn a variable gap between the person's price and the agent's price. The other was charging agents with better acceptance rates a lower fee (for example 20% below 70% acceptance, 15% from 70% to 90%, 10% above 90%). Both give Span a money reason to prefer some agents over others, which is the sponsored-search problem moved inside Span. The cleaner design is one published fee per kind of task. Quality is rewarded the honest way, by being chosen more often. Today's year-one and volume tiers can stay as developer incentives because the ranking can't see them.</p>
+
+    <h3>Two modes, not one</h3>
+    <ul>
+      <li><b>Fixed price per task</b> for kinds of task with a checkable result: booking a meeting, filing an expense report, finding every deduction. This is the default wherever the Judge's accuracy has been measured.</li>
+      <li><b>Metered</b> (today's cost-plus model, with budget caps) for open-ended work like "help me think through my pricing" and for new kinds of task, shown on the receipt as "billed by usage."</li>
+    </ul>
+    <p>A kind of task moves from metered to fixed price once Span has enough accepted runs to price it with confidence. The metered history is the pricing data.</p>
+
+    <h3>Sharing the return, later and narrowly</h3>
+    <p>Taking a share of the value created fits only where value is countable: a refund recovered, a charge disputed, a meeting booked. There, the price can be a share of the money recovered with a floor. Everywhere else it invites the same fraud CPA advertising did, so it waits until fixed-price tasks work.</p>
+
+    <h3>How Span reports revenue</h3>
+    <p>As merchant of record, Span may be able to book the full amount people pay as revenue. That is the inflated kind of number the tweet warns about. Lead with Span's net fee and its margin per finished task, with gross shown alongside. <span class="lbl q">Open</span>Confirm the accounting with an accountant before any investor material.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="col">
+    <div class="eyebrow">6 · Product specification</div>
+    <h2>The pieces, the rules they must keep, and what to measure</h2>
+    <p><span class="lbl p">Proposal</span> Written for the product integration document. Names are suggestions; the behavior is the point.</p>
+  </div>
+  <div class="spec">
+    <h4>6.1 New or changed records</h4>
+    <div class="in">
+      <ul>
+        <li><b>Attempt outcome</b> on each attempt: approve, revision, reject, escalate or failed, plus when it was decided. <i>Built on the branch as migration 986; that number was taken on master on 12 October, so it gets a new one before pushing.</i></li>
+        <li><b>Earning state</b> on each developer earning: held, released or voided, plus the reason and when.</li>
+        <li><b>Acceptance window</b> per task: when it opens, when it auto-accepts (default 72 hours), and who decided.</li>
+        <li><b>Agent price</b> per agent and kind of task: committed price, valid from, notice period before a change.</li>
+        <li><b>Task quote</b>: one signed price per task, bound to the task, reusing the wallet quote's signing.</li>
+        <li><b>Published fee</b> per kind of task, shown to agents and on receipts.</li>
+        <li><b>Dispute</b>: an agent's single contest of a send-back, its review and its result.</li>
+        <li><b>Taste signal</b> that also moves down on a send-back and records the reason, per kind of task. The reasons already exist in <code>core.work_verdicts</code>.</li>
+        <li><b>Refund reason</b> in the credit ledger for refunds after settlement (today only top-up refunds exist).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="spec">
+    <h4>6.2 Rules the system must always keep</h4>
+    <div class="in">
+      <ul>
+        <li>Ranking never reads a fee, a margin or any money paid to Span. A test fails if it does.</li>
+        <li>No paid placement, sponsored slot or "featured" agent in any list Span shows or uses.</li>
+        <li>Earnings are released only for accepted work; a rejected or failed attempt earns nothing.</li>
+        <li>The first recorded outcome for an attempt is final. A redelivered result can't change it.</li>
+        <li>The person never pays for a revision, a retry or a quality check under fixed pricing.</li>
+        <li>Payouts pay only released earnings. The drift check stays.</li>
+        <li>Ranking and payouts read the same verdicts.</li>
+        <li>Taste data belongs to the person. It travels across providers only with their memory and is never sold or used to price against them.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="spec">
+    <h4>6.3 What to measure</h4>
+    <div class="in">
+      <ul>
+        <li>How often the Judge agrees with the person, per kind of task. This decides whether paying on the Judge is fair.</li>
+        <li>Acceptance rate per agent per kind of task, and the top send-back reasons.</li>
+        <li>Cost of a finished task per agent per kind of task.</li>
+        <li>Share of work going to the top agent per kind of task (concentration), and how often newcomers get chosen.</li>
+        <li>Per developer: credited versus would-be-paid under acceptance. The shadow report on the branch does this.</li>
+        <li>Span's net fee and margin per finished task; the person's spend on failed work (target: zero under fixed pricing).</li>
+        <li>Disputes per agent and send-back rate per person, to catch abuse in both directions.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="spec">
+    <h4>6.4 What people see</h4>
+    <div class="in">
+      <ul>
+        <li><b>The person:</b> one price before work, the result, a keep or send-back choice with an optional reason, and a receipt that says "fixed price, delivered" or "billed by usage", plus "Span paid the vendor, fee included" or "on your account."</li>
+        <li><b>The agent's developer:</b> committed prices, held versus released earnings, the published fee, a scorecard with acceptance and send-back reasons, and disputes.</li>
+        <li><b>Everyone:</b> a plain statement that no one can pay for rank, matching the whitepaper's promise.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="col">
+    <div class="eyebrow">7 · Margins</div>
+    <h2>Who earns what, today versus paid on acceptance</h2>
+    <p>Move the sliders to see one kind of task under both models. "Today" bills the person for every attempt at the agent's per-attempt charge, plus the quality checks, and Span keeps its fee. (Since Span is free and already pays for its own checks, today's real bill is a little lower; the comparison shows the paid-agent case.) "Paid on acceptance" bills the person the agent's price only if the task is delivered, takes the same published fee from the agent's side, and puts the quality checks on Span. The defaults are illustrative, not measured Span data.</p>
+  </div>
+  <div class="calc">
+    <div class="inputs">
+      <div class="presets" role="group" aria-label="Example scenarios">
+        <button type="button" data-p="strong">Reliable agent</button>
+        <button type="button" data-p="typical">Typical agent</button>
+        <button type="button" data-p="weak">Unreliable agent</button>
+      </div>
+      <div><label for="p">Acceptance rate per attempt <output id="p-o"></output></label><input id="p" type="range" min="0.2" max="0.99" step="0.01" value="0.75"></div>
+      <div><label for="n">Attempts before giving up <output id="n-o"></output></label><input id="n" type="range" min="1" max="5" step="1" value="3"></div>
+      <div><label for="c">Agent's own compute per attempt <output id="c-o"></output></label><input id="c" type="range" min="0.1" max="5" step="0.05" value="1.20"><div class="hint">What the agent spends on models and tools.</div></div>
+      <div><label for="r">Today: agent's charge per attempt <output id="r-o"></output></label><input id="r" type="range" min="0.1" max="6" step="0.05" value="1.80"></div>
+      <div><label for="b">New: agent's price per finished task <output id="b-o"></output></label><input id="b" type="range" min="0.1" max="8" step="0.05" value="2.10"></div>
+      <div><label for="f">Span's published fee (both models) <output id="f-o"></output></label><input id="f" type="range" min="0.05" max="0.3" step="0.01" value="0.20"></div>
+      <div><label for="j">Judge and Verifier cost per attempt <output id="j-o"></output></label><input id="j" type="range" min="0" max="0.5" step="0.01" value="0.08"></div>
+    </div>
+    <div class="results">
+      <div class="tbl">
+        <table aria-live="polite">
+          <thead><tr><th>Per task requested</th><th class="num">Today</th><th class="num">Paid on acceptance</th></tr></thead>
+          <tbody>
+            <tr><td>Chance it gets done</td><td class="num" id="o-pd"></td><td class="num" id="o-pd2"></td></tr>
+            <tr><td>Expected attempts</td><td class="num" id="o-ea"></td><td class="num" id="o-ea2"></td></tr>
+            <tr><td>Person pays</td><td class="num" id="o-u1"></td><td class="num" id="o-u2"></td></tr>
+            <tr><td>Person pays per <i>finished</i> task</td><td class="num" id="o-uf1"></td><td class="num" id="o-uf2"></td></tr>
+            <tr><td>Person pays for failed work</td><td class="num" id="o-w1"></td><td class="num" id="o-w2"></td></tr>
+            <tr><td>Agent profit after compute</td><td class="num" id="o-a1"></td><td class="num" id="o-a2"></td></tr>
+            <tr><td>Span margin</td><td class="num" id="o-s1"></td><td class="num" id="o-s2"></td></tr>
+            <tr><td>Span margin, % of what the person pays</td><td class="num" id="o-sp1"></td><td class="num" id="o-sp2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="verdict" id="verdict"></p>
+    </div>
+  </div>
+  <div class="col">
+    <p>Three things the calculator shows, which hold across most settings:</p>
+    <ul>
+      <li><b>Unreliable agents stop being profitable.</b> At the defaults, today a 40%-acceptance agent earns about $0.47 per task and a 92% one about $0.26, because the weaker agent bills more attempts. Paid on acceptance, the 40% agent loses about $1.03 per task and has to improve or leave. That is the tweet's "value destruction," happening inside Span's marketplace instead of to it.</li>
+      <li><b>The person stops paying for failure.</b> What a finished task costs depends on the price agents set. At the defaults a typical agent's finished task costs the person $2.10 instead of about $2.51 today, because failed attempts and checks are off the bill.</li>
+      <li><b>Span's margin per task is often thinner, and depends on finishing.</b> At the defaults Span keeps about $0.31 per typical task instead of about $0.47, because it now pays for the checks on failed attempts. It keeps its margin by routing to agents that finish, which is the incentive the four rules want. Volume and people coming back must make up the rest; that is a bet, not a calculation.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <div class="col">
+    <div class="eyebrow">8 · How it fits what's built</div>
+    <h2>Most of the plumbing exists; what changes is what triggers payment and ranking</h2>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Piece</th><th>Today on master</th><th>State</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr><td>Neutral ranking</td><td>No paid placement; whitepaper promises "no commercial levers."</td><td><span class="pill built">built</span></td><td>Extend to Span's own fee and margin; add the test.</td></tr>
+        <tr><td>Taste learning</td><td>Approvals only, 30-day fade, everything "general", zero weight by default.</td><td><span class="pill part">partly built</span></td><td>Learn from send-backs and reasons per kind of task; give it weight; carry it with the person's memory.</td></tr>
+        <tr><td>Newcomer boost</td><td>Code exists, no caller.</td><td><span class="pill none">switched off</span></td><td>Reconnect it or replace it; correct the whitepaper either way.</td></tr>
+        <tr><td>Price in ranking</td><td>Static per-call price ÷ budget; zero weight by default.</td><td><span class="pill part">partly built</span></td><td>Replace with cost of a finished task.</td></tr>
+        <tr><td>Estimate</td><td>Past costs per agent or type, confidence by sample size.</td><td><span class="pill built">built</span></td><td>Keep for metered mode; feed fixed prices.</td></tr>
+        <tr><td>Up-front quote</td><td>Wallet quote is binding, HMAC-signed, a cumulative cap; wallet off, testnet.</td><td><span class="pill part">partly built</span></td><td>Reuse the signing for one price per task.</td></tr>
+        <tr><td>Budget hold</td><td>Row-locked reserve, settle, release; <code>BUDGET_EXCEEDED</code>; off by default.</td><td><span class="pill built">built</span></td><td>Reserve the quote; settle on acceptance; release at the retry limit.</td></tr>
+        <tr><td>Quality verdict</td><td>Decided and dropped; person's keep or send-back saved per attempt (migration 621).</td><td><span class="pill part">saving on branch</span></td><td>The branch's migration keeps each attempt's outcome. Next: trigger release from it plus the person's verdict and a window.</td></tr>
+        <tr><td>Developer earnings</td><td>Credited at settlement.</td><td><span class="pill built">built</span></td><td>Add held, released and voided.</td></tr>
+        <tr><td>Payouts</td><td>Intent first, idempotent transfer, drift halt; manual trigger; staging moves no real money.</td><td><span class="pill built">built</span></td><td>Pay only released earnings; add the scheduler the schedule setting implies.</td></tr>
+        <tr><td>Fees</td><td>10/15/20% tiers; both conditional tiers broken on master.</td><td><span class="pill part">fixed on branch</span></td><td>Publish one fee per kind of task; keep tiers as hidden incentives.</td></tr>
+        <tr><td>Fee wording</td><td>Legal page says Span adds no fee; Brave priced at +50% but unbillable.</td><td><span class="pill none">conflict</span></td><td>Decide the fee, then align the legal page and receipts.</td></tr>
+        <tr><td>Agent prices, scorecards, disputes</td><td>None.</td><td><span class="pill none">not built</span></td><td>As in section 6.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <div class="col">
+    <div class="eyebrow">9 · The branch, order of work, decisions</div>
+    <h2>Six steps, each useful on its own</h2>
+    <p><span class="lbl f">Fact</span> Branch <code>feat/paid-on-acceptance</code> holds three commits, last rebased on master 47f1687d69 on 10 October, not yet pushed.</p>
+    <p><span class="lbl f">Fact</span> On 17 October it was 243 commits behind master and no longer merges cleanly. On 12 October Harness v2 (#2279) took migration number 986 for <code>986-harness-columns-and-statuses.sql</code>, so the branch now conflicts with master in <code>migrations/RESERVATIONS.md</code> and <code>migrations/rollback/986-rollback.sql</code>. Master now goes up to 1019. Before pushing, the branch needs a new number, a rebase and a fresh run of its checks. The branch&#39;s three changes are:</p>
+    <ul>
+      <li>The high-volume tier uses this month's gross earnings (UTC calendar month). A failed lookup skips the tier with a warning.</li>
+      <li>The year-one tier treats a stored 0 as 12 months. It is in its own commit so it can be dropped.</li>
+      <li>Migration 986 adds <code>execution.executions.gate_outcome</code> (approve, revision, reject, escalate or failed) and <code>gate_decided_at</code>. They are written after the result handler settles the task, the first outcome is kept, and a failed write never blocks a result. A read-only shadow report shows, per developer, what they were credited against what accepted-only would pay. It refuses database roles that can't see send-backs.</li>
+    </ul>
+    <p>298 payout tests, 174 result-handler tests, lint, the full type check and a real-database migration check pass. Two code reviews scored it 86 and 79, and every major finding was fixed. Details are on the review page.</p>
+  </div>
+  <ol class="phases col">
+    <li>
+      <div class="ph">Step 1 · on the branch</div>
+      <h3>Fix fees and keep every verdict</h3>
+      <p>Done on the branch. Still to do: measure how often the Judge agrees with people.</p>
+      <p class="exit"><b>Done when:</b> every attempt carries its verdict and Judge-versus-person agreement is measured per kind of task.</p>
+    </li>
+    <li>
+      <div class="ph">Step 2 · started on the branch</div>
+      <h3>Hold earnings until acceptance, in shadow first</h3>
+      <p>Run the shadow report for a few weeks, then switch on held earnings with the auto-accept window.</p>
+      <p class="exit"><b>Done when:</b> a rejected attempt earns nothing and an accepted one releases after the window.</p>
+    </li>
+    <li>
+      <div class="ph">Step 3 · 1 to 2 weeks</div>
+      <h3>Lock in neutral routing, teach taste both ways, reopen the market</h3>
+      <p>Write the no-steering rule into code and tests. Make the taste signal learn from send-backs and reasons per kind of task and give it weight. Reconnect or replace the newcomer boost and correct the whitepaper.</p>
+      <p class="exit"><b>Done when:</b> a test fails if ranking reads a money field, a send-back measurably lowers that agent for that person, and newcomers get chosen at a known rate.</p>
+    </li>
+    <li>
+      <div class="ph">Step 4 · 1 to 2 weeks</div>
+      <h3>Revisions off the person's bill</h3>
+      <p>Revision attempts are charged to the agent.</p>
+      <p class="exit"><b>Done when:</b> a task the Judge rejects three times costs the person nothing.</p>
+    </li>
+    <li>
+      <div class="ph">Step 5 · 3 to 5 weeks</div>
+      <h3>Fixed-price tasks, ranked on the cost of a finished task</h3>
+      <p>Agents publish prices; people get one quote; ranking uses taste fit × acceptance ÷ finished cost; agents see scorecards; disputes get a queue. Start with two or three checkable kinds of task.</p>
+      <p class="exit"><b>Done when:</b> a person can request a supported task, see one price, and pay only on delivery.</p>
+    </li>
+    <li>
+      <div class="ph">Step 6 · later</div>
+      <h3>Share of the return, only where value is countable</h3>
+      <p>For recoveries, refunds and bookings, price as a share of measured value with a floor.</p>
+      <p class="exit"><b>Done when:</b> one kind of task earns from value created, with an audit trail the person can check.</p>
+    </li>
+  </ol>
+  <div class="col">
+    <h3>Decisions for you</h3>
+    <ul>
+      <li><span class="lbl q">Open</span>Push the branch and open the pull request? My recommendation: yes. Its migration number has now been taken twice while it sat unpushed (940 by 10 October, 986 on 12 October). Push right after renumbering.</li>
+      <li><span class="lbl q">Open</span>Keep the year-one fix (10%, as the whitepaper promises)? Recommendation: keep it.</li>
+      <li><span class="lbl q">Open</span>Refund first-year developers already charged 20%? Recommendation: check the amount first; staging payouts move no real money.</li>
+      <li><span class="lbl q">Open</span>What is Span's published fee per kind of task, and does the legal page change to say so?</li>
+      <li><span class="lbl q">Open</span>Which ranking setting runs on staging, and should taste get weight now?</li>
+      <li><span class="lbl q">Open</span>What counts as accepted: is the Judge enough, or must the person's window pass? Is 72 hours right? And does an unchecked answer the person chose to use (new on 13 October) pay in full?</li>
+      <li><span class="lbl q">Open</span>Accounting treatment of revenue as merchant of record.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <div class="col">
+    <div class="eyebrow">10 · Risks</div>
+    <h2>Where this can go wrong</h2>
+    <ul>
+      <li><b>Span becomes the new sponsored search.</b> This is the biggest risk. Revenue pressure will push toward "featured" agents or fee-dependent ranking. Rule 1 and its test are the defense, and the whitepaper already invites anyone to check.</li>
+      <li><b>Gaming the Judge.</b> If money depends on the Judge, agents will optimize to pass it rather than to do the task. Sample people's verdicts against the Judge's, rotate checks, and let a person's send-back override the Judge.</li>
+      <li><b>Taste becomes a bubble.</b> Learning someone's habits can trap them in yesterday's choices. A working newcomer boost and occasional fresh options keep the door open.</li>
+      <li><b>Taste data is sensitive.</b> What someone keeps and rejects says a lot about them. It must follow the privacy rules in 6.2.</li>
+      <li><b>People withholding acceptance.</b> The auto-accept window, per-person rejection rates and rate limits on serial rejecters handle most of it.</li>
+      <li><b>Agents pricing up or refusing hard tasks.</b> Moving risk onto agents makes them charge for it. That's correct, but some kinds of task will get pricier or lose supply. Keep metered mode for them.</li>
+      <li><b>Span carries refund and check costs.</b> When a quoted task fails, Span eats the checks and loses the sale. Price a small risk margin into the fee per kind of task, and cap exposure with the retry limit.</li>
+      <li><b>Superstars anyway.</b> If one agent really is best for nearly everyone, work concentrates. That's fine when it's earned; the concentration measure shows whether it is.</li>
+      <li><b>Promises ahead of code.</b> The whitepaper cites a newcomer boost that's switched off and fee tiers that don't work, and the legal page says there's no fee. Public writing, including the blog post, should describe only what's true or clearly mark what's planned.</li>
+      <li><b>Reported revenue looks smaller.</b> Net-first reporting is honest but less flattering than gross. That is the point of the tweet.</li>
+    </ul>
+    <div class="callout"><b>Bottom line.</b> In an economy where agents decide what to buy and whom to hire, the systems that find, judge and route the work become as important as the work itself. Span is one of those systems. It wins only if it is visibly on the person's side: it ranks on taste, verified quality and the real cost of finished work, never on who pays, and it pays agents only for work people keep. Much of the plumbing exists. The missing pieces are saving verdicts (on the branch), held earnings, taste that learns from send-backs and actually counts, a working newcomer boost, a tested no-steering rule, a published fee, per-task prices and a dispute path. I'm about 75% confident in steps 1 to 4 as written; step 5's details should be tested against real acceptance data first.</div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="s11">
+  <div class="col">
+    <div class="eyebrow">11 · Blog post draft</div>
+    <h2>Paid for Done</h2>
+    <p><span class="lbl p">Draft</span> Written in your voice for the Span blog, from sections 1 to 3, 5 and 10. It follows the format of your other posts (title, excerpt, suggested questions) and passes the publishing rules: no em dashes, no "not X but Y" contrasts, no slogan endings. About 1,180 words. A copy ready for <code>src/frontend/content/blog/posts/</code> is saved at <code>~/.claude/plans/paid-for-done/paid-for-done-blog.md</code>.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Field</th><th>Draft</th></tr></thead>
+      <tbody>
+        <tr><td>Title</td><td>Paid for Done</td></tr>
+        <tr><td>Excerpt</td><td>AI is sold by the token today. It will be sold by the finished task. Span is moving to pay agents only for work people keep, with one published fee and a ranking that never favors whoever pays most.</td></tr>
+        <tr><td>Suggested questions</td><td>What does Span count as accepted work?<br>Why can&#x27;t agents pay for a better spot in Span?<br>When does Span take a share of the value a task creates?</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="callout">
+      <p><b>Check before publishing.</b> The second paragraph under "Where Span stands" says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans ("will"), not as shipped features. Add the link to Chamath&#39;s post on X before it goes live.</p>
+    </div>
+  </div>
+  <article class="col" aria-label="Blog post draft">
+    <p>Chamath Palihapitiya summed up where the AI business stands in four lines. "Most everyone is selling CPM. Cost per thousand tokens + markup." Next, he wrote, "Everyone will sell CPA. Accomplish the task, participate in the ROI." On the way there he expects "a lot of value destruction," and he points to the Web1 and mobile transitions as examples.</p>
+    <h3>From impressions to results</h3>
+    <p>The terms come from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google's search ads moved to charging per click in 2002, and every year after, the measurement got closer to the sale.</p>
+    <p>AI is still in its banner-ad era. Model labs sell tokens, and most AI products resell those tokens with a markup, packaged as seats or credits. The buyer pays for effort. If an agent spends four dollars of compute and gets the work wrong, the buyer still pays four dollars, and pays again for the retry. Revenue grows with usage whether or not anything got done.</p>
+    <p>That pricing flatters the numbers investors look at. Revenue includes the token bill that passes straight through to the model provider. Gross margins look healthy because failed and repeated work is billed like good work. Run-rates multiply the best month by twelve, pilots and experiments included. Once buyers pay only for finished work, those numbers get restated, and some companies built on them will not survive it, which is the value destruction he expects.</p>
+    <h3>Where Span stands</h3>
+    <p>Span is the conversation people use to get work done across agents from many providers. A person describes the job, and Span does it itself or routes it to the specialist agent best suited to it. Span holds the provider accounts, pays the agents and bills the person. Every dollar spent on agent work passes through us, which makes Span exactly the kind of company that could count pass-through as revenue and call it growth. We want to build the version that holds up after the transition.</p>
+    <p>Today Span pays the way most of the market does. An agent's attempt is charged at the cost the agent reports, and the developer is credited that amount minus our fee as soon as it lands. Our quality check, the Judge, reviews every attempt and decides whether to approve it, send it back for revision, reject it or hand it to the person. That verdict decides what the person sees. It does not yet decide who gets paid. A rejected attempt earns the same as an approved one, and each revision is billed as a new attempt.</p>
+    <h3>Paid for accepted work</h3>
+    <p>We are changing that. Span will pay agents for accepted work. Accepted means the Judge approves the work and the person keeps it. After delivery the person has a window, 72 hours to start, to send it back, and silence counts as keeping it. The agent's earnings are held during the window and released when it closes. Failed attempts and rework are the agent's cost. The person pays one price, quoted before the work starts, and only for work they keep.</p>
+    <p>This changes what a good agent is. Under token pricing, an agent that takes more steps earns more. Under acceptance pricing, the agent that gets the work right the first time, at a low cost, earns the most. Developers are paid for being right, which is the incentive they should have had from the start.</p>
+    <h3>A router nobody can buy</h3>
+    <p>It also changes what the router has to be. When agents choose the work, the router decides who gets hired. Advertising's results era carries a warning here: it came with paid placement, and the top result in a search box was often the one that paid most. If agents could pay Span for position, or if Span ranked its own margin above the person's interest, the person would be paying for a worse result in a less visible way.</p>
+    <p>Two rules sit underneath the change. Span charges one published fee per kind of task, the same for every agent, so it gains nothing by steering work toward one agent over another. And Span's fee and margin are never inputs to the ranking. Agents are ranked on how well they fit the person's taste, how often their work is accepted, and the real cost of a finished task, which includes the attempts that failed. An agent that is cheap per attempt but often sent back is expensive per finished task, and the ranking should see that.</p>
+    <p>The ranking also has to learn taste. A person's agent will build habits from every verdict, learning which answers they keep and which they send back. That raises an open question about the agent economy. Demand could concentrate on a few superstar agents, because rational buyers converge on the same best product. Or it could spread out, because agents are good at drawing out each person's particular preferences. We think a neutral router that learns each person's taste pushes toward the second outcome, and we will give newer agents a measured share of work so the market stays open to them.</p>
+    <h3>The share of the value comes later</h3>
+    <p>"Participate in the ROI" is the step after that, and we are holding it back on purpose. Some tasks have a result you can count, such as a refund recovered or a meeting booked. For those, a share of the value is fair. Most tasks have no clean number. "Help me think through my pricing" has no finish line you can price as a percentage, and advertising showed what happens when payment rides on outcomes that are easy to claim: fake sign-ups, and credit taken for sales that would have happened anyway. We will start with fixed prices for work that can be checked, and add a share of the value only where the value can be counted.</p>
+    <h3>How we get there</h3>
+    <p>We are doing this in steps, and each one is useful by itself. First, Span keeps the Judge's verdict on every attempt. Next, a shadow report shows each developer what they were paid against what acceptance-based pay would have paid, before any money moves. After that, earnings are held until acceptance, prices are quoted per task, and every agent gets a scorecard of its acceptance rate and one way to contest a send-back. When we report revenue, we will lead with what Span keeps after agents and model providers are paid.</p>
+    <p>Chamath closed with "Good luck to all the players!" The companies that come through this transition will be the ones already measuring results when buyers start asking for them. For a marketplace, that means paying for work people keep and making sure nobody can buy their way to the top.</p>
+  </article>
+</section>
+
+<!-- Appendix A -->
+<section id="apxA">
+  <div class="col">
+    <div class="eyebrow">Appendix A</div>
+    <h2>Source notes, verbatim</h2>
+    <p>Kept word for word so the blog post can quote or paraphrase them accurately. Image links in the second note are left out.</p>
+    <h3>A.1 The tweet (Chamath Palihapitiya)</h3>
+    <div class="source">
+      <p>Current State of the Union of AI/SI: Most everyone is selling CPM. Cost per thousand tokens + markup.</p>
+      <p>Future State of the Union of AI/SI: Everyone will sell CPA. Accomplish the task, participate in the ROI.</p>
+      <p>In the transition from CPM to CPA, we will debunk much of the current gamesmanship around revenues, gross margins and run-rates. This will necessarily involve a lot of value destruction. See Web1 and Mobile transitions for examples.</p>
+      <p>Good luck to all the players!</p>
+      <p><i>Chamath Palihapitiya, on X.</i></p>
+    </div>
+    <h3>A.2 Your notes</h3>
+    <div class="source">
+      <p>Adjust our internal taste through RL personalize selection taste - My belief for the personal agent when transacting with other agents for transactions, it will accumulate a similiar, taste, and build habits that reflect the preferences of the user.</p>
+      <p>A big question is whether agents will increase superstar effects (rational agents all settle on the same product) or increase dispersion (because everyone has slightly different tastes and preferences, which agents are good at eliciting, finally overcoming the artificial clustering we've been subjected to).</p>
+      <p>Many internet companies have monetized demand routing, which is in turn often predicated on short attention spans. "I'll click on the first thing I see." This has led to some amount of inefficiency, as companies try to propitiate capricious ranking algorithms and incur various placement fees. It's not all deadweight loss (willingness to pay is itself a kind of signal, which is valuable to buyers), but it's not great. How will the nature and value of this routing change in a world of personal agents? More personalized routing, reflecting taste, in addition to ranked placement.</p>
+      <p>For general purchases: Much of what I'm writing hinges on the assumption that personal agents will be on the consumer's side. + for services we should find a way to neutralize routing, taking the preferences of the user and making a selection on the basis of it</p>
+      <p>ssorted things I've been mulling over regarding agents in the economy:</p>
+      <p>• Companies are in some sense the original superintelligence. It's often the case that they can use their amortized cognitive surplus to advance their interests against those of certain consumers: relative to the optimization capacity of companies, consumers can be inattentive, underinformed, irrational, etc. (Think, say, of some of the classic insurance upsells at the end of a booking process, which is typically priced substantially above what a regular policy would cost.) Herbert Simon introduced the idea of bounded rationality, and firms often end up benefiting from it. Thanks to personal agents, we will probably get somewhat more rational in how we engage with companies.</p>
+      <p>• How exactly will outcomes change? Well, certain kinds of price discrimination will work less well (how do coupons work if every agent hunts fastidiously for them?), and certain kinds of customer cross-subsidy will change (today, people who forget to cancel subscriptions subsidize those who don't). Taken across the economy as a whole, I'm not sure what the incidence of all of this will be.</p>
+      <p>• In corporate strategy, people have long debated the relative importance of distribution and product quality. Perhaps you've made something better, but does anyone know about it? Won't people just continue to buy the ACME Corp Mousetraps? Personal agents will, I think, act as a kind of structural subsidy for product quality. How would markets look different if individuals always spent at least 10 hours researching their purchases? On the margin, focusing on making a product better is, I think, going to become a more effective strategy for companies. This is good!</p>
+    </div>
+    <h3>A.3 The plain-English breakdown you shared</h3>
+    <div class="source">
+      <p>The author is making a very important argument about how AI agents could change the economy.</p>
+      <p>The central idea is simple: Today, companies have an advantage over consumers because they have more information, more resources, and more time to figure out how to sell to us. AI agents could eliminate much of that advantage by giving every consumer an intelligent assistant that works in their best interest.</p>
+      <p>And if that happens, companies may have to compete more on how good their products actually are, rather than how good they are at marketing and selling them.</p>
+      <p>Here's the argument, broken down into plain English.</p>
+      <h4>1. Companies are smarter than individual consumers</h4>
+      <p>Think about booking a flight.</p>
+      <p>An airline has entire teams dedicated to figuring out how to make you spend more money. They study your behavior, experiment with prices, and figure out when you're most likely to buy unnecessary extras.</p>
+      <p>Meanwhile, you're just one person trying to book a flight.</p>
+      <p>You don't have the time to compare every airline, read every insurance policy, or understand every hidden fee.</p>
+      <p>The company has hundreds of people optimizing how to make money from you. You have only yourself.</p>
+      <p>Now imagine you have an AI agent that does all the research for you, understands the tricks companies use, and makes sure you get the best deal.</p>
+      <p>Suddenly, the consumer becomes much harder to exploit.</p>
+      <p>That's the first argument.</p>
+      <h4>2. Some business models depend on consumers being lazy or forgetful</h4>
+      <p>Consider subscriptions.</p>
+      <p>Netflix, gyms, and software companies sometimes make money from people who forget to cancel subscriptions they no longer use.</p>
+      <p>Or consider coupons.</p>
+      <p>Two people buy the same product. One spends 20 minutes finding a discount code and pays $80. The other doesn't bother and pays $100.</p>
+      <p>Companies benefit from these differences in consumer behavior.</p>
+      <p>But what happens when everyone has an AI agent that automatically finds coupons, cancels unused subscriptions, and negotiates better deals?</p>
+      <p>Those opportunities for companies to make extra money start disappearing.</p>
+      <p>The author is saying this could change how businesses price their products and make money.</p>
+      <h4>3. Better products could finally beat better marketing</h4>
+      <p>This is arguably the most important point.</p>
+      <p>Imagine two companies selling headphones.</p>
+      <p>Company A</p>
+      <p>Makes average headphones, but spends millions on advertising, influencers, and getting its products to appear first on Amazon.</p>
+      <p>Company B</p>
+      <p>Makes excellent headphones with better sound, longer battery life, and a lower price, but barely spends anything on advertising.</p>
+      <p>Today, Company A might win because more people know about it.</p>
+      <p>But imagine everyone has an AI agent that researches every purchase, compares independent reviews, evaluates specifications, and identifies the best headphones for their needs.</p>
+      <p>The agent might recommend Company B even if the consumer has never heard of it.</p>
+      <p>AI agents could make it easier for the best product to win, rather than the best-advertised product.</p>
+      <p>This would fundamentally change how companies compete.</p>
+      <p>Instead of spending another $10 million on advertising, a company might find it more profitable to spend that money improving its product.</p>
+      <h4>4. Information about product quality becomes extremely valuable</h4>
+      <p>Today, most people don't read 500 customer reviews before buying something.</p>
+      <p>But an AI agent can.</p>
+      <p>It can compare thousands of reviews, examine return rates, analyze product performance, and identify recurring complaints.</p>
+      <p>That means information about how good a product actually is becomes much more valuable.</p>
+      <p>For example, a small company might have a product with a 2% failure rate while a famous competitor has a 15% failure rate.</p>
+      <p>Most consumers would never discover that difference.</p>
+      <p>But an AI agent could.</p>
+      <p>The more intelligent our agents become, the more valuable reliable information about products becomes.</p>
+      <p>This also creates opportunities for companies that collect, verify, and organize product-quality data.</p>
+      <h4>5. Will AI make everyone buy the same thing or discover different things?</h4>
+      <p>The author raises an interesting question.</p>
+      <p>Imagine every consumer has an incredibly intelligent shopping agent.</p>
+      <p>Two possible outcomes emerge.</p>
+      <p>Scenario A: Everyone buys the same products.</p>
+      <p>If one laptop is objectively better than every competitor, millions of agents might recommend it.</p>
+      <p>The winning company becomes even more dominant.</p>
+      <p>Scenario B: People buy more different products.</p>
+      <p>Your agent knows you care about battery life. My agent knows I care about screen quality. Someone else's agent knows they need the lightest possible laptop.</p>
+      <p>Instead of everyone buying the most popular laptop, agents find the product that best fits each individual.</p>
+      <p>This could help smaller, specialized companies succeed.</p>
+      <p>The author doesn't know which effect will be stronger.</p>
+      <h4>6. AI agents could threaten Google's and Amazon's advertising businesses</h4>
+      <p>This is another major point.</p>
+      <p>Today, companies pay enormous amounts of money to appear where consumers are looking.</p>
+      <p>For example, when you search for a product on Google or Amazon, companies pay to appear near the top.</p>
+      <p>Why?</p>
+      <p>Because consumers often click the first few results.</p>
+      <p>TODAY</p>
+      <p>Consumer searches for headphones</p>
+      <p>Google / Amazon ranks results</p>
+      <p>Consumer clicks a prominent result</p>
+      <p>WITH PERSONAL AI AGENTS</p>
+      <p>Consumer asks agent for headphones</p>
+      <p>Agent researches and compares products</p>
+      <p>Agent recommends the best fit</p>
+      <p>If AI agents become the primary way consumers discover and purchase products, paying Google to appear first might become less valuable.</p>
+      <p>Companies would instead need to convince AI agents that their products are worth recommending.</p>
+      <p>The power to direct consumer spending could shift from search engines and advertising platforms to AI agents.</p>
+      <p>However, this creates another question: Will agent platforms themselves start charging companies for recommendations?</p>
+      <p>Which leads to the next point.</p>
+      <h4>7. Everything depends on whether AI agents actually work for consumers</h4>
+      <p>The author acknowledges a major assumption.</p>
+      <p>What if your AI agent doesn't recommend the best product?</p>
+      <p>What if it recommends the company that pays the agent provider the highest commission?</p>
+      <p>Then we've recreated the same problem.</p>
+      <p>Instead of Google selling sponsored search results, AI agents could sell sponsored recommendations.</p>
+      <p>The consumer still wouldn't know whether they're receiving the best advice.</p>
+      <p>So the entire argument depends on whether personal AI agents genuinely represent the interests of their users.</p>
+      <p>An agent that works for you should optimize for what you want, not what generates the highest commission for its operator.</p>
+      <h4>8. The final paragraph: The economy could reward quality more accurately</h4>
+      <p>The author describes the market as a giant machine that decides how much value different products and companies deserve.</p>
+      <p>Today, that machine is imperfect.</p>
+      <p>Excellent products sometimes fail because nobody discovers them. Mediocre products sometimes succeed because they have excellent distribution.</p>
+      <p>AI agents could improve that process.</p>
+      <p>When consumers have access to better information and more intelligent decision-making, money could flow more consistently toward companies that create genuine value.</p>
+      <p>The author calls this a change in the economy's backpropagation.</p>
+      <p>That's a machine-learning analogy. In simple terms, companies receive clearer feedback about what consumers actually value, and better products receive greater financial rewards.</p>
+      <h4>What I think is most important for Span</h4>
+      <p>There is a particularly interesting implication here that extends beyond shopping.</p>
+      <p>The author is describing a world where AI agents become the decision-makers that direct economic demand.</p>
+      <p>Today, consumers discover software, services, and companies through search engines, advertising, app stores, and recommendations.</p>
+      <p>But imagine a world where someone simply tells their AI:</p>
+      <p>"Build me a website for my business."</p>
+      <p>Instead of searching Google for website builders, comparing freelancers, and evaluating design agencies, their AI could discover and select the best specialized agent to complete the job.</p>
+      <p>The same applies to preparing tax returns, editing videos, analyzing contracts, conducting research, or completing other forms of digital work.</p>
+      <p>This creates a potentially important shift:</p>
+      <p>The competition moves from being discovered by humans to being selected by agents.</p>
+      <p>And that introduces three distinct opportunities:</p>
+      <p>1. Discovery: How does an AI find all the specialized agents capable of performing a task?<br>2. Selection: How does it determine which agent is best based on quality, price, reliability, and the user's needs?<br>3. Execution: How does it hire that agent, pay it, verify its work, and deliver the result?</p>
+      <p>The author's argument focuses primarily on how personal agents could improve consumer decision-making.</p>
+      <p>Span's opportunity is related but broader: building the infrastructure that allows demand to find and transact with the best available AI services.</p>
+      <p>There is one critical distinction, though. Routing doesn't automatically reward quality. It rewards whatever the routing system is designed to optimize. If the system prioritizes commissions, it can recreate the same problems as sponsored search. If it prioritizes verified outcomes and user interests, it can make quality a genuine competitive advantage.</p>
+      <p>The single biggest takeaway is this:</p>
+      <p>In an economy where agents increasingly decide what to buy and whom to hire, the systems that discover, evaluate, and route demand could become as important as the products and services themselves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Appendix B -->
+<section id="apxB">
+  <div class="col">
+    <div class="eyebrow">Appendix B</div>
+    <h2>Glossary</h2>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Term</th><th>Meaning here</th></tr></thead>
+      <tbody>
+        <tr><td>CPM</td><td>Cost per mille (thousand). Paying per unit of effort or exposure, whatever the result. In AI, per thousand tokens. At Span today: every attempt is charged at the agent&#39;s reported cost and credited to the developer minus Span&#39;s fee, whether the work was approved or rejected.</td></tr>
+        <tr><td>CPA</td><td>Cost per acquisition. Paying only for a result. At Span (proposed): the result is an accepted task, meaning the Judge approved it and the person didn&#39;t send it back within the window. The person pays a price quoted up front, the agent is paid on acceptance, and failed attempts and rework cost the agent.</td></tr>
+        <tr><td>ROI</td><td>Return on investment: the value a purchase produces.</td></tr>
+        <tr><td>Run-rate</td><td>This period's revenue scaled to a full year.</td></tr>
+        <tr><td>Bounded rationality</td><td>Herbert Simon's idea that people decide with limited time, information and attention.</td></tr>
+        <tr><td>Price discrimination</td><td>Charging different people different prices for the same thing, for example through coupons.</td></tr>
+        <tr><td>Cross-subsidy</td><td>One group of customers paying for another, for example forgotten subscriptions.</td></tr>
+        <tr><td>Incidence</td><td>Who ends up bearing a cost or getting a benefit once everything adjusts.</td></tr>
+        <tr><td>Superstar effect / dispersion</td><td>Demand piling onto one winner, versus spreading across many good fits.</td></tr>
+        <tr><td>Demand routing</td><td>Deciding which seller a buyer is sent to: search rankings, ads, recommendations, or an agent's choice.</td></tr>
+        <tr><td>Backpropagation</td><td>In machine learning, sending error signals back so a system improves. Used here for markets getting clearer feedback.</td></tr>
+        <tr><td>Reinforcement learning</td><td>Learning from rewards. Here, each keep or send-back is a reward that tunes how Span picks agents for a person.</td></tr>
+        <tr><td>SpanRank</td><td>Span's score for choosing an agent: a weighted sum of relevance, trust, performance, cost, health, predicted quality, skill confidence, ratings and taste.</td></tr>
+        <tr><td>Taste signal</td><td>Span's per-person, per-agent score from approvals, fading with a 30-day half-life.</td></tr>
+        <tr><td>Judge and Verifier</td><td>Span's two automated quality checks on each attempt: one judges the work, the other checks facts, safety and policy.</td></tr>
+        <tr><td>Merchant of record</td><td>The party that sells to the customer and takes payment. Span, for agents and tools it buys on the person's behalf.</td></tr>
+        <tr><td>Shadow mode</td><td>Calculating what a new rule would do without letting it change anything yet.</td></tr>
+        <tr><td>Migration</td><td>A numbered script that changes the database's structure.</td></tr>
+        <tr><td>Idempotent</td><td>Safe to run twice: a repeated payout or result doesn't count double.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Appendix C -->
+<section id="apxC">
+  <div class="col">
+    <div class="eyebrow">Appendix C</div>
+    <h2>Sources for every fact</h2>
+    <p>All on <code>origin/master</code> at 47f1687d69, checked 11 October 2026, unless noted. Re-checked on 725d9beccc on 17 October 2026: line numbers may have moved, the facts have not, except where a row says so.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Fact</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Span sells no plans; pricing page removed</td><td><code>src/core/services/stripe-webhook-handler.ts:18, :78</code>; commits "remove subscription plans — Span is free (#1759)" and "remove the pricing page — Span is free (#1747)"; <code>src/frontend/router/index.tsx:439-443</code></td></tr>
+        <tr><td>Estimate from past costs; confidence by sample size; worst case</td><td><code>src/pipeline/billing/cost-estimator.service.ts:30, :45-91</code>; <code>billing.repository.ts:1041-1054</code></td></tr>
+        <tr><td>Static cost_per_call is not the settlement basis</td><td><code>docs/architecture/04-settlement-metering.md</code></td></tr>
+        <tr><td>Budget reserve, BUDGET_EXCEEDED, default off</td><td><code>src/pipeline/billing/billing.service.ts:297, :336, :357, :419, :454</code>; <code>env.ts:1034</code></td></tr>
+        <tr><td>Cost attribution flag default off</td><td><code>src/core/config/env.ts:1022-1025</code></td></tr>
+        <tr><td>Span pays for Judge and Verifier</td><td><code>src/core/billing/span-paid.ts:7-16</code>; <code>migrations/649-task-span-inference-cost.sql:40-41</code>; <code>quality-gate-attribution.ts:17-23, :294-325</code></td></tr>
+        <tr><td>Credit ledger reasons; 300-second hold; per successful call</td><td><code>migrations/546-credit-ledger.sql:62</code>; <code>credit-ledger.service.ts:67</code>; <code>tool-pricing.ts:26</code></td></tr>
+        <tr><td>Brave at 7,500 µ$ (5,000 + 50%), unbillable</td><td><code>src/pipeline/tool-gateway/mcp-catalog.ts:476, :486-491</code>; <code>tool-pricing.ts:71, :102</code></td></tr>
+        <tr><td>Legal copy: "Span adds no fee of its own"</td><td><code>src/frontend/pages/legal-content.ts:249</code></td></tr>
+        <tr><td>Role and group caps</td><td><code>src/core/services/budgeted-llm-call.ts:22, :817, :987, :2590-2601, :2677-2686</code></td></tr>
+        <tr><td>Binding, HMAC-signed, cumulative quote</td><td><code>src/pipeline/billing/quote.service.ts:5, :9, :14</code></td></tr>
+        <tr><td>Wallet off, testnet; x402 and MPP</td><td><code>env.ts:486-496</code>; <code>billing.types.ts:176-181</code></td></tr>
+        <tr><td>gateway_fee_micro, externally_billed</td><td><code>migrations/592-cost-entry-states-and-usage-events.sql:24-29, :85-86</code></td></tr>
+        <tr><td>Revenue share 80%, platform fee 20%; fee tier seed</td><td><code>migrations/403-agent-developer-program.sql:22, :57</code>; <code>migrations/404-fee-tiers.sql:27-29</code></td></tr>
+        <tr><td>Year-one and volume tier bugs</td><td><code>src/pipeline/developer/payout.service.ts:187-197</code></td></tr>
+        <tr><td>$25 minimum, monthly default, manual payouts</td><td><code>migrations/403:58-60</code>; <code>developer.types.ts:100-102</code></td></tr>
+        <tr><td>Staging payouts move no real money</td><td><code>docs/architecture/04-settlement-metering.md:251</code></td></tr>
+        <tr><td>Payout drift halt</td><td><code>payout.service.ts:294-306</code></td></tr>
+        <tr><td>Earnings ignore the verdict; quality_outcome never written</td><td><code>src/pipeline/billing/attempt-earnings.ts</code> isSettledAttemptFee; <code>migrations/428</code>; writers <code>billing.repository.ts:155</code>, <code>billing.service.ts:65</code>, <code>cost-events.service.ts:152</code></td></tr>
+        <tr><td>Gate decision only logged</td><td><code>src/pipeline/projects/execution-result.handler.ts</code> → <code>tasks.repository.ts</code> addCost</td></tr>
+        <tr><td>Three paid revisions then failed</td><td><code>TODOS.md:979</code></td></tr>
+        <tr><td>SpanRank weights; default "mvp"</td><td><code>src/core/types/agent.ts</code> MVP_WEIGHTS, PHASE2_WEIGHTS, COLDSTART_WEIGHTS; <code>env.ts:860</code>; <code>src/core/feature-flags.ts</code></td></tr>
+        <tr><td>Cost term; unknown price earns no credit</td><td><code>src/pipeline/discovery/spanrank-scorer.ts:245-265</code></td></tr>
+        <tr><td>Taste: 30-day half-life, ÷10, 0 with no history, approvals only, "general"</td><td><code>discovery.repository.ts:1955, :1958, :1971-1973</code>; <code>user-preference-hook.ts:26-40</code>; <code>execution-result.handler.ts</code></td></tr>
+        <tr><td>Newcomer boost has no caller</td><td><code>spanrank-scorer.ts:431-495</code></td></tr>
+        <tr><td>Sandbox limits; engine defaults; trust levels</td><td><code>developer.types.ts:189-191</code>; <code>engine/src/executor/db_agent_selector.rs:193-197, :216</code>; <code>migrations/220-progressive-trust-thresholds.sql</code></td></tr>
+        <tr><td>Person's verdicts per attempt</td><td><code>migrations/616-work-verdicts.sql</code>, <code>621-work-verdicts-execution-id.sql</code></td></tr>
+        <tr><td>Whitepaper quotes</td><td><code>docs/whitepaper/span-whitepaper.md:43</code> (paid for the outcome), <code>:57</code> (no commercial levers), <code>:83</code> (per-subtask invocation), <code>:423</code> (fee tiers, Stripe Connect), <code>:497</code> (billing not yet a full product surface), <code>:507</code> (discovery bonus)</td></tr>
+        <tr><td>No customer vendor keys; merchant of record</td><td>Owner decision, 24 September 2026</td></tr>
+        <tr><td>Branch state</td><td><code>feat/paid-on-acceptance</code> commits 56e4925801, 4d29f5b34b, f18c2c43e0; migration 986, taken on master by #2279 on 12 October; 243 commits behind on 17 October</td></tr>
+        <tr><td>Person accepts an unchecked answer (17 October)</td><td><code>src/pipeline/orchestrator/held-answer.ts:3-39, :73, :317, :345-362</code> (#2315, 13 October); no <code>work_verdicts</code> write</td></tr>
+        <tr><td>Fee tiers still broken on master (17 October)</td><td><code>src/pipeline/developer/payout.service.ts:189, :196</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>Written 4 October 2026, expanded 11 October 2026, updated 17 October 2026. Code facts re-verified on master 725d9beccc. The agent-economy material draws on the notes in Appendix A. Calculator figures are illustrative, not Span data.</footer>
+</div>
+
+<script>
+(function () {
+  var ids = ['p','n','c','r','b','f','j'];
+  var el = {};
+  ids.forEach(function (k) { el[k] = document.getElementById(k); });
+  var presets = {
+    strong:  { p: 0.92, n: 3, c: 1.20, r: 1.80, b: 1.95, f: 0.20, j: 0.08 },
+    typical: { p: 0.75, n: 3, c: 1.20, r: 1.80, b: 2.10, f: 0.20, j: 0.08 },
+    weak:    { p: 0.40, n: 3, c: 1.20, r: 1.80, b: 2.10, f: 0.20, j: 0.08 }
+  };
+  function usd(x) { var s = x < 0 ? '−$' : '$'; return s + Math.abs(x).toFixed(2); }
+  function pct(x) { return (x * 100).toFixed(0) + '%'; }
+  function model(v) {
+    var q = 1 - v.p;
+    var pd = 1 - Math.pow(q, v.n);
+    var ea = (1 - Math.pow(q, v.n)) / v.p;
+    var compute = v.c * ea;
+    var t = {}, o = {};
+    t.pd = pd; t.ea = ea;
+    t.user = (v.r + v.j) * ea;
+    t.perDone = t.user / pd;
+    t.wasted = t.user - (v.r + v.j) * pd;
+    t.agent = (1 - v.f) * v.r * ea - compute;
+    t.span = v.f * v.r * ea;
+    t.spanPct = t.span / t.user;
+    o.pd = pd; o.ea = ea;
+    o.user = v.b * pd;
+    o.perDone = v.b;
+    o.wasted = 0;
+    o.agent = (1 - v.f) * v.b * pd - compute;
+    o.span = v.f * v.b * pd - v.j * ea;
+    o.spanPct = o.user > 0 ? o.span / o.user : 0;
+    return { t: t, o: o };
+  }
+  function set(id, txt, cls) { var n = document.getElementById(id); n.textContent = txt; n.className = 'num' + (cls ? ' ' + cls : ''); }
+  function render() {
+    var v = {};
+    ids.forEach(function (k) { v[k] = parseFloat(el[k].value); });
+    document.getElementById('p-o').textContent = pct(v.p);
+    document.getElementById('n-o').textContent = v.n;
+    document.getElementById('c-o').textContent = usd(v.c);
+    document.getElementById('r-o').textContent = usd(v.r);
+    document.getElementById('b-o').textContent = usd(v.b);
+    document.getElementById('f-o').textContent = pct(v.f);
+    document.getElementById('j-o').textContent = usd(v.j);
+    var m = model(v), t = m.t, o = m.o;
+    set('o-pd', pct(t.pd)); set('o-pd2', pct(o.pd));
+    set('o-ea', t.ea.toFixed(2)); set('o-ea2', o.ea.toFixed(2));
+    set('o-u1', usd(t.user)); set('o-u2', usd(o.user));
+    set('o-uf1', usd(t.perDone), t.perDone < o.perDone ? 'better' : ''); set('o-uf2', usd(o.perDone), o.perDone < t.perDone ? 'better' : '');
+    set('o-w1', usd(t.wasted), t.wasted > 0.005 ? 'worse' : ''); set('o-w2', usd(o.wasted));
+    set('o-a1', usd(t.agent), t.agent < 0 ? 'worse' : ''); set('o-a2', usd(o.agent), o.agent < 0 ? 'worse' : '');
+    set('o-s1', usd(t.span), t.span < 0 ? 'worse' : ''); set('o-s2', usd(o.span), o.span < 0 ? 'worse' : '');
+    set('o-sp1', pct(t.spanPct)); set('o-sp2', pct(o.spanPct));
+    var msg = [];
+    if (o.agent < 0) msg.push('Paid on acceptance, <b>this agent loses money</b> at its price. It must improve its acceptance rate, cut compute, or raise its price.');
+    else if (o.agent > t.agent) msg.push('This agent <b>earns more</b> paid on acceptance than today.');
+    else msg.push('This agent earns less paid on acceptance than today, because it no longer bills failed attempts.');
+    if (o.span < 0) msg.push('Span <b>loses money</b> on this task: its fee does not cover the quality checks across retries. Route to agents that finish, or keep this task type metered.');
+    else msg.push('Span keeps <b>' + usd(o.span) + '</b> per task requested, against ' + usd(t.span) + ' today.');
+    if (t.wasted > 0.005) msg.push('Today the person pays <b>' + usd(t.wasted) + '</b> per request for attempts that were rejected.');
+    document.getElementById('verdict').innerHTML = msg.join(' ');
+  }
+  ids.forEach(function (k) { el[k].addEventListener('input', render); });
+  Array.prototype.forEach.call(document.querySelectorAll('.presets button'), function (btn) {
+    btn.addEventListener('click', function () {
+      var p = presets[btn.getAttribute('data-p')];
+      ids.forEach(function (k) { el[k].value = p[k]; });
+      render();
+    });
+  });
+  render();
+})();
+</script>

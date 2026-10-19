@@ -1,0 +1,333 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Paid-on-Acceptance Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a review packet. Decisions first, then findings, then the three commits as exhibits, then proof. One column, full-width tables. */
+:root {
+  --paper: #fafaf7;
+  --cream: #f2f2ec;
+  --ink: #2d3436;
+  --ink-2: #545e62;
+  --rule: #dcdcd2;
+  --brand: #1A6D63;
+  --brand-soft: #D5F2ED;
+  --copper: #93491a;
+  --copper-soft: #f6e6d8;
+  --warn: #a8321f;
+  --warn-soft: #f8e1dc;
+  --code-bg: #eeeee6;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+    --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+    --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+  --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+  --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 960px; margin: 0 auto; }
+.col { max-width: 70ch; }
+header { padding-block: 56px 28px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 5.5vw, 52px); line-height: 1.06; margin: 10px 0 14px; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3.2vw, 31px); line-height: 1.18; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-size: 17px; font-weight: 600; margin: 20px 0 6px; }
+.lede { font-family: var(--display); font-size: 20px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+section { padding-block: 48px 8px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 1.25em; margin: 0 0 12px; }
+li { margin-bottom: 6px; }
+a { color: var(--brand); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: .85em; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+
+/* status strip */
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--rule); margin-top: 24px; }
+.strip > div { padding: 12px 14px; min-width: 0; }
+.strip > div + div { border-left: 1px solid var(--rule); }
+.strip .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); }
+.strip .v { font-weight: 600; font-size: 15px; margin-top: 2px; overflow-wrap: anywhere; }
+.strip .v.ok { color: var(--brand); }
+.strip .v.hold { color: var(--copper); }
+@media (max-width: 720px) { .strip { grid-template-columns: 1fr 1fr; } .strip > div:nth-child(3) { border-left: 0; } .strip > div:nth-child(n+3) { border-top: 1px solid var(--rule); } }
+
+/* decisions */
+.decisions { display: grid; gap: 0; border: 1px solid var(--copper); margin: 20px 0 8px; }
+.decision { padding: 18px 20px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; }
+.decision + .decision { border-top: 1px solid var(--rule); }
+.decision .n { font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--copper); line-height: 1; }
+.decision h3 { margin: 0 0 6px; font-size: 18px; }
+.decision p { margin-bottom: 8px; color: var(--ink-2); }
+.decision .rec { font-size: 14.5px; color: var(--ink); }
+.decision .rec b { color: var(--brand); }
+
+/* tables */
+.tbl { overflow-x: auto; margin: 18px 0; border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 13px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.ok { background: var(--brand-soft); color: var(--brand); }
+.pill.warn { background: var(--copper-soft); color: var(--copper); }
+.pill.bad { background: var(--warn-soft); color: var(--warn); }
+
+/* commits */
+.commit { border: 1px solid var(--rule); margin: 22px 0; }
+.commit .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 14px 18px; background: var(--cream); border-bottom: 1px solid var(--rule); }
+.commit .sha { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+.commit .head h3 { margin: 0; font-size: 17px; min-width: 0; }
+.commit .body { padding: 16px 18px 6px; }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 12px 0 14px; }
+.ba > div { padding: 12px 14px; min-width: 0; font-size: 14.5px; }
+.ba > div + div { border-left: 1px solid var(--rule); }
+.ba .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+.ba .before .k { color: var(--warn); }
+.ba .after .k { color: var(--brand); }
+@media (max-width: 640px) { .ba { grid-template-columns: 1fr; } .ba > div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+pre { font-family: var(--mono); font-size: 12.5px; line-height: 1.55; background: var(--code-bg); padding: 12px 14px; overflow-x: auto; margin: 0 0 14px; border-radius: 3px; }
+pre .del { color: var(--warn); }
+pre .add { color: var(--brand); }
+pre .cm { color: var(--ink-2); }
+.files { font-family: var(--mono); font-size: 12px; color: var(--ink-2); margin-bottom: 12px; overflow-wrap: anywhere; }
+
+.note { border-left: 2px solid var(--copper); background: var(--copper-soft); padding: 12px 16px; margin: 16px 0; font-size: 15px; }
+.note b { color: var(--copper); }
+footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Span · payouts · review packet</div>
+  <h1>Paid-on-Acceptance Review</h1>
+  <p class="lede col">Everything from this thread in one place: the idea behind it, what I found in Span's code, the three changes on the branch, how they were tested and reviewed, what I got wrong along the way, and the three decisions I need from you before anything is pushed.</p>
+  <div class="strip" role="list">
+    <div role="listitem"><div class="k">Branch</div><div class="v">feat/paid-on-acceptance</div></div>
+    <div role="listitem"><div class="k">Commits</div><div class="v">3, last rebased 10 Oct · 243 behind on 17 Oct</div></div>
+    <div role="listitem"><div class="k">Checks</div><div class="v ok">Passed on 10 Oct · rerun after rebase</div></div>
+    <div role="listitem"><div class="k">Status</div><div class="v hold">Not pushed · needs a new migration number · waiting on you</div></div>
+  </div>
+</header>
+
+<section id="decisions">
+  <div class="eyebrow">Your call</div>
+  <h2>Three decisions before anything is pushed</h2>
+  <div class="decisions">
+    <div class="decision">
+      <div class="n">1</div>
+      <div>
+        <h3>Push the branch and open the pull request?</h3>
+        <p>Pushing makes the work visible to the other sessions and starts CI. Nothing reaches staging until the merge steward merges it.</p>
+        <p class="rec"><b>My recommendation: yes.</b> All three commits stand alone, master still has both fee bugs, and every day the branch waits it falls further behind a fast-moving master (it fell 974 commits behind by 6 October and 536 more by 10 October, and another session took its migration number in between). It happened again: on 12 October Harness v2 (#2279) took 986, and by 17 October the branch was 243 commits behind. If you say yes, I renumber, rebase, rerun every check, then push straight away.</p>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="n">2</div>
+      <div>
+        <h3>Keep the first-year fee fix?</h3>
+        <p>Every first-year developer has been charged 20% instead of the 10% the whitepaper and the original migration promise. Keeping the fix lowers Span's take on their earnings by half. Dropping it means removing one commit and keeping 20%; then the whitepaper should change instead.</p>
+        <p class="rec"><b>My recommendation: keep it.</b> The 10% is published, so charging 20% is a broken promise to the developers you most want to attract.</p>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="n">3</div>
+      <div>
+        <h3>Refund developers already overcharged?</h3>
+        <p>The fix only changes future earnings. Past first-year earnings stay at 20%. A refund means re-crediting the difference to their pending balance with an audit record.</p>
+        <p class="rec"><b>My recommendation: check the size first.</b> Developer payouts on staging don't move real money yet, so the overcharge may be zero in practice. If any real money is affected, refund it. I can write that query once you decide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="idea">
+  <div class="eyebrow">Background</div>
+  <h2>The idea: pay for finished work, not effort</h2>
+  <div class="col">
+    <p>The tweet you shared predicts AI will move from selling tokens (paying for effort, like ads paid per view) to selling finished tasks (paying for results, like ads paid per sale). Span is well placed for that move because it already holds the vendor accounts, reserves money before work starts, and runs a quality check on every attempt.</p>
+    <p>The full argument, a margin calculator and the five-step plan are in the strategy memo: <a href="1-strategy-memo-and-blog-post.html">Paid for Done</a>. This branch is steps 1 and 2 of that plan: fix what's wrong with fees, save each attempt's verdict, and measure what pay-on-acceptance would change before changing anyone's pay.</p>
+  </div>
+</section>
+
+<section id="found">
+  <div class="eyebrow">What the code does today</div>
+  <h2>Span pays for every settled attempt, good or bad</h2>
+  <div class="col"><p>Read from current master. These are the facts the branch responds to.</p></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Finding</th><th>What it means</th><th>Branch</th></tr></thead>
+      <tbody>
+        <tr><td>Rejected work still earns</td><td>The earnings rule checks only that the fee settled. A rejected attempt pays the agent exactly like an approved one, and the user pays for every revision.</td><td><span class="pill warn">measured, not yet changed</span></td></tr>
+        <tr><td>The quality verdict is thrown away</td><td>The quality check decides approve, revise, reject or escalate on every attempt, then only writes it to a debug log. The <code>quality_outcome</code> column meant to hold it is never filled, because the fee is recorded before the check runs.</td><td><span class="pill ok">fixed: saved per attempt</span></td></tr>
+        <tr><td>High-volume fee tier checks the wrong number</td><td>The 15% tier compared the unpaid balance, which every payout resets. Developers who cash out often never qualified.</td><td><span class="pill ok">fixed</span></td></tr>
+        <tr><td>First-year fee tier never applies</td><td>A setting stored as 0 instead of 12 means "younger than 0 months," which is never true. Every first-year developer pays 20%, not 10%.</td><td><span class="pill ok">fixed, your call to keep</span></td></tr>
+        <tr><td>Two currencies</td><td>The pricing page sells credits; the code charges in dollars.</td><td><span class="pill bad">not in this branch</span></td></tr>
+        <tr><td>Routing ignores real cost</td><td>The agent ranking uses a static per-call price, not what a finished task actually costs with that agent.</td><td><span class="pill bad">not in this branch</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="commits">
+  <div class="eyebrow">What the branch changes</div>
+  <h2>Three commits, each safe on its own</h2>
+  <div class="col"><p>The two fee fixes change what developers are charged. The third commit changes no money at all: it saves information and adds a read-only report.</p></div>
+
+  <article class="commit">
+    <div class="head"><span class="sha">56e4925801</span><h3>High-volume fee tier uses this month's earnings</h3></div>
+    <div class="body">
+      <div class="ba">
+        <div class="before"><div class="k">Before</div>15% if the developer's <i>unpaid balance</i> is over $1,000. A developer who earned $5,000 this month but was paid out yesterday pays 20%.</div>
+        <div class="after"><div class="k">After</div>15% if the developer's <i>gross earnings this calendar month</i> (UTC) are over $1,000. Resets on the 1st. If the lookup fails, the tier is skipped and logged instead of losing the earning.</div>
+      </div>
+<pre><span class="del">-      decimalGt(account.pending_balance_usd, tier.min_monthly_usd)</span>
+<span class="add">+    if (tier.tier_name === TIER_HIGH_VOLUME &amp;&amp; decimalGt(tier.min_monthly_usd, '0')) {</span>
+<span class="add">+      monthlyGross ??= await getMonthlyGrossOrZero(account.user_id)</span>
+<span class="add">+      if (decimalGt(monthlyGross, tier.min_monthly_usd)) {</span>
+<span class="add">+        return tier.fee_rate</span></pre>
+      <p class="files">payout.service.ts · payout-analytics.repository.ts (getMonthToDateGrossEarnings) · payout.service.vitest.test.ts</p>
+    </div>
+  </article>
+
+  <article class="commit">
+    <div class="head"><span class="sha">4d29f5b34b</span><h3>First-year fee tier matches first-year developers</h3></div>
+    <div class="body">
+      <div class="ba">
+        <div class="before"><div class="k">Before</div>Year one is stored as 0 months, so no account is ever "younger than 0 months." Everyone pays 20%.</div>
+        <div class="after"><div class="k">After</div>A stored 0 means the intended 12 months. Accounts under a year old pay 10%. No database change; easy to drop as one commit.</div>
+      </div>
+<pre><span class="cm">// Migration 404 seeds year1 with min_months = 0 (the column is NOT NULL),</span>
+<span class="cm">// which would make "younger than 0 months" unmatchable; 0 means the default.</span>
+<span class="add">+const year1Months = tier.min_months &gt; 0 ? tier.min_months : YEAR1_MONTHS_THRESHOLD</span>
+<span class="add">+if (tier.tier_name === TIER_YEAR1 &amp;&amp; monthsActive &lt; year1Months) {</span></pre>
+      <p class="files">payout.service.ts · payout.service.vitest.test.ts</p>
+    </div>
+  </article>
+
+  <article class="commit">
+    <div class="head"><span class="sha">f18c2c43e0</span><h3>Each attempt keeps its quality outcome, plus a shadow report</h3></div>
+    <div class="body">
+      <div class="ba">
+        <div class="before"><div class="k">Before</div>The verdict on each attempt is logged and lost. There is no way to ask "how much did we pay for rejected work?"</div>
+        <div class="after"><div class="k">After</div>Every attempt records what it came to. A report shows, per developer, what they were paid against what they would have been paid if only accepted work counted.</div>
+      </div>
+      <h3>Saving the outcome</h3>
+      <ul>
+        <li>Migration 986 (it needs a new number: master took 986 on 12 October) adds two empty columns to the attempts table: the outcome (approve, revision, reject, escalate or failed) and when it was decided. It can be rolled back.</li>
+        <li>The outcome is saved <i>after</i> Span settles the task, so it reflects what really happened. The code review caught that the raw quality check sometimes says "approve" for work that was actually treated as failed, too short, or needing revision.</li>
+        <li>The first outcome is kept if a result is delivered twice. If saving fails, it is logged and the task carries on.</li>
+      </ul>
+<pre><span class="add">function attemptOutcome(resultStatus, gateStatus) {</span>
+<span class="add">  if (resultStatus === 'failed') return 'failed'</span>
+<span class="add">  switch (gateStatus) {</span>
+<span class="add">    case 'passed':      return 'approve'</span>
+<span class="add">    case 'revision':    return 'revision'</span>
+<span class="add">    case 'escalated':</span>
+<span class="add">    case 'unavailable': return 'escalate'</span>
+<span class="add">    case 'failed':      return 'reject'</span>
+<span class="add">  }</span>
+<span class="add">}</span></pre>
+      <h3>The shadow report</h3>
+      <p>Run with <code>npx tsx scripts/payouts-acceptance-shadow.ts --days 30</code> as the database admin role. It refuses any role that can't see people's send-backs, because there it would quietly overstate pay. It changes nothing. Each earning lands in one bucket, checked in this order:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Bucket</th><th>Rule</th><th>Would it be paid?</th></tr></thead>
+          <tbody>
+            <tr><td>Sent back by the person</td><td>The person sent this attempt back. Overrides an approval.</td><td><span class="pill bad">withheld</span></td></tr>
+            <tr><td>Accepted</td><td>The quality check approved it, or escalated it and the person kept it.</td><td><span class="pill ok">paid</span></td></tr>
+            <tr><td>Escalated</td><td>Sent to the person, not yet kept.</td><td><span class="pill warn">undecided</span></td></tr>
+            <tr><td>Failed</td><td>The agent reported failure.</td><td><span class="pill bad">withheld</span></td></tr>
+            <tr><td>Sent back by the check</td><td>Revision or rejection. A revision is a new attempt with its own outcome, so work fixed on the second try is paid once.</td><td><span class="pill bad">withheld</span></td></tr>
+            <tr><td>Unjudged</td><td>No outcome saved: before migration 986, or a result that never reached the quality check.</td><td><span class="pill warn">undecided</span></td></tr>
+            <tr><td>Unlinked</td><td>The earning doesn't name an attempt (older earnings).</td><td><span class="pill warn">undecided</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="files">migrations/986-execution-gate-outcome.sql + rollback · execution-result.handler.ts · tasks.repository.ts · payout-analytics.repository.ts · scripts/payouts-acceptance-shadow.ts · RESERVATIONS.md · reversibility.int.test.ts · execution-result.handler.test.ts</p>
+    </div>
+  </article>
+</section>
+
+<section id="proof">
+  <div class="eyebrow">How it was checked</div>
+  <h2>Tested on code and on a real database</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Check</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Developer payout tests (vitest)</td><td><span class="pill ok">298 pass</span> New cases: monthly volume at, above and below the line; lookup failure; skipping the lookup when an earlier tier matches; first-year with the stored 0.</td></tr>
+        <tr><td>Result handler tests (jest)</td><td><span class="pill ok">174 pass</span> New cases: approve, revision, reject, escalate, agent failure, too-short draft, "needs revision" result, failed save, no attempt id.</td></tr>
+        <tr><td>Migration on local Postgres</td><td><span class="pill ok">pass</span> Applied twice without error, first outcome kept, invalid values refused, rollback leaves no trace. The rollback audit accepts it.</td></tr>
+        <tr><td>Shadow report on seeded data</td><td><span class="pill ok">exact</span> One example row per bucket: $3.01 credited, $1.00 would pay, $1.55 withheld, $0.46 undecided, all matching a hand calculation. Run as a restricted role, it refused with a clear message. Test rows removed afterwards.</td></tr>
+        <tr><td>Monthly volume query</td><td><span class="pill ok">pass</span> Counted the first second of the month, excluded the last second of the previous month, with the database set to a non-UTC time zone.</td></tr>
+        <tr><td>Lint and full type check</td><td><span class="pill ok">pass</span> Lint passes. The full type check passes on the branch rebased onto 10 October master, all four stages, with no errors. It needs a larger memory limit on this busy machine; without one the last stage runs out of memory, which is not a code problem.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Code reviews</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Review</th><th class="num">Score</th><th>Main findings, and what I did</th></tr></thead>
+      <tbody>
+        <tr><td>Fee-tier fix</td><td class="num">86</td><td>Found the first-year bug (now its own commit). Asked for: no precision cap on the monthly total, a fallback when the lookup fails, and comments on how the tier behaves at the line and at month start. All done.</td></tr>
+        <tr><td>Outcome + report</td><td class="num">79</td><td>Three major findings, all fixed: the saved outcome ignored Span's own overrides (now saved after them), the report could overstate pay under the wrong role (now refuses), and escalated work that the person kept stayed undecided (now counts as accepted). Also fixed rounding so the totals add up.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="corrections">
+  <div class="eyebrow">What changed along the way</div>
+  <h2>Things I got wrong or had to redo</h2>
+  <ul class="col">
+    <li><b>The verdict claim.</b> My first answer and the first version of the memo said Span records approve/reject on every cost row. It doesn't; the column is never filled. I corrected the memo the same day.</li>
+    <li><b>The migration number, three times.</b> I first reserved 900; master moved past 930, so I renumbered to 940. While the branch sat unpushed, another session landed its own 940 on master, so it became 986. On 12 October Harness v2 (#2279) landed its own 986 on master too, so the branch now conflicts in <code>RESERVATIONS.md</code> and <code>rollback/986-rollback.sql</code>. Master goes up to 1019 on 17 October. Only pushing right after renumbering protects the number.</li>
+    <li><b>New on master: a person can accept an unchecked answer.</b> Since 13 October (#2315), when the Judge is unsure and no second check is possible, Span asks the person whether to use the answer anyway. That path writes no kept verdict, so the shadow report would count such an attempt as "escalated, not yet kept" (undecided) when the person did in fact accept it. Fix during the rebase: treat a task ended as <code>accepted_by_person</code> as accepted.</li>
+    <li><b>The rebases.</b> The branch fell 974 commits behind by 6 October and 536 more by 10 October. Each time it was rebased onto current master. The conflicts were in shared bookkeeping files and one import list, where I kept both sides. Master's new "Span's own work" path adds no outcome types my code misses. Every check was re-run after each rebase.</li>
+    <li><b>Page links.</b> These pages are standalone files: they open in any browser, with no account, and link to each other inside this folder.</li>
+    <li><b>One gap still open.</b> I haven't measured how often the quality check's verdict agrees with people's own keep-or-send-back. That needs real staging data, and it decides whether paying on the check's verdict is fair.</li>
+  </ul>
+</section>
+
+<section id="next">
+  <div class="eyebrow">After this branch</div>
+  <h2>What comes next, in order</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Step</th><th>What</th><th>Needs</th></tr></thead>
+      <tbody>
+        <tr><td>Run the report</td><td>Run the shadow report on staging for a few weeks. Compare the quality check's verdicts with people's own.</td><td>This branch merged; admin access on a staging server</td></tr>
+        <tr><td>Hold earnings</td><td>Earnings start held, release on acceptance or after a 72-hour window, are voided on rejection.</td><td>Your call on what "accepted" means, based on the report</td></tr>
+        <tr><td>Revisions off the bill</td><td>Revision attempts charged to the agent; quality checks become Span's cost.</td><td>Holding earnings in place</td></tr>
+        <tr><td>Fixed price per task</td><td>Agents publish a price per task type; users get one quote; routing ranks on the cost of a finished task.</td><td>Steps above, plus a pricing decision on credits versus dollars</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="other">
+  <div class="eyebrow">Other sessions</div>
+  <h2>Messages from other sessions</h2>
+  <ul class="col">
+    <li><b>Memory digest pull request #1655.</b> Asked if it was mine. It isn't; I pointed them to the memory session most likely to own it.</li>
+    <li><b>Migration 917 double claim.</b> Asked if a memory branch was mine. It isn't; they have since resolved the clash themselves.</li>
+    <li><b>Known CI failure.</b> The merge steward says one advisory check ("span_app burn-down") fails on master and most pull requests and should be ignored. I'll label this pull request ready once everything else is green.</li>
+  </ul>
+</section>
+
+<footer>Branch feat/paid-on-acceptance in ~/code/span/.claude/worktrees/paid-on-acceptance · last rebased on origin/master 47f1687d69 on 10 October 2026 · 243 commits behind and conflicting on 17 October (migration 986 taken) · not pushed.</footer>
+</div>
