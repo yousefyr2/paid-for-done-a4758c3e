@@ -210,6 +210,28 @@ h4 { font-size: 16px; }
   </div>
   <div class="col">
     <p><b>Why it matters to Span.</b> A broker is exactly where this "gamesmanship" can hide. If Span reported every dollar that passes through it to agents and model providers as its own revenue, it would be showing CPM-style numbers. The memo&#39;s answer is to be paid for accepted work and to report revenue net of what goes to agents and providers (see "How Span reports revenue" in <a href="#s5">section 5</a>).</p>
+    <h3 id="clip">The follow-up: AdWords and the size of the market (20 October 2026)</h3>
+    <div class="tweet">
+      <p>"When Google invented and scaled AdWords and AdSense, the market exploded… because we went from buying 1,000 ads to just getting an outcome. Right now we buy a million tokens. We will eventually move to an outcome. And I think when that happens, this market will just go absolutely crazy."</p>
+      <p class="cite" style="font-family: var(--body); font-size: 14px; color: var(--ink-3, var(--ink-2)); margin: 0;">Chamath Palihapitiya, in a video clip posted by Social Capital (@socialcapital) on X, 20 October 2026. <a href="https://x.com/socialcapital/status/2112593218261143849">View the clip</a>. The words are as transcribed in that post. The video could not be played for this memo, so check the quote against it before publishing.</p>
+    </div>
+    <p><b>Where it is from.</b> The clip is most likely from the All-In episode published 17 October 2026, "CoreWeave Crash, AI Trade Cracks, Anthropic IPO Red Flags, Bill Gates Doomer," with Ben Horowitz as guest. A third-party summary of that episode paraphrases the same prediction: AI pricing will move from cost per million tokens to cost per click and cost per action, the way AdWords and AdSense changed internet advertising, and the market will expand sharply when it does. The match between clip and episode is likely but not confirmed.</p>
+    <p>Here is what each part of the clip says, and what it adds to the 3 October post:</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>The line</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>"When Google invented and scaled AdWords and AdSense, the market exploded…"</td><td>This time he names his precedent. AdWords (launched 2000) sold ads beside Google search results. AdSense (2003) placed the same ads on other websites and paid those sites a share. Google&#39;s revenue went from about $440 million in 2002 to about $6 billion in 2005, almost all of it from these two products.</td></tr>
+        <tr><td>"…because we went from buying 1,000 ads to just getting an outcome."</td><td>His reason for the growth: advertisers spent far more once they paid for a result instead of for exposure. The first AdWords ads were sold per thousand views; from 2002 advertisers paid per click. A click is one step short of a sale, which is why the episode summary describes the path as cost per click first and cost per action after.</td></tr>
+        <tr><td>"Right now we buy a million tokens."</td><td>The same CPM point as the first post. Model prices are quoted per million tokens today.</td></tr>
+        <tr><td>"We will eventually move to an outcome."</td><td>He gives no date. "Eventually" admits the change will take time.</td></tr>
+        <tr><td>"…this market will just go absolutely crazy."</td><td>The new claim. The 3 October post warned of value destruction for today&#39;s sellers; this one says total spending on AI grows sharply once buyers pay for results. Both can hold at once: buyers who hesitate to pay for uncertain effort will pay for a finished task, so the market grows, while companies valued on token resale are repriced.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p><b>What the clip means for Span.</b> Two lessons carry over from AdWords. The first is demand: if paying for results makes buyers spend more, the new spending goes to whoever can price and check results, and Span&#39;s accepted-work model is built for that. The second is ranking. From 2002 an AdWords ad&#39;s position depended on its bid multiplied by how often people clicked it, so a high bidder with an ad nobody wanted sank. That kept the ads useful enough for the market to grow. Span takes bids out of ranking entirely (see <a href="#s3">section 3</a>). The click has a Span equivalent too: the Judge&#39;s approval is the click, and the person keeping the work is the sale. Span pays on the sale.</p>
     <p>He uses them about AI, but the two terms come from online advertising. <b>CPM</b> (cost per mille, meaning per thousand) is paying for every thousand times an ad is shown, whether anyone buys. <b>CPA</b> (cost per acquisition) is paying only when someone actually signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for results, and the companies that could measure results (Google, Facebook) took the market.</p>
     <p>In AI, "CPM" is selling tokens: the chunks of text a model reads and writes, priced per thousand or per million with a markup on top. The buyer pays for the agent's effort. If it burns $4 of tokens and fails, the buyer still pays $4. "CPA" means the buyer pays when the task is done. "Participate in the ROI" (return on investment) goes one step further: take a share of the value the task created.</p>
     <div class="callout">
@@ -752,15 +774,15 @@ h4 { font-size: 16px; }
   </div>
   <div class="col">
     <div class="callout">
-      <p><b>Check before publishing.</b> The second paragraph under "Where Span stands" says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans ("will"), not as shipped features. The link to Chamath&#39;s post is in the first sentence.</p>
+      <p><b>Check before publishing.</b> The second paragraph under "Where Span stands" says how Span pays today, including that a rejected attempt earns the same as an approved one. That is accurate and makes the change concrete, but it discloses current internals; cut that part if you would rather not. The 72-hour window, the published fee and the newcomer share are proposals, written as plans ("will"), not as shipped features. The link to Chamath&#39;s post is in the first sentence, and his 20 October clip is linked where it is quoted. The clip&#39;s words come from the post&#39;s transcription; check them against the video.</p>
     </div>
   </div>
   <article class="col" aria-label="Blog post draft">
     <p>Chamath Palihapitiya <a href="https://x.com/chamath/status/2106406819606483273">summed up</a> where the AI business stands in four lines. "Most everyone is selling CPM. Cost per thousand tokens + markup." Next, he wrote, "Everyone will sell CPA. Accomplish the task, participate in the ROI." On the way there he expects "a lot of value destruction," and he points to the Web1 and mobile transitions as examples.</p>
     <h3>From impressions to results</h3>
-    <p>He is talking about how AI is sold, and he borrows the terms from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google's search ads moved to charging per click in 2002, and every year after, the measurement got closer to the sale.</p>
+    <p>He is talking about how AI is sold, and he borrows the terms from advertising. CPM is cost per mille, the price of a thousand impressions. An advertiser paid every time a banner was shown, whether anyone clicked or bought. CPA is cost per acquisition: the advertiser pays when someone signs up or buys. Advertising moved from the first to the second because buyers wanted to pay for outcomes, and the companies that could measure outcomes took the market. Google&#39;s search ads moved to charging per click in 2002, and in a <a href="https://x.com/socialcapital/status/2112593218261143849">clip from 20 October</a> he named that as his precedent: "When Google invented and scaled AdWords and AdSense, the market exploded… because we went from buying 1,000 ads to just getting an outcome."</p>
     <p>AI is still in its banner-ad era. Model labs sell tokens, and most AI products resell those tokens with a markup, packaged as seats or credits. The buyer pays for effort. If an agent spends four dollars of compute and gets the work wrong, the buyer still pays four dollars, and pays again for the retry. Revenue grows with usage whether or not anything got done.</p>
-    <p>That pricing flatters the numbers investors look at. Revenue includes the token bill that passes straight through to the model provider. Gross margins look healthy because failed and repeated work is billed like good work. Run-rates multiply the best month by twelve, pilots and experiments included. Once buyers pay only for finished work, those numbers get restated, and some companies built on them will not survive it, which is the value destruction he expects.</p>
+    <p>That pricing flatters the numbers investors look at. Revenue includes the token bill that passes straight through to the model provider. Gross margins look healthy because failed and repeated work is billed like good work. Run-rates multiply the best month by twelve, pilots and experiments included. Once buyers pay only for finished work, those numbers get restated, and some companies built on them will not survive it, which is the value destruction he expects. He expects the market as a whole to grow anyway. "Right now we buy a million tokens. We will eventually move to an outcome. And I think when that happens, this market will just go absolutely crazy." Both predictions hold together. Buyers who hesitate to pay for uncertain effort will pay for a finished task, so total spending rises, while the companies whose numbers rested on reselling tokens are repriced.</p>
     <h3>Where Span stands</h3>
     <p>Span is the conversation people use to get work done across agents from many providers. A person describes the job, and Span does it itself or routes it to the specialist agent best suited to it. Span holds the provider accounts, pays the agents and bills the person. Every dollar spent on agent work passes through us, which makes Span exactly the kind of company that could count pass-through as revenue and call it growth. We want to build the version that holds up after the transition.</p>
     <p>Today Span pays the way most of the market does. An agent's attempt is charged at the cost the agent reports, and the developer is credited that amount minus our fee as soon as it lands. Our quality check, the Judge, reviews every attempt and decides whether to approve it, send it back for revision, reject it or hand it to the person. That verdict decides what the person sees. It does not yet decide who gets paid. A rejected attempt earns the same as an approved one, and each revision is billed as a new attempt.</p>
@@ -768,7 +790,7 @@ h4 { font-size: 16px; }
     <p>We are changing that. Span will pay agents for accepted work. Accepted means the Judge approves the work and the person keeps it. After delivery the person has a window, 72 hours to start, to send it back, and silence counts as keeping it. The agent's earnings are held during the window and released when it closes. Failed attempts and rework are the agent's cost. The person pays one price, quoted before the work starts, and only for work they keep.</p>
     <p>This changes what a good agent is. Under token pricing, an agent that takes more steps earns more. Under acceptance pricing, the agent that gets the work right the first time, at a low cost, earns the most. Developers are paid for being right, which is the incentive they should have had from the start.</p>
     <h3>A router nobody can buy</h3>
-    <p>It also changes what the router has to be. When agents choose the work, the router decides who gets hired. Advertising's results era carries a warning here: it came with paid placement, and the top result in a search box was often the one that paid most. If agents could pay Span for position, or if Span ranked its own margin above the person's interest, the person would be paying for a worse result in a less visible way.</p>
+    <p>It also changes what the router has to be. When agents choose the work, the router decides who gets hired. Advertising's results era carries a warning here: it came with paid placement, and the top result in a search box was often the one that paid most. If agents could pay Span for position, or if Span ranked its own margin above the person's interest, the person would be paying for a worse result in a less visible way. Google understood part of this early. From 2002 an AdWords ad's position depended on its bid multiplied by how often people clicked it, so an ad nobody wanted could not buy its way up. We take the bid out entirely.</p>
     <p>Two rules sit underneath the change. Span charges one published fee per kind of task, the same for every agent, so it gains nothing by steering work toward one agent over another. And Span's fee and margin are never inputs to the ranking. Agents are ranked on how well they fit the person's taste, how often their work is accepted, and the real cost of a finished task, which includes the attempts that failed. An agent that is cheap per attempt but often sent back is expensive per finished task, and the ranking should see that.</p>
     <p>The ranking also has to learn taste. A person's agent will build habits from every verdict, learning which answers they keep and which they send back. That raises an open question about the agent economy. Demand could concentrate on a few superstar agents, because rational buyers converge on the same best product. Or it could spread out, because agents are good at drawing out each person's particular preferences. We think a neutral router that learns each person's taste pushes toward the second outcome, and we will give newer agents a measured share of work so the market stays open to them.</p>
     <h3>The share of the value comes later</h3>
@@ -785,7 +807,7 @@ h4 { font-size: 16px; }
     <div class="eyebrow">Appendix A</div>
     <h2>Source notes, verbatim</h2>
     <p>Kept word for word so the blog post can quote or paraphrase them accurately. Image links in the second note are left out.</p>
-    <h3>A.1 The tweet (Chamath Palihapitiya)</h3>
+    <h3>A.1 The post (Chamath Palihapitiya, 3 October 2026)</h3>
     <div class="source">
       <p>Current State of the Union of AI/SI: Most everyone is selling CPM. Cost per thousand tokens + markup.</p>
       <p>Future State of the Union of AI/SI: Everyone will sell CPA. Accomplish the task, participate in the ROI.</p>
@@ -793,7 +815,12 @@ h4 { font-size: 16px; }
       <p>Good luck to all the players!</p>
       <p><i>Chamath Palihapitiya (@chamath), on X, 3 October 2026: <a href="https://x.com/chamath/status/2106406819606483273">https://x.com/chamath/status/2106406819606483273</a></i></p>
     </div>
-    <h3>A.2 Your notes</h3>
+    <h3>A.2 The follow-up clip (Chamath Palihapitiya, via Social Capital)</h3>
+    <div class="source">
+      <p>When Google invented and scaled AdWords and AdSense, the market exploded… because we went from buying 1,000 ads to just getting an outcome. Right now we buy a million tokens. We will eventually move to an outcome. And I think when that happens, this market will just go absolutely crazy.</p>
+      <p><i>Video clip posted by Social Capital (@socialcapital) on X, 20 October 2026, as transcribed in the post: <a href="https://x.com/socialcapital/status/2112593218261143849">https://x.com/socialcapital/status/2112593218261143849</a>. Most likely from the All-In episode published 17 October 2026 (not confirmed).</i></p>
+    </div>
+    <h3>A.3 Your notes</h3>
     <div class="source">
       <p>Adjust our internal taste through RL personalize selection taste - My belief for the personal agent when transacting with other agents for transactions, it will accumulate a similiar, taste, and build habits that reflect the preferences of the user.</p>
       <p>A big question is whether agents will increase superstar effects (rational agents all settle on the same product) or increase dispersion (because everyone has slightly different tastes and preferences, which agents are good at eliciting, finally overcoming the artificial clustering we've been subjected to).</p>
@@ -804,7 +831,7 @@ h4 { font-size: 16px; }
       <p>• How exactly will outcomes change? Well, certain kinds of price discrimination will work less well (how do coupons work if every agent hunts fastidiously for them?), and certain kinds of customer cross-subsidy will change (today, people who forget to cancel subscriptions subsidize those who don't). Taken across the economy as a whole, I'm not sure what the incidence of all of this will be.</p>
       <p>• In corporate strategy, people have long debated the relative importance of distribution and product quality. Perhaps you've made something better, but does anyone know about it? Won't people just continue to buy the ACME Corp Mousetraps? Personal agents will, I think, act as a kind of structural subsidy for product quality. How would markets look different if individuals always spent at least 10 hours researching their purchases? On the margin, focusing on making a product better is, I think, going to become a more effective strategy for companies. This is good!</p>
     </div>
-    <h3>A.3 The plain-English breakdown you shared</h3>
+    <h3>A.4 The plain-English breakdown you shared</h3>
     <div class="source">
       <p>The author is making a very important argument about how AI agents could change the economy.</p>
       <p>The central idea is simple: Today, companies have an advantage over consumers because they have more information, more resources, and more time to figure out how to sell to us. AI agents could eliminate much of that advantage by giving every consumer an intelligent assistant that works in their best interest.</p>
@@ -1002,7 +1029,7 @@ h4 { font-size: 16px; }
   </div>
 </section>
 
-<footer>Written 4 October 2026, expanded 11 October 2026, updated 17 October 2026. Code facts re-verified on master 725d9beccc. The agent-economy material draws on the notes in Appendix A. Calculator figures are illustrative, not Span data.</footer>
+<footer>Written 4 October 2026, expanded 11 October 2026, updated 22 October 2026 (Chamath&#39;s 20 October clip added). Code facts re-verified on master 725d9beccc. The agent-economy material draws on the notes in Appendix A. Calculator figures are illustrative, not Span data.</footer>
 </div>
 
 <script>
