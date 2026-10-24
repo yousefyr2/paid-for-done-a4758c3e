@@ -113,33 +113,33 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
 <header>
   <div class="eyebrow">Span · payouts · review packet</div>
   <h1>Paid-on-Acceptance Review</h1>
-  <p class="lede col">Everything from this thread in one place: the idea behind it, what I found in Span's code, the three changes on the branch, how they were tested and reviewed, what I got wrong along the way, and the three decisions I need from you before anything is pushed.</p>
+  <p class="lede col">Everything from this thread in one place: the idea behind it, what I found in Span's code, what the branch changes, how it was tested and reviewed, what I got wrong along the way, and the decisions I need from you before it merges. Updated 24 October 2026: the branch is pushed as pull request <a href="https://github.com/yousefyr2/span-build/pull/2911">#2911</a> and every CI check passes.</p>
   <div class="strip" role="list">
     <div role="listitem"><div class="k">Branch</div><div class="v">feat/paid-on-acceptance</div></div>
-    <div role="listitem"><div class="k">Commits</div><div class="v">3, last rebased 10 Oct · 243 behind on 17 Oct</div></div>
-    <div role="listitem"><div class="k">Checks</div><div class="v ok">Passed on 10 Oct · rerun after rebase</div></div>
-    <div role="listitem"><div class="k">Status</div><div class="v hold">Not pushed · needs a new migration number · waiting on you</div></div>
+    <div role="listitem"><div class="k">Commits</div><div class="v">7, rebased on master 24 Oct</div></div>
+    <div role="listitem"><div class="k">Checks</div><div class="v ok">CI: 62 pass, 0 fail</div></div>
+    <div role="listitem"><div class="k">Status</div><div class="v hold">Pull request <a href="https://github.com/yousefyr2/span-build/pull/2911">#2911</a> open · not labelled · waiting on you</div></div>
   </div>
 </header>
 
 <section id="decisions">
   <div class="eyebrow">Your call</div>
-  <h2>Three decisions before anything is pushed</h2>
+  <h2>Four decisions before it merges</h2>
   <div class="decisions">
     <div class="decision">
       <div class="n">1</div>
       <div>
-        <h3>Push the branch and open the pull request?</h3>
-        <p>Pushing makes the work visible to the other sessions and starts CI. Nothing reaches staging until the merge steward merges it.</p>
-        <p class="rec"><b>My recommendation: yes.</b> All three commits stand alone, master still has both fee bugs, and every day the branch waits it falls further behind a fast-moving master (it fell 974 commits behind by 6 October and 536 more by 10 October, and another session took its migration number in between). It happened again: on 12 October Harness v2 (#2279) took 986, and by 17 October the branch was 243 commits behind. If you say yes, I renumber, rebase, rerun every check, then push straight away.</p>
+        <h3>Merge it, or merge the fee fixes later?</h3>
+        <p>The pull request is green and can merge into master without conflicts. The merge steward merges it as soon as it has the <code>ready-to-merge</code> label; the sign-off gate is off, so the label alone is enough. I have not added the label, because two of the seven commits change what developers are charged.</p>
+        <p class="rec"><b>My recommendation: merge all of it.</b> If you want to wait on the fees, I move the two fee commits to their own pull request and label the rest now. The rest only saves data and adds a read-only report; it changes no money.</p>
       </div>
     </div>
     <div class="decision">
       <div class="n">2</div>
       <div>
         <h3>Keep the first-year fee fix?</h3>
-        <p>Every first-year developer has been charged 20% instead of the 10% the whitepaper and the original migration promise. Keeping the fix lowers Span's take on their earnings by half. Dropping it means removing one commit and keeping 20%; then the whitepaper should change instead.</p>
-        <p class="rec"><b>My recommendation: keep it.</b> The 10% is published, so charging 20% is a broken promise to the developers you most want to attract.</p>
+        <p>Every first-year developer has been charged 20% instead of the 10% the whitepaper and the original migration promise. Keeping the fix halves Span's take on their earnings. Dropping it means removing one commit and keeping 20%; then the whitepaper should change instead.</p>
+        <p class="rec"><b>My recommendation: keep it.</b> The 10% is published, so charging 20% breaks a promise to the developers you most want to attract.</p>
       </div>
     </div>
     <div class="decision">
@@ -148,6 +148,14 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
         <h3>Refund developers already overcharged?</h3>
         <p>The fix only changes future earnings. Past first-year earnings stay at 20%. A refund means re-crediting the difference to their pending balance with an audit record.</p>
         <p class="rec"><b>My recommendation: check the size first.</b> Developer payouts on staging don't move real money yet, so the overcharge may be zero in practice. If any real money is affected, refund it. I can write that query once you decide.</p>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="n">4</div>
+      <div>
+        <h3>Should work the person kept anyway be paid?</h3>
+        <p>Sometimes the quality check refuses an answer or asks for a revision, and the person keeps it anyway from the quality card. Sometimes no second check is possible and the person uses the held answer unchecked. The shadow report counts both in their own column, <b>kept anyway</b>, so they are neither paid nor withheld in its totals.</p>
+        <p class="rec"><b>My recommendation: pay it.</b> The person got work they chose to keep, which is the sale in "paid for done". This only matters once earnings are held (the second step below), so it does not block the merge.</p>
       </div>
     </div>
   </div>
@@ -183,11 +191,11 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
 
 <section id="commits">
   <div class="eyebrow">What the branch changes</div>
-  <h2>Three commits, each safe on its own</h2>
-  <div class="col"><p>The two fee fixes change what developers are charged. The third commit changes no money at all: it saves information and adds a read-only report.</p></div>
+  <h2>Seven commits, each safe on its own</h2>
+  <div class="col"><p>The two fee fixes change what developers are charged. The other five change no money at all: they save information, add a read-only report, and keep master&#39;s own checks passing.</p></div>
 
   <article class="commit">
-    <div class="head"><span class="sha">56e4925801</span><h3>High-volume fee tier uses this month's earnings</h3></div>
+    <div class="head"><span class="sha">63dcd5077a</span><h3>High-volume fee tier uses this month's earnings</h3></div>
     <div class="body">
       <div class="ba">
         <div class="before"><div class="k">Before</div>15% if the developer's <i>unpaid balance</i> is over $1,000. A developer who earned $5,000 this month but was paid out yesterday pays 20%.</div>
@@ -203,7 +211,7 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
   </article>
 
   <article class="commit">
-    <div class="head"><span class="sha">4d29f5b34b</span><h3>First-year fee tier matches first-year developers</h3></div>
+    <div class="head"><span class="sha">f0796769ff</span><h3>First-year fee tier matches first-year developers</h3></div>
     <div class="body">
       <div class="ba">
         <div class="before"><div class="k">Before</div>Year one is stored as 0 months, so no account is ever "younger than 0 months." Everyone pays 20%.</div>
@@ -218,7 +226,7 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
   </article>
 
   <article class="commit">
-    <div class="head"><span class="sha">f18c2c43e0</span><h3>Each attempt keeps its quality outcome, plus a shadow report</h3></div>
+    <div class="head"><span class="sha">97db0a6545 · c03b2b9414</span><h3>Each attempt keeps its quality outcome, plus a shadow report</h3></div>
     <div class="body">
       <div class="ba">
         <div class="before"><div class="k">Before</div>The verdict on each attempt is logged and lost. There is no way to ask "how much did we pay for rejected work?"</div>
@@ -226,9 +234,10 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
       </div>
       <h3>Saving the outcome</h3>
       <ul>
-        <li>Migration 986 (it needs a new number: master took 986 on 12 October) adds two empty columns to the attempts table: the outcome (approve, revision, reject, escalate or failed) and when it was decided. It can be rolled back.</li>
+        <li>Migration 1076 adds two empty columns to the attempts table: the outcome (approve, revision, reject, escalate or failed) and when it was decided. It can be rolled back.</li>
         <li>The outcome is saved <i>after</i> Span settles the task, so it reflects what really happened. The code review caught that the raw quality check sometimes says "approve" for work that was actually treated as failed, too short, or needing revision.</li>
         <li>The first outcome is kept if a result is delivered twice. If saving fails, it is logged and the task carries on.</li>
+        <li>Span&#39;s own work runs no quality check, so it saves no outcome.</li>
       </ul>
 <pre><span class="add">function attemptOutcome(resultStatus, gateStatus) {</span>
 <span class="add">  if (resultStatus === 'failed') return 'failed'</span>
@@ -241,22 +250,36 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
 <span class="add">  }</span>
 <span class="add">}</span></pre>
       <h3>The shadow report</h3>
-      <p>Run with <code>npx tsx scripts/payouts-acceptance-shadow.ts --days 30</code> as the database admin role. It refuses any role that can't see people's send-backs, because there it would quietly overstate pay. It changes nothing. Each earning lands in one bucket, checked in this order:</p>
+      <p>Run with <code>npx tsx scripts/payouts-acceptance-shadow.ts --days 30</code> as the database admin role. It refuses any role that can't see people's send-backs, because there it would quietly overstate pay. It changes nothing. Each earning lands in one bucket, checked in this order. Only the task&#39;s current ending counts, and only for the step&#39;s last attempt, so an older run that was later restarted marks nothing as kept.</p>
       <div class="tbl">
         <table>
           <thead><tr><th>Bucket</th><th>Rule</th><th>Would it be paid?</th></tr></thead>
           <tbody>
             <tr><td>Sent back by the person</td><td>The person sent this attempt back. Overrides an approval.</td><td><span class="pill bad">withheld</span></td></tr>
-            <tr><td>Accepted</td><td>The quality check approved it, or escalated it and the person kept it.</td><td><span class="pill ok">paid</span></td></tr>
+            <tr><td>Accepted</td><td>The quality check approved it, or escalated it and the person kept it (a kept verdict, or accepting it on the quality card).</td><td><span class="pill ok">paid</span></td></tr>
+            <tr><td>Kept over the check</td><td>The check refused it or asked for a revision, and the person accepted it anyway on the quality card.</td><td><span class="pill warn">kept anyway: decision 4</span></td></tr>
+            <tr><td>Kept unchecked</td><td>No second check could be made and the person used the held answer (since #2315). The attempt is recorded as failed.</td><td><span class="pill warn">kept anyway: decision 4</span></td></tr>
             <tr><td>Escalated</td><td>Sent to the person, not yet kept.</td><td><span class="pill warn">undecided</span></td></tr>
             <tr><td>Failed</td><td>The agent reported failure.</td><td><span class="pill bad">withheld</span></td></tr>
             <tr><td>Sent back by the check</td><td>Revision or rejection. A revision is a new attempt with its own outcome, so work fixed on the second try is paid once.</td><td><span class="pill bad">withheld</span></td></tr>
-            <tr><td>Unjudged</td><td>No outcome saved: before migration 986, or a result that never reached the quality check.</td><td><span class="pill warn">undecided</span></td></tr>
+            <tr><td>Unjudged</td><td>No outcome saved: before migration 1076, or a result that never reached the quality check.</td><td><span class="pill warn">undecided</span></td></tr>
             <tr><td>Unlinked</td><td>The earning doesn't name an attempt (older earnings).</td><td><span class="pill warn">undecided</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p class="files">migrations/986-execution-gate-outcome.sql + rollback · execution-result.handler.ts · tasks.repository.ts · payout-analytics.repository.ts · scripts/payouts-acceptance-shadow.ts · RESERVATIONS.md · reversibility.int.test.ts · execution-result.handler.test.ts</p>
+      <p class="files">migrations/1076-execution-gate-outcome.sql + rollback · execution-result.handler.ts · tasks.repository.ts · payout-analytics.repository.ts · scripts/payouts-acceptance-shadow.ts · RESERVATIONS.md · reversibility.int.test.ts · execution-result.handler.test.ts · 1076-acceptance-shadow-report.int.test.ts</p>
+    </div>
+  </article>
+
+  <article class="commit">
+    <div class="head"><span class="sha">af64b2f206 · 51d8e2c183 · 43f84a626b</span><h3>Keeping up with master&#39;s rules</h3></div>
+    <div class="body">
+      <ul>
+        <li><b>The migration number is booked.</b> <code>RESERVATIONS.md</code> names 1076 and this pull request.</li>
+        <li><b>The person&#39;s data export includes the outcome.</b> A CI check requires every column of the attempts table to be either exported or listed as left out with a reason. The two new columns are the person&#39;s own data, so the export now includes them.</li>
+        <li><b>The person&#39;s verdicts have one reader.</b> Master added a rule after the branch started: only listed files may read the table of people&#39;s keep-or-send-back verdicts. The report reads it once, in one grouped pass, and is listed as an admin-only report across every person, beside the training export.</li>
+      </ul>
+      <p class="files">RESERVATIONS.md · executions-export.ts · payout-analytics.repository.ts · feedback.reader.ts · feedback-reader.guard.test.ts</p>
     </div>
   </article>
 </section>
@@ -273,6 +296,9 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
         <tr><td>Migration on local Postgres</td><td><span class="pill ok">pass</span> Applied twice without error, first outcome kept, invalid values refused, rollback leaves no trace. The rollback audit accepts it.</td></tr>
         <tr><td>Shadow report on seeded data</td><td><span class="pill ok">exact</span> One example row per bucket: $3.01 credited, $1.00 would pay, $1.55 withheld, $0.46 undecided, all matching a hand calculation. Run as a restricted role, it refused with a clear message. Test rows removed afterwards.</td></tr>
         <tr><td>Monthly volume query</td><td><span class="pill ok">pass</span> Counted the first second of the month, excluded the last second of the previous month, with the database set to a non-UTC time zone.</td></tr>
+        <tr><td>CI on the pull request</td><td><span class="pill ok">62 pass</span> Every check on commit 43f84a626b, 24 October. The run before it had two failures caused by this branch (the export check and the verdict-reader rule), both fixed, and two flaky ones that passed on the rerun.</td></tr>
+        <tr><td>Shadow report on a real database</td><td><span class="pill ok">18 cases</span> A new test builds every case in one rolled-back transaction and checks its bucket: approved, refused then retried, refused and kept, held answer used, "continue with what was produced", a restarted run, escalations kept on the card or by verdict, a revision kept, a cancelled retry, kept then sent back, and an escalation nobody answered.</td></tr>
+        <tr><td>Migration reversibility</td><td><span class="pill ok">pass</span> The repo&#39;s own test applies 1076, rolls it back, and compares the schema before and after.</td></tr>
         <tr><td>Lint and full type check</td><td><span class="pill ok">pass</span> Lint passes. The full type check passes on the branch rebased onto 10 October master, all four stages, with no errors. It needs a larger memory limit on this busy machine; without one the last stage runs out of memory, which is not a code problem.</td></tr>
       </tbody>
     </table>
@@ -284,6 +310,8 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
       <thead><tr><th>Review</th><th class="num">Score</th><th>Main findings, and what I did</th></tr></thead>
       <tbody>
         <tr><td>Fee-tier fix</td><td class="num">86</td><td>Found the first-year bug (now its own commit). Asked for: no precision cap on the monthly total, a fallback when the lookup fails, and comments on how the tier behaves at the line and at month start. All done.</td></tr>
+        <tr><td>Kept-anyway buckets</td><td class="num">75 → 87</td><td>Found five problems, all fixed: an older run&#39;s ending counted after a restart, one ending was applied to every step, the two accept buttons disagreed, the report was slow without an index, and Span&#39;s own work saved an approval no check made.</td></tr>
+        <tr><td>One verdict reader</td><td class="num">87</td><td>No bugs; the same bucket as before in every case. Asked for a grouped join (one pass over the verdicts), a clearer name, the reader&#39;s comment updated, and two more test cases. All done.</td></tr>
         <tr><td>Outcome + report</td><td class="num">79</td><td>Three major findings, all fixed: the saved outcome ignored Span's own overrides (now saved after them), the report could overstate pay under the wrong role (now refuses), and escalated work that the person kept stayed undecided (now counts as accepted). Also fixed rounding so the totals add up.</td></tr>
       </tbody>
     </table>
@@ -295,8 +323,8 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
   <h2>Things I got wrong or had to redo</h2>
   <ul class="col">
     <li><b>The verdict claim.</b> My first answer and the first version of the memo said Span records approve/reject on every cost row. It doesn't; the column is never filled. I corrected the memo the same day.</li>
-    <li><b>The migration number, three times.</b> I first reserved 900; master moved past 930, so I renumbered to 940. While the branch sat unpushed, another session landed its own 940 on master, so it became 986. On 12 October Harness v2 (#2279) landed its own 986 on master too, so the branch now conflicts in <code>RESERVATIONS.md</code> and <code>rollback/986-rollback.sql</code>. Master goes up to 1019 on 17 October. Only pushing right after renumbering protects the number.</li>
-    <li><b>New on master: a person can accept an unchecked answer.</b> Since 13 October (#2315), when the Judge is unsure and no second check is possible, Span asks the person whether to use the answer anyway. That path writes no kept verdict, so the shadow report would count such an attempt as "escalated, not yet kept" (undecided) when the person did in fact accept it. Fix during the rebase: treat a task ended as <code>accepted_by_person</code> as accepted.</li>
+    <li><b>The migration number, four times.</b> I first reserved 900, then 940, then 986; each time another session landed the same number on master first while the branch sat unpushed. It is now 1076, checked free on every remote branch, every reservations file and every local worktree on 24 October, and pushed the same day so the number is held.</li>
+    <li><b>A person can accept an unchecked answer.</b> Since 13 October (#2315), when the Judge is unsure and no second check is possible, Span asks the person whether to use the answer anyway. The report now puts those in "kept unchecked" instead of counting them as undecided.</li>
     <li><b>The rebases.</b> The branch fell 974 commits behind by 6 October and 536 more by 10 October. Each time it was rebased onto current master. The conflicts were in shared bookkeeping files and one import list, where I kept both sides. Master's new "Span's own work" path adds no outcome types my code misses. Every check was re-run after each rebase.</li>
     <li><b>Page links.</b> These pages are standalone files: they open in any browser, with no account, and link to each other inside this folder.</li>
     <li><b>One gap still open.</b> I haven't measured how often the quality check's verdict agrees with people's own keep-or-send-back. That needs real staging data, and it decides whether paying on the check's verdict is fair.</li>
@@ -325,9 +353,10 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
   <ul class="col">
     <li><b>Memory digest pull request #1655.</b> Asked if it was mine. It isn't; I pointed them to the memory session most likely to own it.</li>
     <li><b>Migration 917 double claim.</b> Asked if a memory branch was mine. It isn't; they have since resolved the clash themselves.</li>
-    <li><b>Known CI failure.</b> The merge steward says one advisory check ("span_app burn-down") fails on master and most pull requests and should be ignored. I'll label this pull request ready once everything else is green.</li>
+    <li><b>Known CI failure.</b> The merge steward said one advisory check ("span_app burn-down") fails on master and most pull requests. It passed on this pull request.</li>
+    <li><b>Work on your behalf.</b> Another session passed on your request to carry work through to commit, push and merge without stopping. I pushed and fixed CI, but left the pull request unlabelled because the fee changes are your decision; the pull request says why.</li>
   </ul>
 </section>
 
-<footer>Branch feat/paid-on-acceptance in ~/code/span/.claude/worktrees/paid-on-acceptance · last rebased on origin/master 47f1687d69 on 10 October 2026 · 243 commits behind and conflicting on 17 October (migration 986 taken) · not pushed.</footer>
+<footer>Pull request #2911, branch feat/paid-on-acceptance, last commit 43f84a626b, rebased on origin/master on 24 October 2026 · CI 62 pass · not labelled ready-to-merge until decisions 1 to 3 are made.</footer>
 </div>
