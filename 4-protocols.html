@@ -124,9 +124,9 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
 
 <section id="answer">
   <div class="eyebrow">The short answer</div>
-  <h2>No protocol knows what "accepted" means, and that is good for Span</h2>
+  <h2>Almost no protocol knows what "accepted" means, and that is good for Span</h2>
   <div class="col">
-    <p>I checked eight protocols. Not one has a step where the buyer says "I accept this work, release the money." Each leaves that decision to the merchant. MCP and A2A carry the work. x402 and MPP move the money the moment a request is paid. x401, AP2 and the card networks' agent programmes prove who authorised the payment.</p>
+    <p>I checked eight protocols. Not one has a step where the buyer says "I accept this work, release the money." Each leaves that decision to the merchant. One standard I had not checked does: ERC-8183, the draft Ethereum job escrow under TermiX, where a reviewer named for each job releases the money or refunds it (see the <a href="5-termix.html#answer">TermiX tab</a>). It is on-chain only, and Span's people pay with credits and cards, so the conclusion below holds; it gives Span's ledger a tested shape to copy. MCP and A2A carry the work. x402 and MPP move the money the moment a request is paid. x401, AP2 and the card networks' agent programmes prove who authorised the payment.</p>
     <p>So the acceptance record, the hold and the release have to live in Span. That is the part of "paid for done" that is hard to copy: Span is the merchant of record, it already reserves the person's money before work starts, and it already runs a quality check on every attempt. The protocols are pipes on either side of that.</p>
     <p>In practice this means three choices, all small:</p>
     <ol>
@@ -322,5 +322,5 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
   </ul>
 </section>
 
-<footer>Protocol review for Paid for Done · 24 October 2026 · read against Span master 02da5835f4 · internal, not a decision record.</footer>
+<footer>Protocol review for Paid for Done · 24 October 2026, corrected the same day for ERC-8183 · read against Span master 02da5835f4 · internal, not a decision record.</footer>
 </div>
