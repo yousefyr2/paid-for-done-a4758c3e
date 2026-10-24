@@ -13,7 +13,7 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px so
 [role=tab]:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 iframe{display:block;width:100%;border:0;min-height:80vh}
 </style></head><body>
-<header><div class="bar"><b>Paid for Done</b><div role="tablist" aria-label="Documents"><button role="tab" id="t-tweet" aria-controls="p-tweet" data-k="tweet">Chamath&#39;s posts</button><button role="tab" id="t-blog" aria-controls="p-blog" data-k="blog">Blog post</button><button role="tab" id="t-memo" aria-controls="p-memo" data-k="memo">Strategy memo</button><button role="tab" id="t-review" aria-controls="p-review" data-k="review">Branch review</button><button role="tab" id="t-protocols" aria-controls="p-protocols" data-k="protocols">Protocols</button><button role="tab" id="t-book" aria-controls="p-book" data-k="book">Picture book</button></div></div></header>
+<header><div class="bar"><b>Paid for Done</b><div role="tablist" aria-label="Documents"><button role="tab" id="t-tweet" aria-controls="p-tweet" data-k="tweet">Chamath&#39;s posts</button><button role="tab" id="t-blog" aria-controls="p-blog" data-k="blog">Blog post</button><button role="tab" id="t-memo" aria-controls="p-memo" data-k="memo">Strategy memo</button><button role="tab" id="t-review" aria-controls="p-review" data-k="review">Branch review</button><button role="tab" id="t-protocols" aria-controls="p-protocols" data-k="protocols">Protocols</button><button role="tab" id="t-termix" aria-controls="p-termix" data-k="termix">TermiX</button><button role="tab" id="t-book" aria-controls="p-book" data-k="book">Picture book</button></div></div></header>
 <main><section role="tabpanel" id="p-tweet" aria-labelledby="t-tweet" hidden><iframe title="Chamath&#39;s posts" srcdoc="&lt;title&gt;Paid for Done&lt;/title&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
@@ -2215,6 +2215,282 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
 
 &lt;footer&gt;Protocol review for Paid for Done · 24 October 2026 · read against Span master 02da5835f4 · internal, not a decision record.&lt;/footer&gt;
 &lt;/div&gt;
+"></iframe></section><section role="tabpanel" id="p-termix" aria-labelledby="t-termix" hidden><iframe title="TermiX" srcdoc="&lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot;&gt;
+&lt;title&gt;TermiX and Span&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap&quot;&gt;
+&lt;style&gt;
+/* Layout: competitor review. Answer first, then the mechanism as exhibits, then lessons and decisions. */
+:root {
+  --paper: #fafaf7;
+  --cream: #f2f2ec;
+  --ink: #2d3436;
+  --ink-2: #545e62;
+  --rule: #dcdcd2;
+  --brand: #1A6D63;
+  --brand-soft: #D5F2ED;
+  --copper: #93491a;
+  --copper-soft: #f6e6d8;
+  --warn: #a8321f;
+  --warn-soft: #f8e1dc;
+  --code-bg: #eeeee6;
+  --display: &quot;Newsreader&quot;, Georgia, &quot;Times New Roman&quot;, serif;
+  --body: &quot;Hanken Grotesk&quot;, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+  --mono: &quot;JetBrains Mono&quot;, ui-monospace, &quot;SF Mono&quot;, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=&quot;light&quot;]) {
+    --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+    --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+    --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+  }
+}
+:root[data-theme=&quot;dark&quot;] {
+  --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+  --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+  --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 960px; margin: 0 auto; }
+.col { max-width: 70ch; }
+header { padding-block: 56px 28px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 5.5vw, 52px); line-height: 1.06; margin: 10px 0 14px; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3.2vw, 31px); line-height: 1.18; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-size: 17px; font-weight: 600; margin: 20px 0 6px; }
+.lede { font-family: var(--display); font-size: 20px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+section { padding-block: 48px 8px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 1.25em; margin: 0 0 12px; }
+li { margin-bottom: 6px; }
+a { color: var(--brand); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: .85em; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+
+/* status strip */
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--rule); margin-top: 24px; }
+.strip &gt; div { padding: 12px 14px; min-width: 0; }
+.strip &gt; div + div { border-left: 1px solid var(--rule); }
+.strip .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); }
+.strip .v { font-weight: 600; font-size: 15px; margin-top: 2px; overflow-wrap: anywhere; }
+.strip .v.ok { color: var(--brand); }
+.strip .v.hold { color: var(--copper); }
+@media (max-width: 720px) { .strip { grid-template-columns: 1fr 1fr; } .strip &gt; div:nth-child(3) { border-left: 0; } .strip &gt; div:nth-child(n+3) { border-top: 1px solid var(--rule); } }
+
+/* decisions */
+.decisions { display: grid; gap: 0; border: 1px solid var(--copper); margin: 20px 0 8px; }
+.decision { padding: 18px 20px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; }
+.decision + .decision { border-top: 1px solid var(--rule); }
+.decision .n { font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--copper); line-height: 1; }
+.decision h3 { margin: 0 0 6px; font-size: 18px; }
+.decision p { margin-bottom: 8px; color: var(--ink-2); }
+.decision .rec { font-size: 14.5px; color: var(--ink); }
+.decision .rec b { color: var(--brand); }
+
+/* tables */
+.tbl { overflow-x: auto; margin: 18px 0; border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 13px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.ok { background: var(--brand-soft); color: var(--brand); }
+.pill.warn { background: var(--copper-soft); color: var(--copper); }
+.pill.bad { background: var(--warn-soft); color: var(--warn); }
+
+/* commits */
+.commit { border: 1px solid var(--rule); margin: 22px 0; }
+.commit .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 14px 18px; background: var(--cream); border-bottom: 1px solid var(--rule); }
+.commit .sha { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+.commit .head h3 { margin: 0; font-size: 17px; min-width: 0; }
+.commit .body { padding: 16px 18px 6px; }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 12px 0 14px; }
+.ba &gt; div { padding: 12px 14px; min-width: 0; font-size: 14.5px; }
+.ba &gt; div + div { border-left: 1px solid var(--rule); }
+.ba .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+.ba .before .k { color: var(--warn); }
+.ba .after .k { color: var(--brand); }
+@media (max-width: 640px) { .ba { grid-template-columns: 1fr; } .ba &gt; div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+pre { font-family: var(--mono); font-size: 12.5px; line-height: 1.55; background: var(--code-bg); padding: 12px 14px; overflow-x: auto; margin: 0 0 14px; border-radius: 3px; }
+pre .del { color: var(--warn); }
+pre .add { color: var(--brand); }
+pre .cm { color: var(--ink-2); }
+.files { font-family: var(--mono); font-size: 12px; color: var(--ink-2); margin-bottom: 12px; overflow-wrap: anywhere; }
+
+.note { border-left: 2px solid var(--copper); background: var(--copper-soft); padding: 12px 16px; margin: 16px 0; font-size: 15px; }
+.note b { color: var(--copper); }
+footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+&lt;/style&gt;
+
+&lt;div class=&quot;wrap&quot;&gt;
+&lt;header&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;Span · paid for done · competitor review&lt;/div&gt;
+  &lt;h1&gt;TermiX: an escrow where the buyer says &quot;accept&quot;&lt;/h1&gt;
+  &lt;p class=&quot;lede col&quot;&gt;TermiX (termix.ai, app at agent.family) is a marketplace where AI agents hire other agents and settle in stablecoin escrow. It is the closest working example of paid for done we have found, so this page reads it as a design reference: how its orders, payments and escrow work, how its agents talk to each other, where it beats Span and where Span is ahead. Read from its live docs, whitepaper and contracts on 24 October 2026. Internal thinking.&lt;/p&gt;
+  &lt;div class=&quot;strip&quot; role=&quot;list&quot;&gt;
+    &lt;div role=&quot;listitem&quot;&gt;&lt;div class=&quot;k&quot;&gt;What it is&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;Agents hiring agents, on-chain&lt;/div&gt;&lt;/div&gt;
+    &lt;div role=&quot;listitem&quot;&gt;&lt;div class=&quot;k&quot;&gt;Money&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;USDC / USDT on BNB Chain, Base&lt;/div&gt;&lt;/div&gt;
+    &lt;div role=&quot;listitem&quot;&gt;&lt;div class=&quot;k&quot;&gt;Release step&lt;/div&gt;&lt;div class=&quot;v ok&quot;&gt;Buyer accepts, or 3 reviewers&lt;/div&gt;&lt;/div&gt;
+    &lt;div role=&quot;listitem&quot;&gt;&lt;div class=&quot;k&quot;&gt;Maturity&lt;/div&gt;&lt;div class=&quot;v hold&quot;&gt;Early; no public volume yet&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;section id=&quot;answer&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;The short answer&lt;/div&gt;
+  &lt;h2&gt;TermiX pays on acceptance, which is the model we are moving to&lt;/h2&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;TermiX&#x27;s provider is paid only when the buyer accepts the delivery, when the buyer stays silent until a review window closes, or when a panel of reviewers rules for the provider. A missed deadline refunds the buyer in full, with no fee. Providers also lock some of their own stake on every order and lose part of it when they fail. That is paid for done, built as smart contracts.&lt;/p&gt;
+    &lt;p&gt;It corrects one line in the &lt;a href=&quot;4-protocols.html#answer&quot;&gt;Protocols&lt;/a&gt; tab. That tab found no protocol with an &quot;I accept, release the money&quot; step. One exists, as a draft: &lt;b&gt;ERC-8183 (&quot;Agentic Commerce&quot;)&lt;/b&gt;, the Ethereum job escrow TermiX is built on. In it, an evaluator named when the job is created calls &lt;code&gt;complete&lt;/code&gt; to release the money or &lt;code&gt;reject&lt;/code&gt; to refund it, and anyone can trigger a refund after the deadline. It is a draft standard from February 2026, and the reviewer can be the buyer, a person or a contract.&lt;/p&gt;
+    &lt;p&gt;The recommendation in the Protocols tab still holds. Span&#x27;s people pay with credits and cards, not wallets, so the hold, the verdict and the release stay in Span&#x27;s ledger. What TermiX gives us is a tested shape for that ledger: the states, the deadlines, who may move an order from one state to the next, and the money that moves at each step.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;orders&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;How an order moves&lt;/div&gt;
+  &lt;h2&gt;The order lifecycle, from the live docs&lt;/h2&gt;
+  &lt;div class=&quot;col&quot;&gt;&lt;p&gt;Work starts in one of two ways: the buyer buys a provider&#x27;s listing at a fixed price, or posts a request with a budget range and accepts one provider&#x27;s offer. Both end in the same on-chain order. TermiX&#x27;s servers never hold keys: every step returns an unsigned transaction that the agent&#x27;s own wallet signs and sends.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;tbl&quot;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Step&lt;/th&gt;&lt;th&gt;Who&lt;/th&gt;&lt;th&gt;What happens to the money&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1. Fund&lt;/td&gt;&lt;td&gt;Buyer&lt;/td&gt;&lt;td&gt;The full budget moves into the escrow contract. The order waits for the provider. Deadlines for acceptance, delivery and review are fixed now.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2. Provider accepts&lt;/td&gt;&lt;td&gt;Provider&lt;/td&gt;&lt;td&gt;A share of the provider&#x27;s stake is locked against this order. If the provider never accepts in time, the buyer cancels and gets everything back.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;3. Deliver&lt;/td&gt;&lt;td&gt;Provider&lt;/td&gt;&lt;td&gt;Files go to TermiX&#x27;s storage; a fingerprint (hash) of the delivery is written on-chain. The review window starts, counted from the delivery deadline so the buyer always gets the full window.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;4a. Accept&lt;/td&gt;&lt;td&gt;Buyer&lt;/td&gt;&lt;td&gt;Released: the provider gets the budget minus the protocol fee; the stake unlocks; reputation records a success.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;4b. Redo&lt;/td&gt;&lt;td&gt;Buyer&lt;/td&gt;&lt;td&gt;Back to work with new deadlines. &lt;b&gt;Once only&lt;/b&gt; per order.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;4c. Challenge&lt;/td&gt;&lt;td&gt;Buyer&lt;/td&gt;&lt;td&gt;The buyer posts a bond and the order goes to three reviewers (next section).&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Silence&lt;/td&gt;&lt;td&gt;Anyone&lt;/td&gt;&lt;td&gt;After the review window, anyone may call &lt;code&gt;claimAfterTimeout&lt;/code&gt;; it pays the provider as if the buyer had accepted.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;No delivery&lt;/td&gt;&lt;td&gt;Anyone&lt;/td&gt;&lt;td&gt;After the delivery deadline, anyone may call &lt;code&gt;cancelExpired&lt;/code&gt;: full refund, no protocol fee, provider gets nothing.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;note&quot;&gt;&lt;b&gt;No worker settles anything.&lt;/b&gt; TermiX&#x27;s docs say plainly there is &quot;no auto-settle worker&quot;. A delivered order sits in escrow until somebody sends the timeout transaction. For Span the equivalent is a scheduled job, and our staging scheduler history (jobs that never ran because pods restarted first) says that job needs its own alarm.&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;money&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;Fees, stake and disputes&lt;/div&gt;
+  &lt;h2&gt;Where the money goes&lt;/h2&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;&lt;b&gt;Fees.&lt;/b&gt; Every fee is a rate an operator sets on the contract, read live; the docs warn &quot;never assume a number&quot;. The homepage and whitepaper give a 2% protocol fee. Review fees are charged only on disputed orders, from the order&#x27;s budget, and split across the three seats. Fees are taken only on release, never on a refund.&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;Stake.&lt;/b&gt; Each agent keeps one stake pool and every order locks a slice of it, so there is no deposit per job. The whitepaper sets the provider&#x27;s lock at 10% of the budget, scaled down as reputation rises and waived after 500 jobs at a score of 95 or more. A provider who loses a dispute has that order&#x27;s lock paid to the buyer.&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;Disputes.&lt;/b&gt; The buyer opens a challenge with a bond. Both sides upload evidence; only a seated reviewer may ask a party for more. Each of three seats votes &lt;code&gt;PROVIDER_UPHELD&lt;/code&gt; or &lt;code&gt;BUYER_UPHELD&lt;/code&gt; (no split verdicts) and two matching votes decide. The losing side may escalate once to a single arbitrator, whose ruling is final. The bond goes to the winner.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;h3&gt;The whitepaper promises more than the docs describe&lt;/h3&gt;
+  &lt;div class=&quot;tbl&quot;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Topic&lt;/th&gt;&lt;th&gt;Whitepaper (AACP v0.1)&lt;/th&gt;&lt;th&gt;Live docs&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Who reviews&lt;/td&gt;&lt;td&gt;Three reviewers drawn at random (VRF), secret commit-then-reveal votes&lt;/td&gt;&lt;td&gt;Reviewers are roles TermiX&#x27;s operator grants; the three are fixed in the challenge transaction. How they are chosen is not stated.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Appeal&lt;/td&gt;&lt;td&gt;Three fresh arbitrators, two-thirds majority&lt;/td&gt;&lt;td&gt;One arbitrator&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Proof of work&lt;/td&gt;&lt;td&gt;Four levels up to zero-knowledge proof plus secure hardware&lt;/td&gt;&lt;td&gt;Not mentioned; delivery is a hash of the files&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Penalties&lt;/td&gt;&lt;td&gt;Tables of cuts, e.g. 50% of the lock for a missed deadline&lt;/td&gt;&lt;td&gt;Slashing to the buyer on a lost dispute; the rest not described&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Fees&lt;/td&gt;&lt;td&gt;2% protocol, 3 to 4% reviewers, speed bonuses&lt;/td&gt;&lt;td&gt;Operator-set rates, read live&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col&quot;&gt;&lt;p&gt;The whitepaper also contradicts itself in places: the provider&#x27;s share (94% or 95%), arbitrator pay, and the cut for an overturned reviewer each appear with two different values. Read the whitepaper as intent and the docs as the product.&lt;/p&gt;&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;talk&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;How the agents talk&lt;/div&gt;
+  &lt;h2&gt;A shared inbox on TermiX&#x27;s server, polled over HTTP&lt;/h2&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;The agents never connect to each other. Every message goes through TermiX&#x27;s server, and each agent runs a loop that checks its inbox and replies. The money is on-chain; the conversation is not.&lt;/p&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;b&gt;Sign in with the wallet.&lt;/b&gt; The agent signs a challenge with its wallet key and gets a token for that one agent, valid about 12 hours. A skill-link API key also works.&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;Poll the inbox.&lt;/b&gt; &lt;code&gt;GET /api/v1/a2a/runtime/inbox?since=…&lt;/code&gt; every 5 seconds (no faster than every 2). There is no WebSocket and no webhook for agents. Each message carries its thread, the thread&#x27;s kind, the order, request or dispute it belongs to, the sender&#x27;s wallet and handle, and an id to stop duplicates. The inbox leaves out the agent&#x27;s own messages and any held back by a keyword filter.&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;Show it is working.&lt;/b&gt; An optional &quot;thinking&quot; or &quot;typing&quot; signal shows on the other side&#x27;s screen and fades on its own.&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;Reply.&lt;/b&gt; &lt;code&gt;POST /runtime/reply&lt;/code&gt; with the thread and plain text. Each check-in also marks the agent online; after about a minute without one it shows offline.&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;p&gt;Every thread has one kind, and the kinds are the business: &lt;code&gt;QUOTE_NEGOTIATION&lt;/code&gt;, &lt;code&gt;PREPAYMENT_ORDER&lt;/code&gt;, &lt;code&gt;ORDER_DELIVERY&lt;/code&gt;, &lt;code&gt;CHALLENGE&lt;/code&gt;, &lt;code&gt;DIRECT_MESSAGE&lt;/code&gt;, &lt;code&gt;OPERATOR_CASE&lt;/code&gt;, &lt;code&gt;COMPLETED_ORDER&lt;/code&gt; and &lt;code&gt;SYSTEM_READONLY&lt;/code&gt;. Their ready-made agent skill drafts replies itself with a small model (&lt;code&gt;gpt-4o-mini&lt;/code&gt; by default), so a provider can sell without writing a chat loop.&lt;/p&gt;
+    &lt;p&gt;Two structured channels sit beside the chat. An agent card and an RPC endpoint borrow A2A&#x27;s vocabulary (&lt;code&gt;task.create&lt;/code&gt;, &lt;code&gt;task.artifact&lt;/code&gt;, &lt;code&gt;task.completed&lt;/code&gt;), though TermiX never claims to follow the A2A specification. A separate commerce RPC carries the deal itself: &lt;code&gt;requestQuote&lt;/code&gt;, &lt;code&gt;offer&lt;/code&gt;, &lt;code&gt;acceptOffer&lt;/code&gt;, &lt;code&gt;evidencePayload&lt;/code&gt;, &lt;code&gt;arbitration.verdict&lt;/code&gt;. People watching in the web app get a receive-only live stream (server-sent events), and the docs say even that is &quot;a convenience, not the source of truth&quot;: anything that matters is read back from the order or the chain.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;h3&gt;The same four moments the Protocols tab names&lt;/h3&gt;
+  &lt;div class=&quot;tbl&quot;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Moment&lt;/th&gt;&lt;th&gt;TermiX&lt;/th&gt;&lt;th&gt;Span&#x27;s planned A2A extension&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1. Price quote&lt;/td&gt;&lt;td&gt;&lt;code&gt;requestQuote&lt;/code&gt; / &lt;code&gt;offer&lt;/code&gt; / &lt;code&gt;acceptOffer&lt;/code&gt; in a negotiation thread; accepting funds the escrow in the same transaction&lt;/td&gt;&lt;td&gt;&lt;code&gt;quote&lt;/code&gt;, sent by Span, agreed before work&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2. Delivered&lt;/td&gt;&lt;td&gt;Files plus an on-chain hash; review window starts&lt;/td&gt;&lt;td&gt;A2A artifact, then &quot;completed&quot;, read as delivered&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;3. Verdict&lt;/td&gt;&lt;td&gt;Accept, one redo, or challenge with a bond&lt;/td&gt;&lt;td&gt;&lt;code&gt;verdict&lt;/code&gt;: accepted, sent back with a reason, or disputed&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;4. Paid&lt;/td&gt;&lt;td&gt;On-chain release, stake unlock and reputation in one transaction&lt;/td&gt;&lt;td&gt;&lt;code&gt;payout&lt;/code&gt;: held, released or clawed back, by Stripe Connect&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col&quot;&gt;&lt;p&gt;TermiX confirms the extension&#x27;s shape: four verbs, each tied to an order and an attempt, are enough to run a market. Two of its choices are worth borrowing for the extension. The redo is counted on the order, so &quot;sent back&quot; cannot loop forever. And money never moves on a chat message, only on a signed state change that can be read back.&lt;/p&gt;&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;compare&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;Side by side&lt;/div&gt;
+  &lt;h2&gt;Where each is better&lt;/h2&gt;
+  &lt;div class=&quot;tbl&quot;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;TermiX&lt;/th&gt;&lt;th&gt;Span today&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Provider paid only for accepted work&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;yes&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill bad&quot;&gt;no&lt;/span&gt; Earnings are final the moment the cost settles (&lt;code&gt;earnings-listener.ts&lt;/code&gt; never reads the Judge&#x27;s verdict); x402 calls are paid before the output is reviewed&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Provider carries risk&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;stake, cut on failure&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill bad&quot;&gt;none&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Deadlines and refunds written down&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;three deadlines, automatic refund rules&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill warn&quot;&gt;refund policy unsigned&lt;/span&gt; (decision record 027, Gate 3)&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Every output checked&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill bad&quot;&gt;only when challenged&lt;/span&gt; A bad delivery the buyer misses is paid after the window&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;Judge and Verifier on every external output&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Who can buy&lt;/td&gt;&lt;td&gt;Agents with a crypto wallet, stablecoins and gas&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;people with a card or credits&lt;/span&gt;, plus agents through x402 and MPP&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Finding agents&lt;/td&gt;&lt;td&gt;Only agents registered on TermiX&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;SpanRank across NANDA, MCP and x402 sources&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;What the buyer gets&lt;/td&gt;&lt;td&gt;A marketplace; the buyer picks&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;An assistant that plans, picks and checks&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Record anyone can check&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;reputation from settled orders, public&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Private; work receipts per person&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Rules consistent&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill warn&quot;&gt;whitepaper contradicts itself and the docs&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;one constitution, calibrated Judge&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;learn&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;What to take&lt;/div&gt;
+  &lt;h2&gt;Six things worth borrowing, best first&lt;/h2&gt;
+  &lt;ol class=&quot;col&quot;&gt;
+    &lt;li&gt;&lt;b&gt;Release on the Judge and Verifier&#x27;s approval plus the person&#x27;s verdict.&lt;/b&gt; This is decision 3 on the Protocols tab, and TermiX shows the release rules a market needs: accept releases, silence past the window releases, a send-back or a lost dispute refunds. Span&#x27;s budget hold before dispatch already plays the escrow; developer earnings start as held and move with it. Agents paid on the spot through x402 can&#x27;t be clawed back, so for them a rejection lowers SpanRank instead.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Three deadlines on every paid task&lt;/b&gt; (accept by, deliver by, review by), each with a written outcome, and a scheduled job that applies them with an alarm when it falls behind. This can be the refund policy decision record 027 is waiting for.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;One redo per attempt, counted on the record.&lt;/b&gt; Span already caps revisions at three before escalating; counting the person&#x27;s send-backs the same way stops a loop between a person and an agent.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;A fingerprint of the delivery on the work receipt.&lt;/b&gt; Then what was released is provably what was approved, which also answers a developer who disputes a send-back.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;A stake taken from held earnings.&lt;/b&gt; Span already holds the developer&#x27;s balance, so a small share of it can back each paid task and be cut for a missed deadline or rejected work. No deposit, no crypto, and it grows naturally with the developer&#x27;s track record, like TermiX&#x27;s reputation discount.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;An appeal with a bond, for the developer.&lt;/b&gt; A developer who thinks a send-back was unfair should be able to appeal and lose a small bond if wrong. The reviewer should be a stronger model bound to the task, as the constitution already sets for unsure Judges. TermiX&#x27;s public panel would show the person&#x27;s private work to strangers, so it is the part not to copy.&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;div class=&quot;note&quot;&gt;&lt;b&gt;Not worth copying:&lt;/b&gt; making buyers stake, public on-chain reputation of each order, and requiring a crypto wallet. Each adds friction for the people Span serves, and the Brain&#x27;s memory rules make a public record of a person&#x27;s jobs a privacy problem.&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;decide&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;Your call&lt;/div&gt;
+  &lt;h2&gt;Two additions to the Protocols tab&#x27;s decisions&lt;/h2&gt;
+  &lt;div class=&quot;decisions&quot;&gt;
+    &lt;div class=&quot;decision&quot;&gt;&lt;div class=&quot;n&quot;&gt;5&lt;/div&gt;&lt;div&gt;
+      &lt;h3&gt;Use ERC-8183&#x27;s states and deadlines as the model for held earnings?&lt;/h3&gt;
+      &lt;p&gt;Open, funded, submitted, then completed, rejected or expired, with refunds after expiry that nothing can block, and a fee taken only on release. Span would write these in its ledger, not on a chain.&lt;/p&gt;
+      &lt;p class=&quot;rec&quot;&gt;&lt;b&gt;My recommendation: yes.&lt;/b&gt; It is a published, reviewed shape for exactly this, it fits the shadow report, and it costs nothing to adopt as names and rules.&lt;/p&gt;
+    &lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;decision&quot;&gt;&lt;div class=&quot;n&quot;&gt;6&lt;/div&gt;&lt;div&gt;
+      &lt;h3&gt;Ask paid developers for a stake from held earnings?&lt;/h3&gt;
+      &lt;p&gt;A small share of each paid task&#x27;s earnings held back until acceptance, cut for missed deadlines or rejected work.&lt;/p&gt;
+      &lt;p class=&quot;rec&quot;&gt;&lt;b&gt;My recommendation: later, after earnings are held in shadow&lt;/b&gt; (decision 3). The shadow data shows how often developers would be cut, and the rule should be set from that.&lt;/p&gt;
+    &lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;unknowns&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;What I couldn&#x27;t confirm&lt;/div&gt;
+  &lt;h2&gt;Open questions&lt;/h2&gt;
+  &lt;ul class=&quot;col&quot;&gt;
+    &lt;li&gt;Real volume. The homepage shows &quot;--&quot; for money held, agents, jobs and revenue; its animation shows 34,000 agents and 2,200 jobs, which I can&#x27;t verify. Most coverage is promotional posts on X and KuCoin.&lt;/li&gt;
+    &lt;li&gt;How reviewers are chosen in the live product, and what they are paid; the docs name the rates without values.&lt;/li&gt;
+    &lt;li&gt;Whether any of the whitepaper&#x27;s proof levels (secure hardware, zero-knowledge proof) are live. Its own roadmap places them on Base mainnet in Q3 2026 and arbitration in Q4.&lt;/li&gt;
+    &lt;li&gt;Whether TermiX&#x27;s SDK (TypeScript, Python, Go, announced on X) is public; the docs index lists no SDK page.&lt;/li&gt;
+    &lt;li&gt;Funding: &quot;backed by YZi Labs&quot; is on the homepage; the $1M seed figure comes from secondary posts.&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p class=&quot;files&quot;&gt;Sources: &lt;a href=&quot;https://termix.ai/&quot;&gt;termix.ai&lt;/a&gt; · &lt;a href=&quot;https://docs.termix.ai/aacp/orders.md&quot;&gt;docs: orders&lt;/a&gt; · &lt;a href=&quot;https://docs.termix.ai/aacp/disputes.md&quot;&gt;docs: disputes&lt;/a&gt; · &lt;a href=&quot;https://docs.termix.ai/product/settlement.md&quot;&gt;docs: settlement and fees&lt;/a&gt; · &lt;a href=&quot;https://docs.termix.ai/aacp/a2a.md&quot;&gt;docs: A2A runtime&lt;/a&gt; · &lt;a href=&quot;https://docs.termix.ai/api-reference/realtime.md&quot;&gt;docs: realtime&lt;/a&gt; · &lt;a href=&quot;https://github.com/TermiX-official/aacp-whitepaper&quot;&gt;AACP whitepaper&lt;/a&gt; · &lt;a href=&quot;https://eips.ethereum.org/EIPS/eip-8183&quot;&gt;ERC-8183&lt;/a&gt; · &lt;a href=&quot;https://eips.ethereum.org/EIPS/eip-8004&quot;&gt;ERC-8004&lt;/a&gt; · &lt;a href=&quot;https://x.com/termix_ai/status/2108831976304373983&quot;&gt;TermiX SDK post&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;footer&gt;TermiX review for Paid for Done · 24 October 2026 · Span read against origin/master · internal, not a decision record.&lt;/footer&gt;
+&lt;/div&gt;
 "></iframe></section><section role="tabpanel" id="p-book" aria-labelledby="t-book" hidden><iframe title="Picture book" srcdoc="&lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot;&gt;
 &lt;title&gt;Paid for Done, Simply&lt;/title&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
@@ -2519,7 +2795,7 @@ a:focus-visible { outline: 3px solid var(--span); outline-offset: 2px; }
 &lt;/div&gt;
 "></iframe></section></main>
 <script>
-const MAP={'1-strategy-memo-and-blog-post.html': 'memo', '2-branch-review.html': 'review', '3-picture-book.html': 'book', '4-protocols.html': 'protocols'};
+const MAP={'1-strategy-memo-and-blog-post.html': 'memo', '2-branch-review.html': 'review', '3-picture-book.html': 'book', '4-protocols.html': 'protocols', '5-termix.html': 'termix'};
 const keys=[...document.querySelectorAll('[role=tab]')].map(t=>t.dataset.k);
 function fit(f){try{const d=f.contentDocument;f.style.height=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight)+'px'}catch(e){}}
 function show(k,anchor){
