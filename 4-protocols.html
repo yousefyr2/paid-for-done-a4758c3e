@@ -1,0 +1,326 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Agent Protocols Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: protocol review. Answer first, then the protocols as exhibits, then decisions. */
+:root {
+  --paper: #fafaf7;
+  --cream: #f2f2ec;
+  --ink: #2d3436;
+  --ink-2: #545e62;
+  --rule: #dcdcd2;
+  --brand: #1A6D63;
+  --brand-soft: #D5F2ED;
+  --copper: #93491a;
+  --copper-soft: #f6e6d8;
+  --warn: #a8321f;
+  --warn-soft: #f8e1dc;
+  --code-bg: #eeeee6;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+    --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+    --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+  --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+  --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 960px; margin: 0 auto; }
+.col { max-width: 70ch; }
+header { padding-block: 56px 28px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 5.5vw, 52px); line-height: 1.06; margin: 10px 0 14px; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3.2vw, 31px); line-height: 1.18; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-size: 17px; font-weight: 600; margin: 20px 0 6px; }
+.lede { font-family: var(--display); font-size: 20px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+section { padding-block: 48px 8px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 1.25em; margin: 0 0 12px; }
+li { margin-bottom: 6px; }
+a { color: var(--brand); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: .85em; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+
+/* status strip */
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--rule); margin-top: 24px; }
+.strip > div { padding: 12px 14px; min-width: 0; }
+.strip > div + div { border-left: 1px solid var(--rule); }
+.strip .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); }
+.strip .v { font-weight: 600; font-size: 15px; margin-top: 2px; overflow-wrap: anywhere; }
+.strip .v.ok { color: var(--brand); }
+.strip .v.hold { color: var(--copper); }
+@media (max-width: 720px) { .strip { grid-template-columns: 1fr 1fr; } .strip > div:nth-child(3) { border-left: 0; } .strip > div:nth-child(n+3) { border-top: 1px solid var(--rule); } }
+
+/* decisions */
+.decisions { display: grid; gap: 0; border: 1px solid var(--copper); margin: 20px 0 8px; }
+.decision { padding: 18px 20px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; }
+.decision + .decision { border-top: 1px solid var(--rule); }
+.decision .n { font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--copper); line-height: 1; }
+.decision h3 { margin: 0 0 6px; font-size: 18px; }
+.decision p { margin-bottom: 8px; color: var(--ink-2); }
+.decision .rec { font-size: 14.5px; color: var(--ink); }
+.decision .rec b { color: var(--brand); }
+
+/* tables */
+.tbl { overflow-x: auto; margin: 18px 0; border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 13px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.ok { background: var(--brand-soft); color: var(--brand); }
+.pill.warn { background: var(--copper-soft); color: var(--copper); }
+.pill.bad { background: var(--warn-soft); color: var(--warn); }
+
+/* commits */
+.commit { border: 1px solid var(--rule); margin: 22px 0; }
+.commit .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 14px 18px; background: var(--cream); border-bottom: 1px solid var(--rule); }
+.commit .sha { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+.commit .head h3 { margin: 0; font-size: 17px; min-width: 0; }
+.commit .body { padding: 16px 18px 6px; }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 12px 0 14px; }
+.ba > div { padding: 12px 14px; min-width: 0; font-size: 14.5px; }
+.ba > div + div { border-left: 1px solid var(--rule); }
+.ba .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+.ba .before .k { color: var(--warn); }
+.ba .after .k { color: var(--brand); }
+@media (max-width: 640px) { .ba { grid-template-columns: 1fr; } .ba > div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+pre { font-family: var(--mono); font-size: 12.5px; line-height: 1.55; background: var(--code-bg); padding: 12px 14px; overflow-x: auto; margin: 0 0 14px; border-radius: 3px; }
+pre .del { color: var(--warn); }
+pre .add { color: var(--brand); }
+pre .cm { color: var(--ink-2); }
+.files { font-family: var(--mono); font-size: 12px; color: var(--ink-2); margin-bottom: 12px; overflow-wrap: anywhere; }
+
+.note { border-left: 2px solid var(--copper); background: var(--copper-soft); padding: 12px 16px; margin: 16px 0; font-size: 15px; }
+.note b { color: var(--copper); }
+footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Span · paid for done · protocol review</div>
+  <h1>Agent Protocols for Paid for Done</h1>
+  <p class="lede col">Which of today's agent protocols Span should use to talk to agents, prove who is paying, and move money, if developers are paid only for work the person accepts. Covers MPP, x401 and x402, then MCP and A2A, checked against what Span's code already does. Internal thinking, 24 October 2026.</p>
+  <div class="strip" role="list">
+    <div role="listitem"><div class="k">Talk to agents</div><div class="v ok">A2A, plus a Span extension</div></div>
+    <div role="listitem"><div class="k">Talk to tools</div><div class="v ok">MCP, priced per call</div></div>
+    <div role="listitem"><div class="k">Hold and release</div><div class="v ok">Span's own ledger</div></div>
+    <div role="listitem"><div class="k">On-chain rails</div><div class="v hold">x402 and MPP: watch, pilot</div></div>
+  </div>
+</header>
+
+<section id="answer">
+  <div class="eyebrow">The short answer</div>
+  <h2>No protocol knows what "accepted" means, and that is good for Span</h2>
+  <div class="col">
+    <p>I checked eight protocols. Not one has a step where the buyer says "I accept this work, release the money." Each leaves that decision to the merchant. MCP and A2A carry the work. x402 and MPP move the money the moment a request is paid. x401, AP2 and the card networks' agent programmes prove who authorised the payment.</p>
+    <p>So the acceptance record, the hold and the release have to live in Span. That is the part of "paid for done" that is hard to copy: Span is the merchant of record, it already reserves the person's money before work starts, and it already runs a quality check on every attempt. The protocols are pipes on either side of that.</p>
+    <p>In practice this means three choices, all small:</p>
+    <ol>
+      <li><b>Agents over A2A, with one Span extension</b> that carries the quote, the delivery, the person's verdict and the payout notice. A2A's own "completed" state means delivered, never paid.</li>
+      <li><b>Tools over MCP, priced per call</b> as Span's own cost. Tools are inputs to a task; the outcome price is set at the task level.</li>
+      <li><b>Money through rails Span already has.</b> Prepaid credits with a budget hold on the buyer side, Stripe Connect on the developer side. x402 and MPP stay behind the existing wallet flags for paying outside per-call services, with x402's new hold-and-capture scheme as the one to pilot.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="today">
+  <div class="eyebrow">Where Span starts</div>
+  <h2>Span already speaks most of this</h2>
+  <div class="col"><p>Read from master on 24 October. More is in place than the decision records suggest.</p></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Piece</th><th>What exists today</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Calling developer agents</td><td>The Rust engine posts to the developer's own HTTP endpoint in one of four formats: Span's own (<code>uap_nanda</code>, the default), A2A, an MCP tool call, or a NANDA chapter. A2A tasks that run long are tracked, polled and cancelled durably.</td><td><code>engine/src/executor/agent_client.rs</code>, migration 589</td></tr>
+        <tr><td>Span's own A2A card</td><td>Served publicly at <code>/.well-known/agent.json</code>.</td><td><code>agent-card.routes.ts</code></td></tr>
+        <tr><td>Registering an agent</td><td>A signed AgentFacts document (Ed25519), endpoints checked against address tricks, key pinned, and an A2A conformance probe.</td><td><code>agents-register-from-facts.ts</code>, <code>sandbox-a2a.ts</code></td></tr>
+        <tr><td>MCP</td><td>Span uses MCP to call tools (per-tenant connections with OAuth), ingests the MCP registry, and runs an MCP server on the person's desktop. There is no public MCP server.</td><td><code>tool-gateway/mcp-*</code>, <code>discovery/mcp-registry-*</code></td></tr>
+        <tr><td>x402 and MPP</td><td>Decision record 027 (29 August): a per-person wallet that pays and accepts both, through one library (<code>mppx</code>). Built behind <code>WALLET_ENABLED=false</code>, test networks only.</td><td><code>docs/adr/027-…</code>, <code>src/pipeline/wallet/*</code></td></tr>
+        <tr><td>Holds on the buyer side</td><td>Three already: the hire budget held before dispatch, the backup reserve, and wallet spend holds, on one shared hold pattern.</td><td><code>billing/budget-reservation.ts</code>, <code>reservation-core.ts</code></td></tr>
+        <tr><td>Paying developers</td><td>Earnings go straight to the developer's balance the moment the cost settles. Payouts are Stripe Connect transfers, started by hand; no scheduler calls them.</td><td><code>earnings-listener.ts</code>, <code>payout.service.ts</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><b>The gaps that matter for paid for done:</b> there is no hold on the developer side (earnings are final on settlement), no decision record that chooses an agent protocol (the repo says so itself), and the engine does not yet return the A2A task id with the attempt number, which the acceptance step needs to point back at the right attempt.</div>
+</section>
+
+<section id="pay">
+  <div class="eyebrow">Moving money</div>
+  <h2>The payment protocols</h2>
+
+  <article class="commit">
+    <div class="head"><span class="sha">Stripe + Tempo · March 2026</span><h3>MPP, the Machine Payments Protocol</h3></div>
+    <div class="body">
+      <p><b>What it is.</b> An HTTP payment scheme filed with the IETF as an individual draft (<code>draft-httpauth-payment-01</code>, September 2026). A server answers <code>402</code> with <code>WWW-Authenticate: Payment …</code>; the client retries with <code>Authorization: Payment …</code>; the server returns a <code>Payment-Receipt</code>. It carries Tempo stablecoins, cards (Stripe shared payment tokens, Visa network tokens), Lightning, Solana and others, and runs over MCP too.</p>
+      <p><b>What fits.</b> <i>Sessions</i>: the payer deposits into escrow, signs vouchers as work happens, and gets back whatever was never claimed. That is the nearest thing to "settle only what was accepted." <i>Splits</i>: one charge can pay up to eleven recipients at once on Tempo.</p>
+      <p><b>What doesn't.</b> No hold-then-capture step, no refunds or disputes in the protocol, and on-chain charges cannot be reversed. Stripe's gas sponsorship cannot be used with Connect, which is how Span pays developers. Stripe's API for it is still in preview.</p>
+      <p><b>For Span.</b> Already wired by decision record 027. Useful for a headless agent that wants to become a Span customer with no card, and for paying outside services priced in MPP. The eleven-way split would make developers direct payees, which works against Span holding the money, so don't use it for payouts.</p>
+      <p class="files">Sources: stripe.com/blog/machine-payments-protocol · datatracker.ietf.org/doc/draft-httpauth-payment · mpp.dev</p>
+    </div>
+  </article>
+
+  <article class="commit">
+    <div class="head"><span class="sha">Proof.com · June 2026</span><h3>x401: proving who is paying</h3></div>
+    <div class="body">
+      <p><b>What it is.</b> An identity protocol, not a payment one. A server answers <code>401</code> with a <code>PROOF-REQUEST</code> header saying which credentials it accepts (built on OpenID4VP); the agent retries with <code>PROOF-RESPONSE</code> carrying verifiable credentials (SD-JWT, mDoc). Its own tagline: "x402 lets agents pay. x401 lets agents prove who's paying." Draft 0.2.0, with contributors from Circle, Okta, OpenAI and Visa.</p>
+      <p><b>Maturity.</b> A Cloudflare Workers package and a demo at Money20/20 on 19 October (prove with x401, pay with x402 from a Circle wallet). I found no named production user. The spec lists "agent authentication" as unsolved: the proof is bound to the server, not to the agent presenting it.</p>
+      <p><b>For Span.</b> Low priority. Span already identifies developer agents with signed AgentFacts and identifies people with its own accounts. x401 becomes useful if a business's buyer agent must prove it may spend for its company (a business customer paying by agent). Revisit when it has production users.</p>
+      <p class="files">Sources: x401.id · github.com/proof/x401 · proof.com/blog/introducing-x401</p>
+    </div>
+  </article>
+
+  <article class="commit">
+    <div class="head"><span class="sha">Coinbase → x402 Foundation · v2</span><h3>x402, the baseline, and its new hold-and-capture scheme</h3></div>
+    <div class="body">
+      <p><b>What it is.</b> The HTTP 402 protocol most agent payments use: <code>PAYMENT-REQUIRED</code>, then <code>PAYMENT-SIGNATURE</code>, then <code>PAYMENT-RESPONSE</code>, settled in stablecoin by a facilitator. Version 2 since December 2025. Governed by a Linux Foundation body since July 2026 whose members include Stripe, Visa, Mastercard, Google, AWS and Shopify.</p>
+      <p><b>The important part for us: <code>auth-capture</code></b> (a draft, v1.1 of 18 August 2026). It places a hold, lets the merchant capture all or part of it, void it or refund it, and gives the money back to the payer automatically if nobody captures by a deadline. On capture, a fee within limits the payer signed goes to one fee receiver and the rest to the payee. That is the closest any protocol comes to "hold, then release on acceptance," and the automatic return is a built-in promise to the buyer.</p>
+      <p><b>What to watch.</b> The plain <code>exact</code> scheme is final on payment, with no chargebacks. I could not confirm that Coinbase's facilitator settles <code>auth-capture</code> today. One newer scheme was pulled from Coinbase's SDK after it was found able to accept a buyer's payment without paying the receiver. Real volume is small: an analyst measured about $28,000 a day in March, roughly half of it wash trading.</p>
+      <p><b>For Span.</b> Pilot <code>auth-capture</code> on test networks for stablecoin buyers: Span is the one allowed to capture, the deadline is the work time plus 72 hours, and the payee is Span itself, with developers credited in Span's ledger. Don't depend on it until a facilitator settles it in production.</p>
+      <p class="files">Sources: github.com/x402-foundation/x402 (v2 spec, auth-capture scheme) · linuxfoundation.org x402 Foundation release · docs.x402r.org</p>
+    </div>
+  </article>
+
+  <h3>The others, briefly</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Protocol</th><th>What it does</th><th>Outcome-based payment?</th></tr></thead>
+      <tbody>
+        <tr><td>Google AP2 (FIDO since April 2026)</td><td>Signed "mandates": what the person authorised, first as limits, then bound to a final cart.</td><td>Evidence only. A mandate could say "up to $X if I accept within 72 hours"; enforcing it is the merchant's job.</td></tr>
+        <tr><td>ACP (OpenAI, Stripe, Meta)</td><td>A checkout API and a capped, expiring card token. Still beta.</td><td>No. Refunds work as normal Stripe refunds.</td></tr>
+        <tr><td>Visa Trusted Agent Protocol</td><td>Signed requests so a merchant can tell a real agent from a bot.</td><td>No; moves no money.</td></tr>
+        <tr><td>Mastercard Agent Pay</td><td>Card tokens scoped to an agent and merchant; "for Machines" since June 2026 uses x402.</td><td>No.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th></th><th>Hold, then capture</th><th>Refund / dispute</th><th>Pay as you go</th><th>Split</th><th>Maturity</th></tr></thead>
+      <tbody>
+        <tr><td>Stripe card hold</td><td><span class="pill ok">yes</span></td><td>refunds, chargebacks</td><td>no</td><td>via Connect</td><td><span class="pill ok">live</span></td></tr>
+        <tr><td>Span credits + budget hold</td><td><span class="pill ok">yes, in code</span></td><td>Span decides</td><td>yes</td><td>Span's ledger</td><td><span class="pill ok">live</span></td></tr>
+        <tr><td>x402 auth-capture</td><td><span class="pill ok">yes</span></td><td>refund before deadline</td><td>no</td><td>payee + fee</td><td><span class="pill warn">draft</span></td></tr>
+        <tr><td>MPP sessions</td><td><span class="pill warn">escrow, close to it</span></td><td>none in protocol</td><td><span class="pill ok">yes</span></td><td>up to 11</td><td><span class="pill warn">draft, preview</span></td></tr>
+        <tr><td>x402 exact</td><td><span class="pill bad">no</span></td><td>none</td><td>no</td><td>no</td><td><span class="pill ok">v2</span></td></tr>
+        <tr><td>x401, AP2, Visa TAP</td><td colspan="4">Identity and evidence; they move no money</td><td><span class="pill warn">draft / pre-release</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="talk">
+  <div class="eyebrow">Carrying the work</div>
+  <h2>MCP and A2A</h2>
+
+  <article class="commit">
+    <div class="head"><span class="sha">Spec 2026-07-28 · Agentic AI Foundation</span><h3>MCP: for tools, not for hiring agents</h3></div>
+    <div class="body">
+      <p><b>Where it is now.</b> The July 2026 revision is the largest since launch. It drops the session handshake, so every request stands alone. It moves long-running "tasks" into an official extension, with the states working, input required, completed, cancelled and failed. It deprecates sampling, so a server can no longer borrow the caller's model. Login is OAuth 2.1. MCP has been run by the Agentic AI Foundation, under the Linux Foundation, since December 2025. The registry is still a preview.</p>
+      <p><b>Payments.</b> None in the spec. The formal proposal to add x402 payments (SEP-2007) was closed in June 2026 because no maintainer sponsored it. Paid MCP tools exist outside the spec (Cloudflare, Vercel, an MPP binding draft), and the foundation's own advice is to charge at a gateway in front of the server.</p>
+      <p><b>Limits for us.</b> MCP is a client calling a tool. It has no agent identity card, no peer discovery and no step where the client accepts a result. A tool that returns an error still counts as "completed."</p>
+      <p><b>For Span.</b> Keep MCP for tools, as Span does now, and treat each tool call as Span's own cost, metered per call. Don't build the hiring of developer agents on it. If Span ever publishes a public MCP server, the price it shows should be the outcome price of the task, not a per-call price.</p>
+      <p class="files">Sources: modelcontextprotocol.io specification and changelog (2026-07-28) · tasks.extensions.modelcontextprotocol.io · github.com/modelcontextprotocol PR #2007</p>
+    </div>
+  </article>
+
+  <article class="commit">
+    <div class="head"><span class="sha">v1.0 · Agentic AI Foundation since August 2026</span><h3>A2A: for hiring agents, with one gap</h3></div>
+    <div class="body">
+      <p><b>Where it is now.</b> Version 1.0 runs over JSON-RPC, gRPC or plain HTTP. It has task states (submitted, working, input required, auth required, completed, failed, cancelled, rejected), results delivered as artifacts, streaming, push notifications to a webhook, optionally signed Agent Cards, and extensions declared on the card. It joined MCP in the same foundation in August 2026. IBM's competing protocol merged into it, and Cisco's AGNTCY project dropped its own in its favour. Over 150 organisations use it, mostly large vendors.</p>
+      <p><b>The gap.</b> No price, quote, acceptance or dispute field. "Completed" is final: a send-back has to be a new task that points to the old one. The official x402 extension (v0.1, over a year old) asks for payment while the task waits for input and settles immediately. That is "pay first," the opposite of what we want.</p>
+      <p><b>For Span.</b> A2A is the right base for developer agents, and the engine already speaks it. Make it the recommended format for new developers, keep Span's own format for the ones already on it, and add one extension.</p>
+      <p class="files">Sources: a2a-protocol.org/latest/specification · a2a-protocol.org life-of-a-task · github.com/google-agentic-commerce/a2a-x402</p>
+    </div>
+  </article>
+
+  <h3>How the four Span moments travel</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Moment</th><th>A2A today</th><th>What Span adds</th></tr></thead>
+      <tbody>
+        <tr><td>1. Price quote before work</td><td>Nothing binding. The task can wait for input, but there is no quote shape.</td><td><code>quote</code>: amount, currency, expiry, the hold, the 72-hour window. Sent by Span; the agent agrees or declines before work starts.</td></tr>
+        <tr><td>2. Work delivered</td><td><span class="pill ok">native</span> Artifact, then completed.</td><td>Span reads "completed" as delivered, waiting for acceptance.</td></tr>
+        <tr><td>3. The person accepts or sends back</td><td>No verb. A send-back is a new task referring to the old one.</td><td><code>verdict</code>: accepted, sent back with the reason, or disputed, pointing to the original task and attempt.</td></tr>
+        <tr><td>4. Money released</td><td>Only x402's "paid now" receipt.</td><td><code>payout</code>: held, released or clawed back, sent to the developer's webhook. The money moves through Stripe Connect.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col"><p>All four ride in A2A's standard extension metadata, so any A2A agent can read them without new transport. The extension is marked required on Span's card, so an agent that doesn't understand it is told so at the start, before work, rather than surprised at payout.</p></div>
+</section>
+
+<section id="shape">
+  <div class="eyebrow">Putting it together</div>
+  <h2>One picture: pipes on both sides, the decision in the middle</h2>
+<pre><span class="cm">  PERSON (or their agent)                 SPAN                         DEVELOPER AGENT</span>
+  pays with credits, card,         quote, hold, Judge,               A2A + Span outcome
+  or wallet (x402 / MPP)    ──▶    person's verdict,        ──▶      extension
+                                   72-hour window,
+                                   release or void
+  <span class="cm">hold placed on their money</span>      <span class="cm">the acceptance record</span>             <span class="cm">earnings held, then paid</span>
+                                         │                          <span class="cm">by Stripe Connect</span>
+                                         ▼
+                                   TOOLS over MCP
+                                   <span class="cm">per-call cost, Span's own</span></pre>
+  <div class="col">
+    <p><b>Buyer side.</b> For most people the hold already exists: prepaid credits and the budget hold placed before dispatch. Credits have one real advantage over a card hold: no card network deadline. A card hold on a payment the merchant starts can expire after 4 days and 18 hours (Visa), which leaves under two days for the work before a 72-hour window begins. For cards, keep charging into credits up front and run the hold in Span's ledger. For stablecoin buyers, the wallet in decision record 027 already does a hold, and x402's <code>auth-capture</code> is the protocol version of it.</p>
+    <p><b>Developer side.</b> The one thing to build. Earnings land as <i>held</i>, then become payable on acceptance or after 72 hours of silence, or are voided on a send-back. Stripe Connect transfers stay as they are. Splits are Span's ledger, never the protocol: Span is the merchant of record and holds the money, so developers are never direct payees on a chain.</p>
+    <p><b>Evidence.</b> Later, an AP2-style mandate ("up to $X if I accept within 72 hours"), signed by the person, would make every release defensible in a dispute. Not needed to start.</p>
+  </div>
+</section>
+
+<section id="decide">
+  <div class="eyebrow">Your call</div>
+  <h2>Four things to decide</h2>
+  <div class="decisions">
+    <div class="decision"><div class="n">1</div><div>
+      <h3>Make A2A the recommended way for developers to connect?</h3>
+      <p>The engine already speaks it; the decision is to say so in a decision record, make it the SDK default for new agents, and keep Span's own format working for existing ones.</p>
+      <p class="rec"><b>My recommendation: yes.</b> It is where the field settled (IBM and Cisco folded their protocols into it), it shares a foundation with MCP, and it costs Span nothing new.</p>
+    </div></div>
+    <div class="decision"><div class="n">2</div><div>
+      <h3>Write the Span outcome extension?</h3>
+      <p>Quote, verdict and payout messages on top of A2A, published so developers can build against it.</p>
+      <p class="rec"><b>My recommendation: yes, after the shadow report has run.</b> The report tells us what "accepted" should mean; the extension then writes it down.</p>
+    </div></div>
+    <div class="decision"><div class="n">3</div><div>
+      <h3>Hold developer earnings until acceptance?</h3>
+      <p>The core change behind paid for done. It touches what developers are paid and when.</p>
+      <p class="rec"><b>My recommendation: yes, in shadow first.</b> Mark earnings held in the ledger without delaying payouts, and compare for a few weeks.</p>
+    </div></div>
+    <div class="decision"><div class="n">4</div><div>
+      <h3>Pilot x402 auth-capture?</h3>
+      <p>On test networks, behind the existing wallet flags, for buyers paying in stablecoin.</p>
+      <p class="rec"><b>My recommendation: watch, don't build yet.</b> It is a draft and no facilitator is confirmed to settle it. Revisit when one does. MPP and x401 stay where they are.</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="unknowns">
+  <div class="eyebrow">What I couldn't confirm</div>
+  <h2>Open questions</h2>
+  <ul class="col">
+    <li>Whether Coinbase's facilitator settles x402 <code>auth-capture</code> in production.</li>
+    <li>Whether Stripe's shared payment tokens (used by ACP and MPP) allow a hold with later capture.</li>
+    <li>Whether MPP's Visa card method supports holds.</li>
+    <li>AP2 version 0.2's exact mandate names: confirmed on Google's blog, not read in the spec itself.</li>
+    <li>Adoption numbers for MPP ("$14M in 60 days") and x401 (two unnamed pilots) come from secondary reports.</li>
+    <li>I could not watch any of the launch videos; everything here is from specs, repositories and written announcements.</li>
+  </ul>
+</section>
+
+<footer>Protocol review for Paid for Done · 24 October 2026 · read against Span master 02da5835f4 · internal, not a decision record.</footer>
+</div>
