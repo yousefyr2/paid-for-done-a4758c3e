@@ -338,13 +338,15 @@ footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; col
 .ts td.t { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; width: 1%; }
 .ts td.w { font-family: var(--display); font-size: 18px; line-height: 1.5; }
 .ts table { min-width: 0; }
+#pricing .rec { border-left: 3px solid var(--brand); padding-left: 14px; }
+#pricing .rec b { color: var(--brand); }
 mark { background: var(--brand-soft); color: inherit; padding: 0 2px; border-radius: 2px; }
 &lt;/style&gt;
 &lt;div class=&quot;wrap&quot;&gt;
 &lt;header&gt;
   &lt;div class=&quot;eyebrow&quot;&gt;Source · video clip · 20 October 2026&lt;/div&gt;
   &lt;h1&gt;Clip Transcript&lt;/h1&gt;
-  &lt;p class=&quot;lede col&quot;&gt;The full words of the 39-second clip of Chamath Palihapitiya that Social Capital posted on X on 20 October 2026, transcribed from the video&#x27;s own audio. The post quoted only the second half; the opening adds his comparison to internet media in 1999 and 2000, and names cost per click as well as cost per action.&lt;/p&gt;
+  &lt;p class=&quot;lede col&quot;&gt;The full words of the 39-second clip of Chamath Palihapitiya that Social Capital posted on X on 20 October 2026, transcribed from the video&#x27;s own audio. The post quoted only the second half; the opening adds his comparison to internet media in 1999 and 2000, and names cost per click as well as cost per action. A last section covers prices that move: demand pricing, hidden markups, and the airline cookie story.&lt;/p&gt;
   &lt;div class=&quot;strip&quot; role=&quot;list&quot;&gt;
     &lt;div role=&quot;listitem&quot;&gt;&lt;div class=&quot;k&quot;&gt;Speaker&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;Chamath Palihapitiya&lt;/div&gt;&lt;/div&gt;
     &lt;div role=&quot;listitem&quot;&gt;&lt;div class=&quot;k&quot;&gt;Posted by&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;&lt;a href=&quot;https://x.com/socialcapital/status/2112593218261143849&quot;&gt;@socialcapital on X&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
@@ -390,6 +392,38 @@ mark { background: var(--brand-soft); color: inherit; padding: 0 2px; border-rad
   &lt;/div&gt;
 &lt;/section&gt;
 
+&lt;section id=&quot;pricing&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;Beyond the clip&lt;/div&gt;
+  &lt;h2&gt;Prices that move: dynamic pricing and hidden markups&lt;/h2&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;Chamath&#x27;s point is about the unit of sale: a thousand ads then, a million tokens now, an outcome next. Under it sits a second question. Who sets the price, and does it change depending on who is buying? Three different practices get called &quot;dynamic pricing&quot;. Two of them are ordinary business. The third is the one people mean when they say the airline raised the fare because of their cookies.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tbl&quot;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Kind&lt;/th&gt;&lt;th&gt;How it works&lt;/th&gt;&lt;th&gt;Real examples&lt;/th&gt;&lt;th&gt;For Span&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;b&gt;Demand pricing&lt;/b&gt;&lt;/td&gt;&lt;td&gt;The price follows supply and demand. At any moment, everyone sees the same price.&lt;/td&gt;&lt;td&gt;Airline fares rise as seats sell and departure nears; the Dutch competition regulator found one seat&#x27;s price can change up to 35 times while it is on sale. Uber&#x27;s surge pricing. Concert tickets priced by demand.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill ok&quot;&gt;fine, if shown before work starts&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;b&gt;Hidden markup&lt;/b&gt;&lt;/td&gt;&lt;td&gt;A reseller buys at a list price and adds a margin the buyer cannot see.&lt;/td&gt;&lt;td&gt;AI apps that resell model tokens inside a subscription or credit pack. Span today charges cost plus a markup.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill warn&quot;&gt;fine only when the fee is stated&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;b&gt;Personalized pricing&lt;/b&gt;&lt;/td&gt;&lt;td&gt;The price or the ranking changes with who you are: device, history, location, how much the seller thinks you will pay.&lt;/td&gt;&lt;td&gt;Orbitz in 2012 ranked pricier hotels higher for Mac users. A 2014 Northeastern University study found personalization on 9 of 16 large shopping and travel sites. Instacart&#x27;s pricing tool showed up to five prices for the same item, with gaps up to 23%, until it ended the tests on 22 December 2025.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill bad&quot;&gt;no&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+
+  &lt;h3&gt;The airline cookie story&lt;/h3&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;For airlines, the cookie story is mostly a myth, and the evidence is consistent. Consumer Reports ran 372 matched searches in 2016, one browser with cookies and one wiped. The fare was identical 88% of the time. The wiped browser was cheaper 7% of the time and dearer 5% of the time, which is noise. Fares move because seats sell and the flight gets closer, and searching again a minute later often hits a fare class that just sold out. That is demand pricing, the first row.&lt;/p&gt;
+    &lt;p&gt;The worry is closer to coming true now. Delta prices part of its fares with an AI tool from the Israeli company Fetcherr: about 3% of domestic fares in mid-2025, with a goal of 20% by the end of that year. Its president described fares set &quot;for that flight, on that time, to you, the individual.&quot; After pushback from Congress, Delta wrote on 18 September 2026 that the tool gets only route-level demand and market data and no personal information. The rules are tightening. New York&#x27;s Algorithmic Pricing Disclosure Act has been enforced since 10 November 2025: a price set from personal data must carry the label &quot;THIS PRICE WAS SET BY AN ALGORITHM USING YOUR PERSONAL DATA&quot;, with fines up to $1,000 per violation. On 19 August 2026 the FTC proposed a policy saying that varying prices on personal data without clear disclosure may break federal law.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;h3&gt;Where AI pricing sits today&lt;/h3&gt;
+  &lt;div class=&quot;col&quot;&gt;
+    &lt;p&gt;Model providers publish one token price for everyone. The movement is in discounts for time and patience: batch jobs at half price at Anthropic and OpenAI, repeated (cached) input billed at a fraction of the price, and off-peak discounts at DeepSeek. All of that is demand pricing, and it is public. The markup is hidden one layer up, in apps and agents that resell tokens. The buyer sees a credit pack or a monthly fee and cannot tell what share went to the model.&lt;/p&gt;
+    &lt;p&gt;Paying by outcome changes this. Once a buyer pays per finished task, the price is no longer tokens times a public list price. Span and the developer set it, and the buyer has no meter to check it against. That makes the other two rows easier to slip into: a markup nobody can see, and a price that depends on who is asking. Ad networks show where this leads. Buyers trusted cost per action because the price was set per action in an open auction. A price per person would have looked like a trick.&lt;/p&gt;
+    &lt;p class=&quot;rec&quot;&gt;&lt;b&gt;Proposed rule (your call):&lt;/b&gt; a task&#x27;s price may depend on the task, how urgent it is and how busy the system is. It is quoted before work starts, as the developer&#x27;s price plus Span&#x27;s stated fee, and anyone asking for the same task at the same moment gets the same quote. It never depends on the person: their history, device, location, past spending or a guess at what they will pay. This keeps Span outside New York&#x27;s label law and the FTC&#x27;s proposal, and it matches the merchant-of-record decision of 24 September 2026, under which Span bills with a stated fee.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;files&quot;&gt;Sources: &lt;a href=&quot;https://time.com/4899508/flight-search-history-price/&quot;&gt;Time on the Consumer Reports test&lt;/a&gt; · &lt;a href=&quot;https://www.iamexpat.nl/lifestyle/lifestyle-news/one-flight-35-prices-dutch-study-debunks-browser-cookie-myth&quot;&gt;Dutch regulator study, 35 prices&lt;/a&gt; · &lt;a href=&quot;https://allthingsd.com/20120626/on-orbitz-mac-users-steered-to-pricier-hotels/&quot;&gt;WSJ on Orbitz, 2012&lt;/a&gt; · &lt;a href=&quot;https://dl.acm.org/doi/10.1145/2663716.2663744&quot;&gt;Hannak et al., IMC 2014&lt;/a&gt; · &lt;a href=&quot;https://www.consumerreports.org/money/questionable-business-practices/instacart-stops-ai-pricing-experiments-a1176475852/&quot;&gt;Consumer Reports on Instacart&lt;/a&gt; · &lt;a href=&quot;https://news.delta.com/delta-responds-rep-pallone-misinformation-consumer-surveillance-pricing&quot;&gt;Delta&#x27;s letter, Sept 2026&lt;/a&gt; · &lt;a href=&quot;https://viewfromthewing.com/delta-denies-surveillance-pricing-but-ai-doesnt-need-your-name-to-predict-what-youre-willing-to-pay/&quot;&gt;View from the Wing on Delta and Fetcherr&lt;/a&gt; · &lt;a href=&quot;https://www.skadden.com/insights/publications/2026/01/new-york-algorithmic-pricing-law&quot;&gt;Skadden on New York&#x27;s law&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;
+
 &lt;section id=&quot;method&quot;&gt;
   &lt;div class=&quot;eyebrow&quot;&gt;How this was made&lt;/div&gt;
   &lt;h2&gt;Method and limits&lt;/h2&gt;
@@ -397,11 +431,12 @@ mark { background: var(--brand-soft); color: inherit; padding: 0 2px; border-rad
     &lt;li&gt;The audio was downloaded from the post on 25 October 2026 and transcribed on this Mac with OpenAI&#x27;s Whisper speech model (large-v3-turbo). Nothing was sent to an outside transcription service.&lt;/li&gt;
     &lt;li&gt;Where the transcript overlaps the post&#x27;s own quote, the words match, except where the post shortened them: &quot;a thousand&quot; written as &quot;1,000&quot;, the two &quot;right?&quot; cut, and &quot;batshit&quot; removed.&lt;/li&gt;
     &lt;li&gt;Whisper sometimes mishears names and numbers. Every number and name here also appears in the post&#x27;s text, which lowers that risk, but the video is the authority.&lt;/li&gt;
+    &lt;li&gt;The pricing section was checked against the sources listed under it on 25 October 2026. The Dutch regulator figure comes from a news report of the study.&lt;/li&gt;
     &lt;li&gt;The speaker is identified from the post (&quot;@chamath on the pricing shift&quot;); only one voice is heard.&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/section&gt;
 
-&lt;footer&gt;Clip transcript · Social Capital on X, 20 October 2026 · transcribed 25 October 2026 · internal source material.&lt;/footer&gt;
+&lt;footer&gt;Clip transcript · Social Capital on X, 20 October 2026 · transcribed 25 October 2026 · pricing section added 25 October 2026 · internal source material.&lt;/footer&gt;
 &lt;/div&gt;
 "></iframe></section><section role="tabpanel" id="p-blog" aria-labelledby="t-blog" hidden><iframe title="Blog post" srcdoc="&lt;title&gt;Paid for Done&lt;/title&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
