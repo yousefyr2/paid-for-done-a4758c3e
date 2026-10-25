@@ -1,0 +1,181 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Clip Transcript</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: source transcript. Timestamped lines, then what they add, then method. */
+:root {
+  --paper: #fafaf7;
+  --cream: #f2f2ec;
+  --ink: #2d3436;
+  --ink-2: #545e62;
+  --rule: #dcdcd2;
+  --brand: #1A6D63;
+  --brand-soft: #D5F2ED;
+  --copper: #93491a;
+  --copper-soft: #f6e6d8;
+  --warn: #a8321f;
+  --warn-soft: #f8e1dc;
+  --code-bg: #eeeee6;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+    --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+    --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14140d; --cream: #1d1d15; --ink: #e9e7df; --ink-2: #b3b1a6; --rule: #3a3a30;
+  --brand: #6ECFC2; --brand-soft: #173a35; --copper: #e3a271; --copper-soft: #3a2a1c;
+  --warn: #f0917f; --warn-soft: #3d201b; --code-bg: #22221a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 960px; margin: 0 auto; }
+.col { max-width: 70ch; }
+header { padding-block: 56px 28px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 5.5vw, 52px); line-height: 1.06; margin: 10px 0 14px; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3.2vw, 31px); line-height: 1.18; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-size: 17px; font-weight: 600; margin: 20px 0 6px; }
+.lede { font-family: var(--display); font-size: 20px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+section { padding-block: 48px 8px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 1.25em; margin: 0 0 12px; }
+li { margin-bottom: 6px; }
+a { color: var(--brand); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: .85em; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+
+/* status strip */
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--rule); margin-top: 24px; }
+.strip > div { padding: 12px 14px; min-width: 0; }
+.strip > div + div { border-left: 1px solid var(--rule); }
+.strip .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); }
+.strip .v { font-weight: 600; font-size: 15px; margin-top: 2px; overflow-wrap: anywhere; }
+.strip .v.ok { color: var(--brand); }
+.strip .v.hold { color: var(--copper); }
+@media (max-width: 720px) { .strip { grid-template-columns: 1fr 1fr; } .strip > div:nth-child(3) { border-left: 0; } .strip > div:nth-child(n+3) { border-top: 1px solid var(--rule); } }
+
+/* decisions */
+.decisions { display: grid; gap: 0; border: 1px solid var(--copper); margin: 20px 0 8px; }
+.decision { padding: 18px 20px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; }
+.decision + .decision { border-top: 1px solid var(--rule); }
+.decision .n { font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--copper); line-height: 1; }
+.decision h3 { margin: 0 0 6px; font-size: 18px; }
+.decision p { margin-bottom: 8px; color: var(--ink-2); }
+.decision .rec { font-size: 14.5px; color: var(--ink); }
+.decision .rec b { color: var(--brand); }
+
+/* tables */
+.tbl { overflow-x: auto; margin: 18px 0; border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 13px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.ok { background: var(--brand-soft); color: var(--brand); }
+.pill.warn { background: var(--copper-soft); color: var(--copper); }
+.pill.bad { background: var(--warn-soft); color: var(--warn); }
+
+/* commits */
+.commit { border: 1px solid var(--rule); margin: 22px 0; }
+.commit .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 14px 18px; background: var(--cream); border-bottom: 1px solid var(--rule); }
+.commit .sha { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+.commit .head h3 { margin: 0; font-size: 17px; min-width: 0; }
+.commit .body { padding: 16px 18px 6px; }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 12px 0 14px; }
+.ba > div { padding: 12px 14px; min-width: 0; font-size: 14.5px; }
+.ba > div + div { border-left: 1px solid var(--rule); }
+.ba .k { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+.ba .before .k { color: var(--warn); }
+.ba .after .k { color: var(--brand); }
+@media (max-width: 640px) { .ba { grid-template-columns: 1fr; } .ba > div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+pre { font-family: var(--mono); font-size: 12.5px; line-height: 1.55; background: var(--code-bg); padding: 12px 14px; overflow-x: auto; margin: 0 0 14px; border-radius: 3px; }
+pre .del { color: var(--warn); }
+pre .add { color: var(--brand); }
+pre .cm { color: var(--ink-2); }
+.files { font-family: var(--mono); font-size: 12px; color: var(--ink-2); margin-bottom: 12px; overflow-wrap: anywhere; }
+
+.note { border-left: 2px solid var(--copper); background: var(--copper-soft); padding: 12px 16px; margin: 16px 0; font-size: 15px; }
+.note b { color: var(--copper); }
+footer { padding-block: 36px 0; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+</style>
+
+<style>
+.ts { width: 100%; }
+.ts td.t { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; width: 1%; }
+.ts td.w { font-family: var(--display); font-size: 18px; line-height: 1.5; }
+.ts table { min-width: 0; }
+mark { background: var(--brand-soft); color: inherit; padding: 0 2px; border-radius: 2px; }
+</style>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Source · video clip · 20 October 2026</div>
+  <h1>Clip Transcript</h1>
+  <p class="lede col">The full words of the 39-second clip of Chamath Palihapitiya that Social Capital posted on X on 20 October 2026, transcribed from the video's own audio. The post quoted only the second half; the opening adds his comparison to internet media in 1999 and 2000, and names cost per click as well as cost per action.</p>
+  <div class="strip" role="list">
+    <div role="listitem"><div class="k">Speaker</div><div class="v">Chamath Palihapitiya</div></div>
+    <div role="listitem"><div class="k">Posted by</div><div class="v"><a href="https://x.com/socialcapital/status/2112593218261143849">@socialcapital on X</a></div></div>
+    <div role="listitem"><div class="k">Length</div><div class="v">0:39</div></div>
+    <div role="listitem"><div class="k">Transcribed</div><div class="v ok">25 Oct, from the audio</div></div>
+  </div>
+</header>
+
+<section id="transcript">
+  <div class="eyebrow">Word for word</div>
+  <h2>The transcript</h2>
+  <div class="col"><p>Highlighted lines are the ones the post left out.</p></div>
+  <div class="tbl ts">
+    <table>
+      <thead><tr><th>Time</th><th>What he says</th></tr></thead>
+      <tbody>
+        <tr><td class="t">0:00</td><td class="w"><mark>I also think the big thing that has to happen in AI is we're effectively like in 1999 and 2000,</mark></td></tr>
+        <tr><td class="t">0:06</td><td class="w"><mark>in the internet media world where everybody just works on CPM. That time it was cost per</mark></td></tr>
+        <tr><td class="t">0:13</td><td class="w"><mark>thousand ads. Right now it's cost per million input tokens. We will move to CPC and CPA,</mark></td></tr>
+        <tr><td class="t">0:21</td><td class="w"><mark>right?</mark> And so when Google invented and scaled AdWords and AdSense, the market exploded,</td></tr>
+        <tr><td class="t">0:27</td><td class="w"><mark>right?</mark> Because we went from buying a thousand ads to just getting an outcome.</td></tr>
+        <tr><td class="t">0:30</td><td class="w">Right now we buy a million tokens. We will eventually move to an outcome.</td></tr>
+        <tr><td class="t">0:34</td><td class="w">And I think when that happens, this market will just go absolutely <mark>batshit</mark> crazy.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="adds">
+  <div class="eyebrow">Compared with the post</div>
+  <h2>What the full clip adds</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>In the clip</th><th>What it adds</th></tr></thead>
+      <tbody>
+        <tr><td>"we're effectively like in 1999 and 2000, in the internet media world"</td><td>A date for the comparison. AI today is the web before Google's ad model, when every site sold banners by the thousand views. The 3 October post compared it with the Web1 and mobile transitions; this pins the moment to the years just before AdWords.</td></tr>
+        <tr><td>"That time it was cost per thousand ads. Right now it's cost per million input tokens."</td><td>The exact parallel: the unit of sale was a thousand ads then, a million <i>input</i> tokens now. He names input tokens, the part of the bill that grows with how much context an agent is given, whether or not the work succeeds.</td></tr>
+        <tr><td>"We will move to CPC and CPA"</td><td>He names two steps. Cost per click came first in advertising (AdWords from 2002) and cost per action after. For Span, the Judge's approval is the click and the person keeping the work is the action. Span pays on the action.</td></tr>
+        <tr><td>"absolutely batshit crazy"</td><td>The post cleaned this to "absolutely crazy." The meaning is the same: total spending on AI grows sharply once buyers pay for results.</td></tr>
+        <tr><td>"I also think…"</td><td>The clip starts mid-conversation, so it is an excerpt of a longer discussion. The memo's best guess is the All-In episode of 17 October 2026; the clip itself does not say.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="method">
+  <div class="eyebrow">How this was made</div>
+  <h2>Method and limits</h2>
+  <ul class="col">
+    <li>The audio was downloaded from the post on 25 October 2026 and transcribed on this Mac with OpenAI's Whisper speech model (large-v3-turbo). Nothing was sent to an outside transcription service.</li>
+    <li>Where the transcript overlaps the post's own quote, the words match, except where the post shortened them: "a thousand" written as "1,000", the two "right?" cut, and "batshit" removed.</li>
+    <li>Whisper sometimes mishears names and numbers. Every number and name here also appears in the post's text, which lowers that risk, but the video is the authority.</li>
+    <li>The speaker is identified from the post ("@chamath on the pricing shift"); only one voice is heard.</li>
+  </ul>
+</section>
+
+<footer>Clip transcript · Social Capital on X, 20 October 2026 · transcribed 25 October 2026 · internal source material.</footer>
+</div>
